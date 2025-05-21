@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ shop.locale }}">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#000000">
-  <link rel="canonical" href="{{ canonical_url }}">
   
-  <title>{{ shop.name }} - Coming Soon</title>
-  
-  {{ content_for_header }}
+  <title>The Checkered Flag - Coming Soon</title>
   
   <style>
     /* Custom styles for The Checkered Flag password page */
@@ -153,6 +150,7 @@
       padding: 10px;
       background-color: rgba(0, 204, 0, 0.1);
       border-radius: 4px;
+      display: none;
     }
     
     /* Location and social */
@@ -309,53 +307,25 @@
         padding: 10px;
       }
     }
+
+    /* Footer styles */
+    .password-page__footer {
+      margin-top: 40px;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .password-page__footer-text {
+      margin-bottom: 15px;
+    }
   </style>
-  
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Social icon click animation
-      const socialLinks = document.querySelectorAll('.social-link');
-      
-      if (socialLinks) {
-        socialLinks.forEach(link => {
-          link.addEventListener('click', function(e) {
-            // Add clicked class for animations
-            this.classList.add('clicked');
-            
-            // Create ripple effect
-            const ripple = document.createElement('span');
-            ripple.classList.add('ripple');
-            this.appendChild(ripple);
-            
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
-            ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-            
-            // Remove ripple and clicked class after animation completes
-            setTimeout(() => {
-              ripple.remove();
-              setTimeout(() => {
-                this.classList.remove('clicked');
-              }, 1000);
-            }, 600);
-          });
-        });
-      }
-    });
-  </script>
 </head>
 <body>
-  {{ content_for_layout }}
-  
   <div class="password-page__wrapper">
     <div class="password-page__content">
       <div class="password-page__logo">
         <div class="site-header__logo">
-          <!-- Fixed the image URL - using a direct image URL instead of ibb.co link ID -->
-          <img src="https://i.ibb.co/qYnK5TX/checkered-flag-logo.png" alt="The Checkered Flag Logo">
+          <img src="images/checkered-flag-logo.png" alt="The Checkered Flag Logo">
         </div>
       </div>
       
@@ -386,29 +356,23 @@
         
         <div class="password-page__signup-form">
           <h3 class="password-page__signup-heading">Be the first to know when we open!</h3>
-          {% form 'contact' %}
-            {{ form.errors | default_errors }}
-            {% if form.posted_successfully? %}
-              <p class="form-success">
-                Thanks for subscribing! We'll keep you updated.
-              </p>
-            {% else %}
-              <input type="hidden" name="contact[tags]" value="prospect, password page">
-              <div class="input-group password-page__input-group">
-                <input type="email"
-                       name="contact[email]"
-                       id="Email"
-                       class="input-group__field password-page__input"
-                       placeholder="Enter your email"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       required>
-                <button type="submit" class="btn password-page__submit-btn">
-                  <span>Notify Me</span>
-                </button>
-              </div>
-            {% endif %}
-          {% endform %}
+          <div id="contactForm">
+            <div class="form-success" id="formSuccess">
+              Thanks for subscribing! We'll keep you updated.
+            </div>
+            <div class="input-group password-page__input-group">
+              <input type="email"
+                     id="Email"
+                     class="input-group__field password-page__input"
+                     placeholder="Enter your email"
+                     autocorrect="off"
+                     autocapitalize="off"
+                     required>
+              <button type="submit" class="btn password-page__submit-btn" id="submitBtn">
+                <span>Notify Me</span>
+              </button>
+            </div>
+          </div>
         </div>
         
         <div class="password-page__location">
@@ -450,165 +414,78 @@
         
         <div class="password-page__footer">
           <p class="password-page__footer-text">
-            &copy; {{ 'now' | date: "%Y" }} The Checkered Flag Slot Cars & RC Complex. All rights reserved.
+            &copy; <span id="currentYear"></span> The Checkered Flag Slot Cars & RC Complex. All rights reserved.
           </p>
-          
-          {% unless shopify.shop.password_message == blank %}
-            <div class="password-page__login-form">
-              <a href="#LoginModal" class="js-toggle-login-modal btn--link">
-                {{ 'general.password_page.password_link' | t }} &rarr;
-              </a>
-            </div>
-          {% endunless %}
         </div>
       </div>
     </div>
   </div>
-  
-  {% unless shopify.shop.password_message == blank %}
-    <div id="LoginModal" class="modal">
-      <div class="modal__inner">
-        <div class="modal__centered">
-          <div class="modal__centered-content">
-            <div class="password-login">
-              <h2 class="password-login__heading">{{ 'general.password_page.login_form_heading' | t }}</h2>
-              {% form 'storefront_password' %}
-                {{ form.errors | default_errors }}
-                <div class="input-group password-page__input-group">
-                  <input type="password"
-                         name="password"
-                         id="Password"
-                         class="input-group__field password-page__input"
-                         placeholder="{{ 'general.password_page.login_form_password_placeholder' | t }}"
-                         autocomplete="current-password">
-                  <button type="submit" class="btn password-page__submit-btn">
-                    <span>{{ 'general.password_page.login_form_submit' | t }}</span>
-                  </button>
-                </div>
-              {% endform %}
-              <div class="password-login__admin-link">
-                <a href="/admin" class="btn--link">
-                  {{ 'general.password_page.admin_link' | t }}
-                </a>
-              </div>
-            </div>
-          </div>
-          <button type="button" class="modal__close js-modal-close">
-            <span class="visually-hidden">{{ 'general.accessibility.close_modal' | t }}</span>
-            &times;
-          </button>
-        </div>
-      </div>
-    </div>
-  {% endunless %}
-  
+
   <script>
-    // Modal functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const modalToggle = document.querySelector('.js-toggle-login-modal');
-      const modal = document.getElementById('LoginModal');
-      const modalClose = document.querySelector('.js-modal-close');
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
       
-      if (modalToggle && modal) {
-        modalToggle.addEventListener('click', function(e) {
-          e.preventDefault();
-          modal.style.display = 'flex';
-          document.getElementById('Password').focus();
-        });
-        
-        if (modalClose) {
-          modalClose.addEventListener('click', function() {
-            modal.style.display = 'none';
+      // Social icon click animation
+      const socialLinks = document.querySelectorAll('.social-link');
+      
+      if (socialLinks) {
+        socialLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            // Add clicked class for animations
+            this.classList.add('clicked');
+            
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+            
+            // Remove ripple and clicked class after animation completes
+            setTimeout(() => {
+              ripple.remove();
+              setTimeout(() => {
+                this.classList.remove('clicked');
+              }, 1000);
+            }, 600);
           });
-        }
-        
-        // Close modal when clicking outside content
-        window.addEventListener('click', function(e) {
-          if (e.target === modal) {
-            modal.style.display = 'none';
+        });
+      }
+      
+      // Simple form submission handling
+      const submitBtn = document.getElementById('submitBtn');
+      const emailInput = document.getElementById('Email');
+      const formSuccess = document.getElementById('formSuccess');
+      const contactForm = document.getElementById('contactForm');
+      
+      if (submitBtn && emailInput) {
+        submitBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          if (emailInput.value && emailInput.checkValidity()) {
+            // In a real implementation, you would send this to a server
+            console.log('Email submitted:', emailInput.value);
+            
+            // Show success message
+            formSuccess.style.display = 'block';
+            emailInput.value = '';
+            
+            // Hide form fields
+            emailInput.style.display = 'none';
+            submitBtn.style.display = 'none';
+          } else {
+            emailInput.reportValidity();
           }
         });
       }
     });
   </script>
-  
-  <style>
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .modal__inner {
-      position: relative;
-      max-width: 90%;
-      width: 500px;
-    }
-    
-    .modal__centered-content {
-      background-color: #222;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
-      border-top: 4px solid #ff0000;
-    }
-    
-    .modal__close {
-      position: absolute;
-      top: -40px;
-      right: 0;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 5px;
-    }
-    
-    .password-login__heading {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: #fff;
-    }
-    
-    .password-login__admin-link {
-      margin-top: 15px;
-    }
-    
-    .btn--link {
-      background: none;
-      border: none;
-      color: #ff6666;
-      text-decoration: none;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
-    }
-    
-    .btn--link:hover {
-      color: #ff0000;
-      text-decoration: underline;
-    }
-    
-    /* Footer styles */
-    .password-page__footer {
-      margin-top: 40px;
-      color: #999;
-      font-size: 0.9rem;
-    }
-    
-    .password-page__footer-text {
-      margin-bottom: 15px;
-    }
-  </style>
 </body>
 </html>
 
