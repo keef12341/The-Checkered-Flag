@@ -431,6 +431,75 @@
       display: none;
       font-size: 0.9rem;
     }
+
+    /* Confirmation message modal styles */
+    .confirmation-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .confirmation-modal-content {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      border-top: 4px solid #00cc00;
+      color: #fff;
+    }
+    
+    .close-confirmation {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s ease;
+    }
+    
+    .close-confirmation:hover {
+      color: #fff;
+    }
+    
+    .confirmation-heading {
+      color: #00cc00;
+      margin-bottom: 20px;
+    }
+    
+    .confirmation-checkmark {
+      font-size: 3rem;
+      color: #00cc00;
+      margin-bottom: 15px;
+    }
+    
+    .confirmation-list {
+      text-align: left;
+      margin: 20px auto;
+      max-width: 400px;
+    }
+    
+    .confirmation-list li {
+      margin-bottom: 10px;
+    }
+    
+    .confirmation-address {
+      margin: 20px 0;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
@@ -438,7 +507,7 @@
     <div class="password-page__content">
       <div class="password-page__logo">
         <div class="site-header__logo">
-          <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
+                    <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
         </div>
       </div>
       
@@ -482,8 +551,8 @@
                      autocapitalize="off"
                      required>
               <!-- Add reCAPTCHA widget -->
-              <div class="recaptcha-container">
-                                <div class="g-recaptcha" data-sitekey="6Ld7mEMrAAAAAFqP3kfo8FUDEyfIAqbRzI_Yi_th"></div>
+              <div class="recaptcha-container">                
+                <div class="g-recaptcha" data-sitekey="6Ld7mEMrAAAAAFqP3kfo8FUDEyfIAqbRzI_Yi_th"></div>
               </div>
               <div class="recaptcha-error" id="recaptchaError">Please complete the reCAPTCHA verification.</div>
               <button type="submit" class="password-page__submit-btn" id="submitBtn">
@@ -502,9 +571,8 @@
           <ul class="social-sharing">
             <li>
               <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" class="
-              social-sharing__link social-link facebook-link" title="Facebook" target="_blank">
-                            
-                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              social-sharing__link social-link facebook-link" title="Facebook" target="_blank">                
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                   <path fill="#ffffff" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
                 </svg>
                 <span class="social-like">Like!</span>
@@ -555,6 +623,36 @@
       <p class="password-error" id="passwordError">Incorrect password. Please try again.</p>
     </div>
   </div>
+
+  <!-- Signup Confirmation Modal -->
+  <div class="confirmation-modal" id="confirmationModal">
+    <div class="confirmation-modal-content">
+      <span class="close-confirmation" id="closeConfirmation">&times;</span>
+      <div class="confirmation-checkmark">✅</div>
+      <h2 class="confirmation-heading">Thanks for signing up!</h2>
+      <p>You're now part of the excitement at The Checkered Flag Slot Car Racing & RC Experience, opening soon in Pigeon Forge, TN. We can't wait to bring you a one-of-a-kind destination for racing, remote control fun, and community events.</p>
+      
+      <p>As a subscriber, you'll be the first to hear about:</p>
+      <ul class="confirmation-list">
+        <li>✅ Our official opening date</li>
+        <li>✅ Exclusive offers and early access</li>
+        <li>✅ Sneak peeks of the tracks and store</li>
+        <li>✅ Upcoming tournaments and family events</li>
+      </ul>
+      
+      <p>We're building something awesome, and you're now part of it. Stay tuned — we'll be hitting the gas soon!</p>
+      
+      <div class="confirmation-address">
+        📍 232 Collier Drive, Suite I2/3, Pigeon Forge, TN 37863
+      </div>
+      
+      <p>Follow us on social media to watch the build come to life!</p>
+      
+      <p>– The Checkered Flag Team</p>
+      
+      <button class="password-submit" id="confirmationClose">Got it!</button>
+    </div>
+  </div>
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -599,6 +697,9 @@
       const formSuccess = document.getElementById('formSuccess');
       const recaptchaError = document.getElementById('recaptchaError');
       const contactForm = document.getElementById('contactForm');
+      const confirmationModal = document.getElementById('confirmationModal');
+      const closeConfirmation = document.getElementById('closeConfirmation');
+      const confirmationClose = document.getElementById('confirmationClose');
       
       if (submitBtn && emailInput) {
         submitBtn.addEventListener('click', function(e) {
@@ -615,7 +716,7 @@
             recaptchaError.style.display = 'block';
             return;
           }
-            
+          
           if (emailInput.value && emailInput.checkValidity()) {
             // In a real implementation, you would send this to a server
             // along with the recaptchaResponse for verification
@@ -624,20 +725,41 @@
             
             // Show success message
             formSuccess.style.display = 'block';
+            
+            // Show confirmation modal instead of just the small success message
+            confirmationModal.style.display = 'flex';
+            
+            // Reset form
             emailInput.value = '';
             
             // Reset reCAPTCHA
             grecaptcha.reset();
-            
-            // Hide form fields
-            emailInput.style.display = 'none';
-            submitBtn.style.display = 'none';
-            document.querySelector('.recaptcha-container').style.display = 'none';
           } else {
             emailInput.reportValidity();
           }
         });
       }
+      
+      // Close confirmation modal when X is clicked
+      if (closeConfirmation) {
+        closeConfirmation.addEventListener('click', function() {
+          confirmationModal.style.display = 'none';
+        });
+      }
+      
+      // Close confirmation modal when "Got it!" button is clicked
+      if (confirmationClose) {
+        confirmationClose.addEventListener('click', function() {
+                    confirmationModal.style.display = 'none';
+        });
+      }
+      
+      // Close confirmation modal when clicking outside of it
+      window.addEventListener('click', function(e) {
+        if (e.target === confirmationModal) {
+          confirmationModal.style.display = 'none';
+        }
+      });
       
       // Owner tab and password modal functionality
       const ownerTab = document.getElementById('ownerTab');
@@ -699,7 +821,5 @@
   </script>
 </body>
 </html>
-
-
 
 
