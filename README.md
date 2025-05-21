@@ -1,1 +1,614 @@
-# keef12341.github.io
+<!DOCTYPE html>
+<html lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="{{ canonical_url }}">
+  
+  <title>{{ shop.name }} - Coming Soon</title>
+  
+  {{ content_for_header }}
+  
+  <style>
+    /* Custom styles for The Checkered Flag password page */
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85));
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    .password-page__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+    
+    .password-page__content {
+      max-width: 600px;
+      text-align: center;
+      background-color: rgba(34, 34, 34, 0.9);
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.2);
+      border-top: 5px solid #ff0000;
+    }
+    
+    .site-header__logo {
+      margin: 0 0 20px;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    .password-page__heading {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+    
+    .password-page__message {
+      margin-bottom: 30px;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+    
+    /* Features section */
+    .password-page__features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    
+    .feature-item {
+      background-color: #333;
+      border-radius: 8px;
+      padding: 15px;
+      width: 120px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .feature-text {
+      font-size: 0.9rem;
+      color: #fff;
+    }
+    
+    /* Signup form */
+    .password-page__signup-form {
+      margin: 30px 0;
+      background-color: #222;
+      padding: 25px;
+      border-radius: 8px;
+      border-left: 4px solid #ff0000;
+    }
+    
+    .password-page__signup-heading {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    .password-page__input-group {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: 0 auto;
+      gap: 15px;
+    }
+    
+    .password-page__input {
+      padding: 15px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .password-page__submit-btn {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 15px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      width: 100%;
+    }
+    
+    .password-page__submit-btn:hover {
+      background-color: #cc0000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .form-success {
+      color: #00cc00;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 10px;
+      background-color: rgba(0, 204, 0, 0.1);
+      border-radius: 4px;
+    }
+    
+    /* Location and social */
+    .password-page__location {
+      margin: 20px 0;
+      color: #ccc;
+    }
+    
+    .location-link {
+      color: #ff6666;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: bold;
+    }
+    
+    .location-link:hover {
+      color: #ff0000;
+      text-decoration: underline;
+    }
+    
+    .password-page__social-heading {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+    
+    .social-sharing {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .social-sharing__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background-color: #333;
+      border-radius: 50%;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .social-sharing__link:hover {
+      background-color: #ff0000;
+      transform: translateY(-3px);
+    }
+    
+    /* Social icons */
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-sharing__link.social-link.clicked .social-icon {
+      animation: socialPulse 0.5s ease-in-out;
+    }
+    
+    @keyframes socialPulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Social like animation */
+    .social-like {
+      position: absolute;
+      opacity: 0;
+      top: -20px;
+      font-size: 12px;
+      background: #4267B2;
+      color: white;
+      padding: 3px 6px;
+      border-radius: 3px;
+      pointer-events: none;
+    }
+    
+    .social-sharing__link.social-link.clicked .social-like {
+      animation: likeFloat 1.5s ease-out forwards;
+    }
+    
+    @keyframes likeFloat {
+      0% {
+        opacity: 0;
+        transform: translateY(0);
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+    }
+    
+    /* Ripple effect */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+    
+    @keyframes ripple {
+      to {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+    
+    .visually-hidden {
+      position: absolute;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      width: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+    }
+    
+    /* Responsive adjustments */
+    @media screen and (max-width: 600px) {
+      .password-page__content {
+        padding: 25px 15px;
+      }
+      
+      .site-header__logo img {
+        max-width: 80%;
+      }
+      
+      .password-page__heading {
+        font-size: 1.5rem;
+      }
+      
+      .feature-item {
+        width: 100px;
+        padding: 10px;
+      }
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Social icon click animation
+      const socialLinks = document.querySelectorAll('.social-link');
+      
+      if (socialLinks) {
+        socialLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            // Add clicked class for animations
+            this.classList.add('clicked');
+            
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+            
+            // Remove ripple and clicked class after animation completes
+            setTimeout(() => {
+              ripple.remove();
+              setTimeout(() => {
+                this.classList.remove('clicked');
+              }, 1000);
+            }, 600);
+          });
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  {{ content_for_layout }}
+  
+  <div class="password-page__wrapper">
+    <div class="password-page__content">
+      <div class="password-page__logo">
+        <div class="site-header__logo">
+          <!-- Fixed the image URL - using a direct image URL instead of ibb.co link ID -->
+          <img src="https://i.ibb.co/qYnK5TX/checkered-flag-logo.png" alt="The Checkered Flag Logo">
+        </div>
+      </div>
+      
+      <div class="password-page__main">
+        <h2 class="password-page__heading">Coming Soon to Pigeon Forge!</h2>
+        <div class="password-page__message rte">
+          <p>We're putting the finishing touches on our tracks and will be racing soon!</p>
+        </div>
+        
+        <div class="password-page__features">
+          <div class="feature-item">
+            <div class="feature-icon">🏎️</div>
+            <div class="feature-text">Slot Car Racing</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🏁</div>
+            <div class="feature-text">Two Difficulty Tracks</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">Drag Strip</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎮</div>
+            <div class="feature-text">RC Drag Racing</div>
+          </div>
+        </div>
+        
+        <div class="password-page__signup-form">
+          <h3 class="password-page__signup-heading">Be the first to know when we open!</h3>
+          {% form 'contact' %}
+            {{ form.errors | default_errors }}
+            {% if form.posted_successfully? %}
+              <p class="form-success">
+                Thanks for subscribing! We'll keep you updated.
+              </p>
+            {% else %}
+              <input type="hidden" name="contact[tags]" value="prospect, password page">
+              <div class="input-group password-page__input-group">
+                <input type="email"
+                       name="contact[email]"
+                       id="Email"
+                       class="input-group__field password-page__input"
+                       placeholder="Enter your email"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       required>
+                <button type="submit" class="btn password-page__submit-btn">
+                  <span>Notify Me</span>
+                </button>
+              </div>
+            {% endif %}
+          {% endform %}
+        </div>
+        
+        <div class="password-page__location">
+          <p>Located in <a href="https://www.google.com/maps/place/Pigeon+Forge,+TN" target="_blank" class="location-link">Pigeon Forge, TN</a></p>
+        </div>
+        
+        <div class="password-page__social-sharing">
+          <h3 class="password-page__social-heading">Follow Our Progress</h3>
+          <ul class="social-sharing">
+            <li>
+              <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" class="social-sharing__link social-link facebook-link" title="Facebook" target="_blank">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                  <path fill="#ffffff" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+                </svg>
+                <span class="social-like">Like!</span>
+                <span class="visually-hidden">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/checkeredflagslotcar/" class="social-sharing__link social-link instagram-link" title="Instagram" target="_blank">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path fill="#ffffff" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                </svg>
+                <span class="social-like">Follow!</span>
+                <span class="visually-hidden">Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@checkeredflagslotcars.com" class="social-sharing__link social-link email-link" title="Email" target="_blank">
+                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="#ffffff" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path>
+                </svg>
+                <span class="social-like">Email!</span>
+                <span class="visually-hidden">Email</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="password-page__footer">
+          <p class="password-page__footer-text">
+            &copy; {{ 'now' | date: "%Y" }} The Checkered Flag Slot Cars & RC Complex. All rights reserved.
+          </p>
+          
+          {% unless shopify.shop.password_message == blank %}
+            <div class="password-page__login-form">
+              <a href="#LoginModal" class="js-toggle-login-modal btn--link">
+                {{ 'general.password_page.password_link' | t }} &rarr;
+              </a>
+            </div>
+          {% endunless %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% unless shopify.shop.password_message == blank %}
+    <div id="LoginModal" class="modal">
+      <div class="modal__inner">
+        <div class="modal__centered">
+          <div class="modal__centered-content">
+            <div class="password-login">
+              <h2 class="password-login__heading">{{ 'general.password_page.login_form_heading' | t }}</h2>
+              {% form 'storefront_password' %}
+                {{ form.errors | default_errors }}
+                <div class="input-group password-page__input-group">
+                  <input type="password"
+                         name="password"
+                         id="Password"
+                         class="input-group__field password-page__input"
+                         placeholder="{{ 'general.password_page.login_form_password_placeholder' | t }}"
+                         autocomplete="current-password">
+                  <button type="submit" class="btn password-page__submit-btn">
+                    <span>{{ 'general.password_page.login_form_submit' | t }}</span>
+                  </button>
+                </div>
+              {% endform %}
+              <div class="password-login__admin-link">
+                <a href="/admin" class="btn--link">
+                  {{ 'general.password_page.admin_link' | t }}
+                </a>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="modal__close js-modal-close">
+            <span class="visually-hidden">{{ 'general.accessibility.close_modal' | t }}</span>
+            &times;
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endunless %}
+  
+  <script>
+    // Modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const modalToggle = document.querySelector('.js-toggle-login-modal');
+      const modal = document.getElementById('LoginModal');
+      const modalClose = document.querySelector('.js-modal-close');
+      
+      if (modalToggle && modal) {
+        modalToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          modal.style.display = 'flex';
+          document.getElementById('Password').focus();
+        });
+        
+        if (modalClose) {
+          modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+          });
+        }
+        
+        // Close modal when clicking outside content
+        window.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            modal.style.display = 'none';
+          }
+        });
+      }
+    });
+  </script>
+  
+  <style>
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal__inner {
+      position: relative;
+      max-width: 90%;
+      width: 500px;
+    }
+    
+    .modal__centered-content {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+      border-top: 4px solid #ff0000;
+    }
+    
+    .modal__close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+    
+    .password-login__heading {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    .password-login__admin-link {
+      margin-top: 15px;
+    }
+    
+    .btn--link {
+      background: none;
+      border: none;
+      color: #ff6666;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    .btn--link:hover {
+      color: #ff0000;
+      text-decoration: underline;
+    }
+    
+    /* Footer styles */
+    .password-page__footer {
+      margin-top: 40px;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .password-page__footer-text {
+      margin-bottom: 15px;
+    }
+  </style>
+</body>
+</html>
+
