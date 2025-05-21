@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#000000">
   <title>The Checkered Flag - Coming Soon</title>
-  <!-- Add reCAPTCHA script -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     /* Custom styles for The Checkered Flag password page */
     body {
@@ -417,20 +415,6 @@
       margin-top: 10px;
       display: none;
     }
-    
-    /* reCAPTCHA container styling */
-    .recaptcha-container {
-      margin: 15px 0;
-      display: flex;
-      justify-content: center;
-    }
-    
-    .recaptcha-error {
-      color: #ff6666;
-      margin-top: 5px;
-      display: none;
-      font-size: 0.9rem;
-    }
 
     /* Confirmation message modal styles */
     .confirmation-modal {
@@ -507,7 +491,7 @@
     <div class="password-page__content">
       <div class="password-page__logo">
         <div class="site-header__logo">
-                    <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
+          <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
         </div>
       </div>
       
@@ -526,7 +510,7 @@
             <div class="feature-icon">🏁</div>
             <div class="feature-text">Two Difficulty Tracks</div>
           </div>
-          <div class="feature-item">
+                    <div class="feature-item">
             <div class="feature-icon">⚡</div>
             <div class="feature-text">Drag Strip</div>
           </div>
@@ -550,11 +534,6 @@
                      autocorrect="off"
                      autocapitalize="off"
                      required>
-              <!-- Add reCAPTCHA widget -->
-              <div class="recaptcha-container">                
-                <div class="g-recaptcha" data-sitekey="6Ld7mEMrAAAAAFqP3kfo8FUDEyfIAqbRzI_Yi_th"></div>
-              </div>
-              <div class="recaptcha-error" id="recaptchaError">Please complete the reCAPTCHA verification.</div>
               <button type="submit" class="password-page__submit-btn" id="submitBtn">
                 <span>Notify Me</span>
               </button>
@@ -691,11 +670,10 @@
         });
       }
       
-      // Form submission handling with reCAPTCHA verification
+      // Form submission handling
       const submitBtn = document.getElementById('submitBtn');
       const emailInput = document.getElementById('Email');
       const formSuccess = document.getElementById('formSuccess');
-      const recaptchaError = document.getElementById('recaptchaError');
       const contactForm = document.getElementById('contactForm');
       const confirmationModal = document.getElementById('confirmationModal');
       const closeConfirmation = document.getElementById('closeConfirmation');
@@ -705,23 +683,9 @@
         submitBtn.addEventListener('click', function(e) {
           e.preventDefault();
           
-          // Hide any previous error messages
-          recaptchaError.style.display = 'none';
-          
-          // Verify reCAPTCHA response
-          const recaptchaResponse = grecaptcha.getResponse();
-          
-          if (!recaptchaResponse) {
-            // Show reCAPTCHA error if not completed
-            recaptchaError.style.display = 'block';
-            return;
-          }
-          
           if (emailInput.value && emailInput.checkValidity()) {
             // In a real implementation, you would send this to a server
-            // along with the recaptchaResponse for verification
             console.log('Email submitted:', emailInput.value);
-            console.log('reCAPTCHA response:', recaptchaResponse);
             
             // Show success message
             formSuccess.style.display = 'block';
@@ -731,9 +695,6 @@
             
             // Reset form
             emailInput.value = '';
-            
-            // Reset reCAPTCHA
-            grecaptcha.reset();
           } else {
             emailInput.reportValidity();
           }
@@ -750,7 +711,7 @@
       // Close confirmation modal when "Got it!" button is clicked
       if (confirmationClose) {
         confirmationClose.addEventListener('click', function() {
-                    confirmationModal.style.display = 'none';
+          confirmationModal.style.display = 'none';
         });
       }
       
@@ -813,7 +774,7 @@
           window.location.href = 'admin.html';
         } else {
           passwordError.style.display = 'block';
-          passwordInput.value = '';
+                    passwordInput.value = '';
           passwordInput.focus();
         }
       }
@@ -821,5 +782,4 @@
   </script>
 </body>
 </html>
-
 
