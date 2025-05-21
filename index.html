@@ -303,15 +303,15 @@
       .password-page__content {
         padding: 25px 15px;
       }
-        
+      
       .site-header__logo img {
         max-width: 200px; /* Smaller logo on mobile */
       }
-        
+      
       .password-page__heading {
         font-size: 1.5rem;
       }
-        
+      
       .feature-item {
         width: 100px;
         padding: 10px;
@@ -441,13 +441,13 @@
           <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
         </div>
       </div>
-        
+      
       <div class="password-page__main">
         <h2 class="password-page__heading">Coming Soon to Pigeon Forge!</h2>
         <div class="password-page__message rte">
           <p>We're putting the finishing touches on our tracks and will be racing soon!</p>
         </div>
-            
+        
         <div class="password-page__features">
           <div class="feature-item">
             <div class="feature-icon">🏎️</div>
@@ -466,7 +466,7 @@
             <div class="feature-text">RC Drag Racing</div>
           </div>
         </div>
-            
+        
         <div class="password-page__signup-form">
           <h3 class="password-page__signup-heading">Be the first to know when we open!</h3>
           <div id="contactForm">
@@ -486,17 +486,17 @@
                                 <div class="g-recaptcha" data-sitekey="6Ld7mEMrAAAAAFqP3kfo8FUDEyfIAqbRzI_Yi_th"></div>
               </div>
               <div class="recaptcha-error" id="recaptchaError">Please complete the reCAPTCHA verification.</div>
-              <button type="submit" class="btn password-page__submit-btn" id="submitBtn">
+              <button type="submit" class="password-page__submit-btn" id="submitBtn">
                 <span>Notify Me</span>
               </button>
             </div>
           </div>
         </div>
-            
+        
         <div class="password-page__location">
           <p>Located in <a href="https://www.google.com/maps/place/Pigeon+Forge,+TN" target="_blank" class="location-link">Pigeon Forge, TN</a></p>
         </div>
-            
+        
         <div class="password-page__social-sharing">
           <h3 class="password-page__social-heading">Follow Our Progress</h3>
           <ul class="social-sharing">
@@ -531,14 +531,14 @@
             </li>
           </ul>
         </div>
-            
+        
         <div class="password-page__footer">
           <p class="password-page__footer-text">
             &copy; <span id="currentYear"></span> The Checkered Flag Slot Cars & RC Complex. All rights reserved.
           </p>
         </div>
       </div>
-        
+      
       <!-- Owner tab at the bottom -->
       <a href="#" class="owner-tab" id="ownerTab">owner</a>
     </div>
@@ -560,28 +560,28 @@
     document.addEventListener('DOMContentLoaded', function() {
       // Set current year in footer
       document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
+      
       // Social icon click animation
       const socialLinks = document.querySelectorAll('.social-link');
-        
+      
       if (socialLinks) {
         socialLinks.forEach(link => {
           link.addEventListener('click', function(e) {
             // Add clicked class for animations
             this.classList.add('clicked');
-                    
+            
             // Create ripple effect
             const ripple = document.createElement('span');
             ripple.classList.add('ripple');
             this.appendChild(ripple);
-                    
+            
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
-                    
+            
             ripple.style.width = ripple.style.height = size + 'px';
             ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
             ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
-                    
+            
             // Remove ripple and clicked class after animation completes
             setTimeout(() => {
               ripple.remove();
@@ -592,14 +592,14 @@
           });
         });
       }
-        
+      
       // Form submission handling with reCAPTCHA verification
       const submitBtn = document.getElementById('submitBtn');
       const emailInput = document.getElementById('Email');
       const formSuccess = document.getElementById('formSuccess');
       const recaptchaError = document.getElementById('recaptchaError');
       const contactForm = document.getElementById('contactForm');
-        
+      
       if (submitBtn && emailInput) {
         submitBtn.addEventListener('click', function(e) {
           e.preventDefault();
@@ -615,20 +615,20 @@
             recaptchaError.style.display = 'block';
             return;
           }
-                
+            
           if (emailInput.value && emailInput.checkValidity()) {
             // In a real implementation, you would send this to a server
             // along with the recaptchaResponse for verification
             console.log('Email submitted:', emailInput.value);
             console.log('reCAPTCHA response:', recaptchaResponse);
-                    
+            
             // Show success message
             formSuccess.style.display = 'block';
             emailInput.value = '';
             
             // Reset reCAPTCHA
             grecaptcha.reset();
-                    
+            
             // Hide form fields
             emailInput.style.display = 'none';
             submitBtn.style.display = 'none';
@@ -638,7 +638,7 @@
           }
         });
       }
-        
+      
       // Owner tab and password modal functionality
       const ownerTab = document.getElementById('ownerTab');
       const passwordModal = document.getElementById('passwordModal');
@@ -646,7 +646,7 @@
       const passwordInput = document.getElementById('passwordInput');
       const passwordSubmit = document.getElementById('passwordSubmit');
       const passwordError = document.getElementById('passwordError');
-        
+      
       // Open modal when owner tab is clicked
       ownerTab.addEventListener('click', function(e) {
         e.preventDefault();
@@ -654,14 +654,14 @@
         passwordInput.focus();
         passwordError.style.display = 'none';
       });
-        
+      
       // Close modal when X is clicked
       closeModal.addEventListener('click', function() {
         passwordModal.style.display = 'none';
         passwordInput.value = '';
         passwordError.style.display = 'none';
       });
-        
+      
       // Close modal when clicking outside of it
       window.addEventListener('click', function(e) {
         if (e.target === passwordModal) {
@@ -670,22 +670,22 @@
           passwordError.style.display = 'none';
         }
       });
-        
+      
       // Handle password submission
       passwordSubmit.addEventListener('click', function() {
         checkPassword();
       });
-        
+      
       // Allow Enter key to submit password
       passwordInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
           checkPassword();
         }
       });
-        
+      
       function checkPassword() {
         const correctPassword = 'Jj202323';
-                
+        
         if (passwordInput.value === correctPassword) {
           // Redirect to admin page on correct password
           window.location.href = 'admin.html';
@@ -699,5 +699,7 @@
   </script>
 </body>
 </html>
+
+
 
 
