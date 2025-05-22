@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Checkered Flag Slot Cars & RC Complex</title>
   <style>
-    /* Base styles */
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
@@ -13,7 +13,7 @@
     }
     
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
       color: #333;
     }
@@ -25,13 +25,13 @@
     }
     
     /* Header styles */
-    .header {
-      background-color: #222;
-      color: white;
-      padding: 15px 0;
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px 0;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
     }
     
     .header-container {
@@ -43,189 +43,218 @@
     .logo {
       font-size: 24px;
       font-weight: bold;
-      color: white;
+      color: #fff;
       text-decoration: none;
+    }
+    
+    nav ul {
       display: flex;
-      align-items: center;
+      list-style: none;
     }
     
-    .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    
-    .nav {
-      display: flex;
-    }
-    
-    .nav-link {
-      color: white;
-      text-decoration: none;
+    nav ul li {
       margin-left: 20px;
-      padding: 5px 0;
-      position: relative;
+    }
+    
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
       transition: color 0.3s;
     }
     
-    .nav-link:hover, .nav-link.active {
+    nav ul li a:hover {
       color: #ff4500;
-    }
-    
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 0;
-      background-color: #ff4500;
-      transition: width 0.3s;
-    }
-    
-    .nav-link:hover::after, .nav-link.active::after {
-      width: 100%;
     }
     
     /* Hero section */
     .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg');
+      background-image: url('images/hero-bg.jpg');
       background-size: cover;
       background-position: center;
-      color: white;
+      height: 500px;
+      display: flex;
+      align-items: center;
       text-align: center;
-      padding: 100px 20px;
-    }
-    
-    .hero-title {
-      font-size: 48px;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-    
-    .hero-subtitle {
-      font-size: 24px;
-      margin-bottom: 40px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    
-    .cta-button {
-      display: inline-block;
-      background-color: #ff4500;
-      color: white;
-      font-weight: bold;
-      padding: 12px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: all 0.3s;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    
-    .cta-button:hover {
-      background-color: #ff6a33;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Section styles */
-    .section {
-      padding: 80px 0;
-    }
-    
-    .section-title {
-      text-align: center;
-      font-size: 36px;
-      margin-bottom: 50px;
       position: relative;
     }
     
-    .section-title::after {
+    .hero::before {
       content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background-color: #ff4500;
-      margin: 15px auto 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
     }
     
-    /* Features section */
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
     
-    .feature-card {
-      background-color: #f9f9f9;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      flex: 1 1 300px;
-      max-width: 350px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
-    
-    .feature-icon {
+    .hero h1 {
       font-size: 48px;
       margin-bottom: 20px;
     }
     
-    .feature-title {
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: #ff4500;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: #e03e00;
+    }
+    
+    /* Section styles */
+    section {
+      padding: 60px 0;
+    }
+    
+    section h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+    
+    /* Tracks section */
+    .tracks-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .track-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    
+    .track-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .track-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .track-card-content {
+      padding: 20px;
+    }
+    
+    .track-card h3 {
       font-size: 24px;
-      margin-bottom: 15px;
-      color: #222;
+      margin-bottom: 10px;
+    }
+    
+    .track-card p {
+      margin-bottom: 20px;
     }
     
     /* Track buttons */
     .track-buttons {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
     }
     
     .track-button {
-      padding: 10px 20px;
-      background-color: #222;
+      padding: 8px 15px;
+      background-color: #333;
       color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
       text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
       transition: background-color 0.3s;
     }
     
     .track-button:hover {
-      background-color: #444;
+      background-color: #555;
+    }
+    
+    /* Shop section */
+    .shop-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .shop-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .shop-card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    /* Events section */
+    .events-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .event-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .event-card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #ff4500;
     }
     
     /* Gallery section */
-    .gallery {
+    .gallery-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
     
     .gallery-item {
-      overflow: hidden;
       border-radius: 10px;
+      overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      height: 200px;
     }
     
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s;
+      transition: transform 0.3s;
     }
     
     .gallery-item:hover img {
@@ -233,119 +262,105 @@
     }
     
     /* Footer styles */
-    .footer {
-      background-color: #222;
-      color: white;
-      padding: 60px 0 30px;
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 60px 0 20px;
     }
     
-    .contact-info-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
       margin-bottom: 40px;
     }
     
-    .contact-info-column {
-      flex: 1;
-      min-width: 250px;
-      margin-bottom: 30px;
-      padding: 0 15px;
+    .footer-section h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #ff4500;
     }
     
-    .contact-info-column h3 {
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #ff4500;
+    .footer-section p {
+      margin-bottom: 10px;
     }
     
     .social-links {
       display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
+      gap: 15px;
+      margin-top: 20px;
     }
     
-    .social-link {
+    .social-links a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 40px;
       height: 40px;
       background-color: #333;
-      color: white;
+      color: #fff;
       border-radius: 50%;
-      margin: 0 10px;
-      transition: all 0.3s;
+      transition: background-color 0.3s;
     }
     
-    .social-link:hover {
+    .social-links a:hover {
       background-color: #ff4500;
-      color: white;
-      transform: translateY(-3px);
-    }
-    
-    .social-icon {
-      width: 20px;
-      height: 20px;
     }
     
     .copyright {
       text-align: center;
-      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
       font-size: 14px;
-      color: #aaa;
     }
     
-    /* Announcement banner */
-    .announcement-banner {
+    /* Newsletter signup */
+    .newsletter {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
       background-color: #ff4500;
-      padding: 15px;
-      text-align: center;
-      z-index: 999;
+      padding: 15px 0;
+      z-index: 99;
     }
     
-    .announcement-form {
+    .newsletter-container {
       display: flex;
       justify-content: center;
-      max-width: 500px;
-      margin: 0 auto;
+      align-items: center;
+      gap: 20px;
     }
     
-    .announcement-input {
-      flex: 1;
-      padding: 10px 15px;
+    .newsletter p {
+      margin: 0;
+      color: #fff;
+      font-weight: bold;
+    }
+    
+    .newsletter-form {
+      display: flex;
+    }
+    
+    .newsletter-form input {
+      padding: 10px;
       border: none;
-      border-radius: 30px 0 0 30px;
-      font-size: 16px;
+      border-radius: 5px 0 0 5px;
+      width: 250px;
     }
     
-    .announcement-button {
-      background-color: #222;
-      color: white;
+    .newsletter-form button {
+      background-color: #000;
+      color: #fff;
       border: none;
       padding: 10px 20px;
-      border-radius: 0 30px 30px 0;
+      border-radius: 0 5px 5px 0;
       cursor: pointer;
-      font-weight: bold;
       transition: background-color 0.3s;
     }
     
-    .announcement-button:hover {
-      background-color: #444;
-    }
-    
-    .shake {
-      animation: shake 0.5s;
-    }
-    
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    .newsletter-form button:hover {
+      background-color: #333;
     }
     
     /* Hamburger menu */
@@ -367,84 +382,66 @@
       transition: all 0.3s;
     }
     
-    /* Media queries */
+    /* Media queries for responsive design */
     @media (max-width: 768px) {
       .hamburger-menu {
         display: flex;
       }
       
-      .nav {
+      nav ul {
         position: absolute;
         top: 70px;
         left: 0;
         width: 100%;
-        background-color: #222;
+        background-color: #000;
         flex-direction: column;
         align-items: center;
         padding: 20px 0;
         transform: translateY(-150%);
         transition: transform 0.3s ease-in-out;
-        z-index: 999;
+        z-index: 99;
       }
       
-      .nav.active {
+      nav ul.active {
         transform: translateY(0);
       }
       
-      .nav-link {
+      nav ul li {
         margin: 10px 0;
       }
       
-      .hero-title {
-        font-size: 32px;
+      .hero h1 {
+        font-size: 36px;
       }
       
-      .hero-subtitle {
+      .hero p {
         font-size: 18px;
       }
       
-      .section {
-        padding: 50px 0;
+      section h2 {
+        font-size: 30px;
       }
       
-      .section-title {
-        font-size: 28px;
-      }
-      
-      .feature-card {
-        max-width: 100%;
-      }
-      
-      .contact-info-container {
+      .newsletter-container {
         flex-direction: column;
+        text-align: center;
       }
       
-      .announcement-form {
-        flex-direction: column;
+      .newsletter-form {
+        width: 100%;
+        max-width: 300px;
       }
       
-      .announcement-input {
-        border-radius: 30px;
-        margin-bottom: 10px;
-      }
-      
-      .announcement-button {
-        border-radius: 30px;
-      }
-      
-      .container {
-        padding: 0 15px;
+      .newsletter-form input {
+        width: 70%;
       }
     }
   </style>
 </head>
 <body>
-  <header class="header">
+  <header>
     <div class="container header-container">
-      <a href="#" class="logo">
-        <img src="images/logo.png" alt="Checkered Flag Logo">
-        The Checkered Flag
-      </a>
+      <a href="#" class="logo">The Checkered Flag</a>
       
       <div class="hamburger-menu">
         <span></span>
@@ -452,220 +449,262 @@
         <span></span>
       </div>
       
-      <nav class="nav">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#tracks" class="nav-link">Our Tracks</a>
-        <a href="#shop" class="nav-link">Pro Shop</a>
-        <a href="#events" class="nav-link">Events</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
+      <nav>
+        <ul id="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#tracks">Our Tracks</a></li>
+          <li><a href="#shop">Pro Shop</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
     </div>
   </header>
-  
+
   <section class="hero">
-    <div class="container">
-      <h1 class="hero-title">The Checkered Flag</h1>
-      <h2 class="hero-subtitle">Slot Cars & RC Complex</h2>
-      <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
+    <div class="hero-content">
+      <h1>The Checkered Flag</h1>
+      <p>Slot Cars & RC Complex in Sevierville, TN</p>
+      <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="btn">Book Track Time Now</a>
     </div>
   </section>
-  
-  <div class="container">
-    <section id="about" class="section">
-      <h2 class="section-title">About Us</h2>
-      <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto;">
         Welcome to The Checkered Flag Slot Cars & RC Complex, Sevierville's premier destination for slot car and RC racing enthusiasts. Our state-of-the-art facility features multiple tracks, a fully-stocked pro shop, and a community of passionate racers. Whether you're a seasoned competitor or just looking for family fun, we have something for everyone!
       </p>
-    </section>
-    
-    <section id="tracks" class="section">
-      <h2 class="section-title">Our Tracks</h2>
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">🏎️</div>
-          <h3 class="feature-title">8-Lane Digital Slot Car Track</h3>
-          <p>Our flagship digital track offers lane-changing action and can accommodate up to 8 racers simultaneously.</p>
-          <div class="track-buttons">
-            <a href="tracks.html" class="track-button">Layout</a>
-            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+    </div>
+  </section>
+
+  <section id="tracks" class="tracks">
+    <div class="container">
+      <h2>Our Tracks</h2>
+      <div class="tracks-container">
+        <div class="track-card">
+          <img src="images/track1.jpg" alt="Digital Slot Car Track">
+          <div class="track-card-content">
+            <h3>8-Lane Digital Slot Car Track</h3>
+            <p>Our flagship digital track offers lane-changing action and can accommodate up to 8 racers simultaneously.</p>
+            <div class="track-buttons">
+              <a href="tracks.html" class="track-button">Layout</a>
+              <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+            </div>
           </div>
         </div>
         
-                  <div class="feature-icon">🚗</div>
-          <h3 class="feature-title">4-Lane Analog Track</h3>
-          <p>Perfect for beginners and traditional racers, our analog track delivers classic slot car racing excitement.</p>
-          <div class="track-buttons">
-            <a href="tracks.html" class="track-button">Layout</a>
-            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+        <div class="track-card">
+          <img src="images/track2.jpg" alt="Analog Slot Car Track">
+          <div class="track-card-content">
+            <h3>4-Lane Analog Track</h3>
+            <p>Perfect for beginners and traditional racers, our analog track delivers classic slot car racing excitement.</p>
+            <div class="track-buttons">
+              <a href="tracks.html" class="track-button">Layout</a>
+                            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+            </div>
           </div>
         </div>
         
-        <div class="feature-card">
-          <div class="feature-icon">🏁</div>
-          <h3 class="feature-title">RC Off-Road Course</h3>
-          <p>Challenging terrain with jumps, obstacles, and varied surfaces for the ultimate RC truck and buggy experience.</p>
-          <div class="track-buttons">
-            <a href="tracks.html" class="track-button">Layout</a>
-            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+        <div class="track-card">
+          <img src="images/track3.jpg" alt="RC Off-Road Course">
+          <div class="track-card-content">
+            <h3>RC Off-Road Course</h3>
+            <p>Challenging terrain with jumps, obstacles, and varied surfaces for the ultimate RC truck and buggy experience.</p>
+            <div class="track-buttons">
+              <a href="tracks.html" class="track-button">Layout</a>
+              <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+            </div>
           </div>
         </div>
         
-        <div class="feature-card">
-          <div class="feature-icon">🏁</div>
-          <h3 class="feature-title">Drag Racing Strip</h3>
-          <p>Test your speed on our precision-timed drag strip, perfect for head-to-head competition.</p>
-          <div class="track-buttons">
-            <a href="tracks.html" class="track-button">Layout</a>
-            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+        <div class="track-card">
+          <img src="images/track4.jpg" alt="Drag Racing Strip">
+          <div class="track-card-content">
+            <h3>Drag Racing Strip</h3>
+            <p>Test your speed on our precision-timed drag strip, perfect for head-to-head competition.</p>
+            <div class="track-buttons">
+              <a href="tracks.html" class="track-button">Layout</a>
+              <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    
-    <section id="shop" class="section">
-      <h2 class="section-title">Pro Shop</h2>
+    </div>
+  </section>
+
+  <section id="shop" class="shop">
+    <div class="container">
+      <h2>Pro Shop</h2>
       <p style="text-align: center; margin-bottom: 30px;">We carry a full line of slot cars, RC vehicles, parts, accessories, and more!</p>
-      <div class="features">
-        <div class="feature-card">
-          <h3 class="feature-title">Slot Cars & Parts</h3>
+      <div class="shop-container">
+        <div class="shop-card">
+          <h3>Slot Cars & Parts</h3>
           <p>From beginner sets to competition-grade cars and components.</p>
         </div>
-        <div class="feature-card">
-          <h3 class="feature-title">RC Vehicles</h3>
+        <div class="shop-card">
+          <h3>RC Vehicles</h3>
           <p>Cars, trucks, buggies and all the batteries, chargers, and electronics you need.</p>
         </div>
-        <div class="feature-card">
-          <h3 class="feature-title">Repair Services</h3>
+        <div class="shop-card">
+          <h3>Repair Services</h3>
           <p>Our technicians can repair, tune, and upgrade your vehicles for peak performance.</p>
         </div>
       </div>
-    </section>
-  </div>
-  
-  <section id="events" class="section">
+    </div>
+  </section>
+
+  <section id="events" class="events">
     <div class="container">
-      <h2 class="section-title">Upcoming Events</h2>
-      <div class="feature-card" style="max-width: 800px; margin: 0 auto;">
-        <h3 class="feature-title">Grand Opening</h3>
-        <p>We're excited to announce our grand opening coming soon! Join us for a day of racing, demonstrations, giveaways, and special promotions. Meet fellow enthusiasts and be among the first to experience our state-of-the-art tracks. Stay tuned for the official date announcement!</p>
+      <h2>Upcoming Events</h2>
+      <div class="events-container">
+        <div class="event-card">
+          <h3>Grand Opening</h3>
+          <p>We're excited to announce our grand opening coming soon! Join us for a day of racing, demonstrations, giveaways, and special promotions. Meet fellow enthusiasts and be among the first to experience our state-of-the-art tracks. Stay tuned for the official date announcement!</p>
+        </div>
       </div>
     </div>
   </section>
-  
-  <div class="container">
-    <section id="gallery" class="section">
-      <h2 class="section-title">Gallery</h2>
-      <div class="gallery">
+
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-container">
         <div class="gallery-item">
-          <img src="images/track3.png" alt="Main Track">
+          <img src="images/gallery1.jpg" alt="Racing Action">
         </div>
         <div class="gallery-item">
-          <img src="images/track4.png" alt="RC Course">
+          <img src="images/gallery2.jpg" alt="Track Overview">
         </div>
         <div class="gallery-item">
-          <img src="images/track5.png" alt="Racing Action">
+          <img src="images/gallery3.jpg" alt="RC Course">
         </div>
         <div class="gallery-item">
-          <img src="images/track6.png" alt="Pro Shop">
+          <img src="images/gallery4.jpg" alt="Pro Shop">
         </div>
       </div>
-    </section>
-  </div>
-  
-  <footer class="footer">
+    </div>
+  </section>
+
+  <footer id="contact">
     <div class="container">
-      <div class="contact-info-container">
-        <div class="contact-info-column">
+      <div class="footer-container">
+        <div class="footer-section">
           <h3>Visit Our Location</h3>
-          <p>232 Collier Drive, Suite I2/3<br>Sevierville, TN 37862<br>United States</p>
+          <p>232 Collier Drive, Suite I2/3</p>
+          <p>Sevierville, TN 37862</p>
+          <p>United States</p>
         </div>
         
-        <div class="contact-info-column">
+        <div class="footer-section">
           <h3>Hours of Operation</h3>
           <p>To Be Determined</p>
         </div>
         
-        <div class="contact-info-column">
+        <div class="footer-section">
           <h3>Get In Touch</h3>
-          <p>Phone: 865-441-1173<br>Email: To Be Determined</p>
+          <p>Phone: 865-441-1173</p>
+          <p>Email: To Be Determined</p>
+          
+          <div class="social-links">
+            <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/checkeredflagslotcar/" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:info@checkeredflagslotcars.com">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
         </div>
       </div>
       
-      <div style="margin: 20px 0; text-align: center;">
-        <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="btn">Book Track Time Now</a>
       </div>
       
-      <div class="social-links">
-        <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" class="social-link" target="_blank">
-          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/checkeredflagslotcar/" class="social-link" target="_blank">
-          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
-          </svg>
-        </a>
-        <a href="mailto:info@checkeredflagslotcars.com" class="social-link" target="_blank">
-          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path>
-          </svg>
-        </a>
+      <div class="copyright">
+        <p>&copy; <span id="currentYear"></span> The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
       </div>
-      <p class="copyright">&copy; <span id="currentYear"></span> The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
     </div>
   </footer>
-  
-  <div class="announcement-banner">
-    <form class="announcement-form">
-      <input type="email" class="announcement-input" placeholder="Enter your email" required>
-      <button type="submit" class="announcement-button" id="shakeButton">Sign Up</button>
-    </form>
+
+  <div class="newsletter">
+    <div class="container newsletter-container">
+      <p>Sign up for updates and special offers!</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" id="shakeButton">Subscribe</button>
+      </form>
+    </div>
   </div>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Set current year in footer
       document.getElementById('currentYear').textContent = new Date().getFullYear();
       
-      // Smooth scrolling for navigation links
+      // Mobile menu toggle
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const menu = document.getElementById('menu');
+      
+      hamburgerMenu.addEventListener('click', function() {
+        menu.classList.toggle('active');
+        
+        // Animate hamburger to X
+        const spans = this.querySelectorAll('span');
+        
+        if (menu.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      });
+      
+      // Smooth scrolling for navigation
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
           
           const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
           const targetElement = document.querySelector(targetId);
           
           if (targetElement) {
             window.scrollTo({
-              top: targetElement.offsetTop - 100,
+              top: targetElement.offsetTop - 80,
               behavior: 'smooth'
             });
+            
+            // Close mobile menu if open
+            if (menu.classList.contains('active')) {
+              menu.classList.remove('active');
+              const spans = hamburgerMenu.querySelectorAll('span');
+              spans[0].style.transform = 'none';
+              spans[1].style.opacity = '1';
+              spans[2].style.transform = 'none';
+            }
           }
         });
       });
       
-      // Add active class to navigation links based on scroll position
-      window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('.section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let currentSection = '';
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          const sectionHeight = section.clientHeight;
-          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-            currentSection = '#' + section.getAttribute('id');
-          }
-        });
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === currentSection) {
-            link.classList.add('active');
-          }
-        });
+      // Newsletter form submission
+      const newsletterForm = document.querySelector('.newsletter-form');
+      
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for subscribing to our newsletter!');
+        this.reset();
       });
       
       // Shake button animation
@@ -678,46 +717,35 @@
         }, 500);
       }
       
-      // Shake every 3 seconds
-      setInterval(shakeButtonAnimation, 3000);
-      
-      // Form submission for announcement banner
-      const announcementForm = document.querySelector('.announcement-form');
-      if (announcementForm) {
-        announcementForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          alert('Thank you for signing up for our newsletter!');
-          this.reset();
-        });
+      // Add shake animation
+      if (shakeButton) {
+        shakeButton.style.animation = 'shake 0.5s ease infinite';
+        shakeButton.style.animationPlayState = 'paused';
+        
+        setInterval(() => {
+          shakeButton.style.animationPlayState = 'running';
+          setTimeout(() => {
+            shakeButton.style.animationPlayState = 'paused';
+          }, 500);
+        }, 3000);
       }
       
-      // Mobile menu toggle
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const nav = document.querySelector('.nav');
-      
-      if (hamburgerMenu) {
-        hamburgerMenu.addEventListener('click', function() {
-          nav.classList.toggle('active');
-          
-          // Animate hamburger to X
-          const spans = this.querySelectorAll('span');
-          spans.forEach(span => span.classList.toggle('active'));
-          
-          if (nav.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-          } else {
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-          }
-        });
-      }
+      // Add keyframes for shake animation
+      const style = document.createElement('style');
+      style.innerHTML = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+      `;
+      document.head.appendChild(style);
     });
   </script>
 </body>
 </html>
+
+
 
 
 
