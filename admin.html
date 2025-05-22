@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#000000">
   <title>The Checkered Flag - Slot Cars & RC Complex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     /* Global Styles */
     body {
       background-color: #111;
       color: #fff;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
       line-height: 1.6;
@@ -27,6 +28,7 @@
     .header {
       padding: 20px 0;
       border-bottom: 2px solid #ff0000;
+      background-color: #000;
     }
     
     .nav-container {
@@ -50,9 +52,16 @@
       padding: 10px 15px;
       border-radius: 4px;
       transition: background-color 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
     .nav-link:hover {
+      background-color: #ff0000;
+    }
+    
+    .nav-link.active {
       background-color: #ff0000;
     }
     
@@ -76,6 +85,8 @@
       font-size: 3rem;
       margin-bottom: 20px;
       color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     
     .hero-subtitle {
@@ -95,6 +106,9 @@
       transition: background-color 0.3s ease;
       text-decoration: none;
       display: inline-block;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
     .cta-button:hover {
@@ -112,6 +126,8 @@
       font-size: 2rem;
       margin-bottom: 30px;
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     
     /* About Section */
@@ -132,6 +148,7 @@
     .about-image img {
       width: 100%;
       border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     
     /* Features Section */
@@ -146,6 +163,12 @@
       border-radius: 8px;
       padding: 30px;
       text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
     }
     
     .feature-icon {
@@ -172,6 +195,7 @@
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     
     .gallery-item img:hover {
@@ -190,10 +214,14 @@
     
     .contact-form {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
     .form-group {
       margin-bottom: 20px;
+      width: 100%;
     }
     
     .form-control {
@@ -203,6 +231,7 @@
       border: 1px solid #444;
       border-radius: 4px;
       color: #fff;
+      font-family: 'Montserrat', sans-serif;
     }
     
     .form-control:focus {
@@ -229,14 +258,32 @@
       color: #fff;
       font-size: 1.5rem;
       transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
     
     .social-link:hover {
       color: #ff0000;
     }
     
+    .social-icon {
+      width: 30px;
+      height: 30px;
+    }
+    
     .copyright {
       color: #666;
+    }
+    
+    /* Track image */
+    .track-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 30px auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
     
     /* Responsive Styles */
@@ -271,11 +318,12 @@
         <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
       </div>
       <nav class="nav-menu">
-        <a href="#home" class="nav-link">Home</a>
+        <a href="#home" class="nav-link active">Home</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#tracks" class="nav-link">Tracks</a>
         <a href="#shop" class="nav-link">Shop</a>
         <a href="#events" class="nav-link">Events</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#contact" class="nav-link">Contact</a>
       </nav>
     </div>
@@ -290,16 +338,18 @@
   </section>
   
   <div class="container">
+    <img src="images/track1.png" alt="Our Main Track" class="track-image">
+    
     <section id="about" class="section">
       <h2 class="section-title">About Us</h2>
       <div class="about-content">
         <div class="about-text">
           <p>Welcome to The Checkered Flag, the premier destination for slot car and RC enthusiasts! Our state-of-the-art facility offers multiple tracks, a fully stocked shop, and a community of passionate racers.</p>
-          <p>Founded in 2010, we've been serving racing enthusiasts of all ages and skill levels. Whether you're a beginner looking to try slot car racing for the first time or a seasoned pro preparing for competition, we have everything you need.</p>
+          <p>Founded in 2018, we've been serving racing enthusiasts of all ages and skill levels. Whether you're a beginner looking to try slot car racing for the first time or a seasoned pro preparing for competition, we have everything you need.</p>
           <p>Our friendly staff is always ready to help with tips, repairs, and advice to enhance your racing experience.</p>
         </div>
         <div class="about-image">
-          <img src="images/facility.jpg" alt="Our Facility">
+          <img src="images/track2.png" alt="Our Facility">
         </div>
       </div>
     </section>
@@ -309,7 +359,7 @@
       <div class="features">
         <div class="feature-card">
           <div class="feature-icon">🏎️</div>
-          <h3 class="feature-title">8-Lane Digital Slot Car Track</h3>
+          <h3 class="feature-title">8-Lane Wooden Slot Car Track</h3>
           <p>Our flagship track features 8 lanes of high-speed action with electronic lap counting and race management system.</p>
         </div>
         <div class="feature-card">
@@ -320,7 +370,7 @@
         <div class="feature-card">
           <div class="feature-icon">🏁</div>
           <h3 class="feature-title">Drag Racing Strip</h3>
-                    <p>Test your speed on our precision-timed drag strip, perfect for head-to-head competition.</p>
+          <p>Test your speed on our precision-timed drag strip, perfect for head-to-head competition.</p>
         </div>
       </div>
     </section>
@@ -348,16 +398,8 @@
       <h2 class="section-title">Upcoming Events</h2>
       <div class="features">
         <div class="feature-card">
-          <h3 class="feature-title">Weekly Race Night</h3>
-          <p>Every Thursday at 7pm. Open to all skill levels.</p>
-        </div>
-        <div class="feature-card">
-          <h3 class="feature-title">Monthly Championship</h3>
-          <p>First Saturday of each month. Registration required.</p>
-        </div>
-        <div class="feature-card">
-          <h3 class="feature-title">Kids Racing Club</h3>
-          <p>Saturdays 10am-12pm. Learn to race in a fun, supportive environment.</p>
+          <h3 class="feature-title">Grand Opening</h3>
+          <p>Coming soon! Stay tuned for our official grand opening date.</p>
         </div>
       </div>
     </section>
@@ -366,16 +408,16 @@
       <h2 class="section-title">Gallery</h2>
       <div class="gallery">
         <div class="gallery-item">
-          <img src="images/track1.jpg" alt="Main Track">
+          <img src="images/track3.png" alt="Main Track">
         </div>
         <div class="gallery-item">
-          <img src="images/track2.jpg" alt="RC Course">
+          <img src="images/track4.png" alt="RC Course">
         </div>
         <div class="gallery-item">
-          <img src="images/racing1.jpg" alt="Racing Action">
+          <img src="images/track5.png" alt="Racing Action">
         </div>
         <div class="gallery-item">
-          <img src="images/shop.jpg" alt="Pro Shop">
+          <img src="images/track6.png" alt="Pro Shop">
         </div>
       </div>
     </section>
@@ -385,24 +427,21 @@
       <div class="contact-container">
         <div class="contact-info">
           <h3>Visit Our Location</h3>
-          <p>123 Speedway Boulevard<br>Racetown, ST 12345</p>
+          <p>232 Collier Drive, Suite I2/3<br>Sevierville, TN 37862<br>United States</p>
           
           <h3>Hours of Operation</h3>
-          <p>Monday - Friday: 12pm - 9pm<br>
-             Saturday: 10am - 10pm<br>
-             Sunday: 12pm - 6pm</p>
+          <p>To Be Determined</p>
           
           <h3>Get In Touch</h3>
-          <p>Phone: (555) 123-4567<br>
-             Email: info@checkeredflagrc.com</p>
+          <p>Phone: 865-441-1173<br>Email: To Be Determined</p>
           
           <div style="margin-top: 30px;">
-            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
+                        <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
           </div>
         </div>
         
         <div class="contact-form">
-          <form>
+          <form style="width: 100%; max-width: 400px;">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Your Name" required>
             </div>
@@ -415,7 +454,7 @@
             <div class="form-group">
               <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
             </div>
-            <button type="submit" class="cta-button">Send Message</button>
+            <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
           </form>
         </div>
       </div>
@@ -425,10 +464,24 @@
   <footer class="footer">
     <div class="container">
       <div class="social-links">
-        <a href="#" class="social-link">Facebook</a>
-        <a href="#" class="social-link">Instagram</a>
-        <a href="#" class="social-link">YouTube</a>
-        <a href="#" class="social-link">Twitter</a>
+        <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" class="social-link" target="_blank">
+          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+          </svg>
+          Facebook
+        </a>
+        <a href="https://www.instagram.com/checkeredflagslotcar/" class="social-link" target="_blank">
+          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+          </svg>
+          Instagram
+        </a>
+        <a href="mailto:info@checkeredflagslotcars.com" class="social-link" target="_blank">
+          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path>
+          </svg>
+          Email
+        </a>
       </div>
       <p class="copyright">&copy; <span id="currentYear"></span> The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
     </div>
