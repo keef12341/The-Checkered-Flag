@@ -185,6 +185,29 @@
       color: #222;
     }
     
+    /* Track buttons */
+    .track-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .track-button {
+      padding: 10px 20px;
+      background-color: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .track-button:hover {
+      background-color: #444;
+    }
+    
     /* Gallery section */
     .gallery {
       display: grid;
@@ -325,41 +348,7 @@
       20%, 40%, 60%, 80% { transform: translateX(5px); }
     }
     
-    /* Event card */
-    .event-card {
-      background-color: #f9f9f9;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    
-    /* Track buttons */
-    .track-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    
-    .track-button {
-      padding: 10px 20px;
-      background-color: #222;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-    
-    .track-button:hover {
-      background-color: #444;
-    }
-    
-    /* Mobile menu */
+    /* Hamburger menu */
     .hamburger-menu {
       display: none;
       flex-direction: column;
@@ -495,7 +484,7 @@
         <div class="feature-card">
           <div class="feature-icon">🏎️</div>
           <h3 class="feature-title">8-Lane Digital Slot Car Track</h3>
-                    <p>Our flagship digital track offers lane-changing action and can accommodate up to 8 racers simultaneously.</p>
+          <p>Our flagship digital track offers lane-changing action and can accommodate up to 8 racers simultaneously.</p>
           <div class="track-buttons">
             <a href="tracks.html" class="track-button">Layout</a>
             <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
@@ -503,7 +492,7 @@
         </div>
         
         <div class="feature-card">
-          <div class="feature-icon">🚗</div>
+                    <div class="feature-icon">🚗</div>
           <h3 class="feature-title">4-Lane Analog Track</h3>
           <p>Perfect for beginners and traditional racers, our analog track delivers classic slot car racing excitement.</p>
           <div class="track-buttons">
@@ -557,7 +546,7 @@
   <section id="events" class="section">
     <div class="container">
       <h2 class="section-title">Upcoming Events</h2>
-      <div class="feature-card">
+      <div class="feature-card" style="max-width: 800px; margin: 0 auto;">
         <h3 class="feature-title">Grand Opening</h3>
         <p>We're excited to announce our grand opening coming soon! Join us for a day of racing, demonstrations, giveaways, and special promotions. Meet fellow enthusiasts and be among the first to experience our state-of-the-art tracks. Stay tuned for the official date announcement!</p>
       </div>
