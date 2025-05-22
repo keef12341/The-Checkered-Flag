@@ -1,469 +1,492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#000000">
-  <title>The Checkered Flag - Slot Cars & RC Complex</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Checkered Flag Slot Cars & RC Complex</title>
   <style>
-    /* Global Styles */
-    body {
-      background-color: #111;
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
+    /* Base styles */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
       line-height: 1.6;
-      overflow-x: hidden;
-      width: 100%;
+      color: #333;
     }
     
     .container {
-      width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 4%;
+      padding: 0 20px;
     }
     
-    /* Header Styles - Fixed at top */
+    /* Header styles */
     .header {
-      padding: 10px 0;
-      border-bottom: 2px solid #ff0000;
-      background-color: #000;
-      position: fixed;
+      background-color: #222;
+      color: white;
+      padding: 15px 0;
+      position: sticky;
       top: 0;
-      width: 100%;
       z-index: 1000;
     }
     
-    .nav-container {
+    .header-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     
-    .logo img {
-      max-height: 50px;
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
     }
     
-    .nav-menu {
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    .nav {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
     }
     
     .nav-link {
-      color: #fff;
+      color: white;
       text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.8rem;
-    }
-    
-    .nav-link:hover {
-      background-color: #ff0000;
-    }
-    
-    .nav-link.active {
-      background-color: #ff0000;
-    }
-    
-    /* Hero Section */
-    .hero {
-      background-color: #111;
-      padding: 70px 0 0;
-      text-align: center;
-      width: 100%;
-    }
-    
-    .hero-content {
-      width: 100%;
+      margin-left: 20px;
+      padding: 5px 0;
       position: relative;
-      z-index: 2;
+      transition: color 0.3s;
     }
     
-    /* Track image with overlay text */
-    .track-image-container {
-      width: 100%;
-      margin: 0 auto;
-      position: relative;
+    .nav-link:hover, .nav-link.active {
+      color: #f7d417;
     }
     
-    .track-image {
-      width: 100%;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-    }
-    
-    .track-overlay {
+    .nav-link::after {
+      content: '';
       position: absolute;
-      top: 0;
+      width: 0;
+      height: 2px;
+      bottom: 0;
       left: 0;
+      background-color: #f7d417;
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
       width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Hero section */
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
     }
     
     .hero-title {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
     .hero-subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: #ddd;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+      font-size: 24px;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
     
     .cta-button {
-      background-color: #ff0000;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 12px 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
       display: inline-block;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 15px;
+      background-color: #f7d417;
+      color: #222;
+      font-weight: bold;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
     }
     
     .cta-button:hover {
-      background-color: #cc0000;
+      background-color: #fff;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
     
-    /* Section Styles */
+    /* Section styles */
     .section {
-      padding: 40px 0;
-      border-bottom: 1px solid #333;
+      padding: 80px 0;
     }
     
     .section-title {
-      color: #ff0000;
-      font-size: 1.8rem;
-      margin-bottom: 25px;
       text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 36px;
+      margin-bottom: 50px;
+      position: relative;
     }
     
-    /* About Section */
-    .about-content {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: #f7d417;
+      margin: 15px auto 0;
     }
     
-    .about-text {
-      width: 100%;
-    }
-    
-    .about-image {
-      width: 100%;
-      max-width: 500px;
-    }
-    
-    .about-image img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-    }
-    
-    /* Features Section */
+    /* Features section */
     .features {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
     }
     
     .feature-card {
-      background-color: #222;
-      border-radius: 8px;
-      padding: 25px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      flex: 1 1 300px;
+      max-width: 350px;
+      transition: transform 0.3s, box-shadow 0.3s;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+      margin-bottom: 20px;
     }
     
     .feature-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
     
     .feature-icon {
-      font-size: 2.5rem;
-      color: #ff0000;
-      margin-bottom: 15px;
+      font-size: 48px;
+      margin-bottom: 20px;
     }
     
     .feature-title {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #222;
     }
     
-    /* Events Section */
-    .event-card {
-      background-color: #222;
-      border-radius: 8px;
-      padding: 25px;
-      margin: 0 -4%;
-      width: calc(100% + 8%);
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    /* Gallery Section */
+    /* Gallery section */
     .gallery {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
     .gallery-item img {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
-      border-radius: 8px;
-      transition: transform 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
+      transition: transform 0.5s;
     }
     
-    .gallery-item img:hover {
-      transform: scale(1.03);
+    .gallery-item:hover img {
+      transform: scale(1.1);
     }
     
-    /* Footer */
+    /* Footer styles */
     .footer {
-      text-align: center;
-      padding: 40px 0 100px; /* Extra padding for announcement banner */
-      margin-top: 40px;
-      border-top: 1px solid #333;
+      background-color: #222;
+      color: white;
+      padding: 60px 0 30px;
     }
     
     .contact-info-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      margin-bottom: 30px;
+      justify-content: space-around;
+      margin-bottom: 40px;
     }
     
     .contact-info-column {
       flex: 1;
-      min-width: 200px;
-      margin-bottom: 20px;
-      padding: 0 10px;
+      min-width: 250px;
+      margin-bottom: 30px;
+      padding: 0 15px;
+    }
+    
+    .contact-info-column h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #f7d417;
     }
     
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 30px;
       margin-bottom: 30px;
     }
     
     .social-link {
-      color: #fff;
-      transition: color 0.3s ease;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      color: white;
+      border-radius: 50%;
+      margin: 0 10px;
+      transition: all 0.3s;
     }
     
     .social-link:hover {
-      color: #ff0000;
+      background-color: #f7d417;
+      color: #222;
+      transform: translateY(-3px);
     }
     
     .social-icon {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
     }
     
     .copyright {
-      color: #666;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
     }
     
-    /* Announcement Banner */
+    /* Announcement banner */
     .announcement-banner {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      padding: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+      background-color: #f7d417;
+      padding: 15px;
+      text-align: center;
       z-index: 999;
     }
     
     .announcement-form {
       display: flex;
-      gap: 10px;
       justify-content: center;
-      width: 100%;
-      max-width: 400px;
+      max-width: 500px;
+      margin: 0 auto;
     }
     
     .announcement-input {
-      padding: 8px 12px;
-      border-radius: 4px;
+      flex: 1;
+      padding: 10px 15px;
       border: none;
-      flex-grow: 1;
-      font-size: 0.9rem;
+      border-radius: 30px 0 0 30px;
+      font-size: 16px;
     }
     
     .announcement-button {
-      background-color: #ff0000;
+      background-color: #222;
       color: white;
       border: none;
-      border-radius: 4px;
-      padding: 8px 15px;
-      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 0 30px 30px 0;
       cursor: pointer;
-      font-size: 0.9rem;
-      white-space: nowrap;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
     
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(0); }
-      75% { transform: translateX(5px); }
-      100% { transform: translateX(0); }
+    .announcement-button:hover {
+      background-color: #444;
     }
     
     .shake {
       animation: shake 0.5s;
     }
     
-    /* Responsive Styles */
-    @media (max-width: 767px) {
-      .container {
-        width: 85%;
-      }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
     }
     
-    @media (min-width: 768px) {
-      .features {
-        grid-template-columns: repeat(2, 1fr);
+    /* Event card */
+    .event-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    /* Track buttons */
+    .track-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .track-button {
+      padding: 10px 20px;
+      background-color: #222;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .track-button:hover {
+      background-color: #444;
+    }
+    
+    /* Mobile menu */
+    .hamburger-menu {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      cursor: pointer;
+    }
+    
+    .hamburger-menu span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: white;
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+    
+    /* Media queries */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: flex;
       }
       
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
+      .nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #222;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
       }
       
-      .about-content {
-        flex-direction: row;
-      }
-      
-      .hero-title {
-        font-size: 2.8rem;
-      }
-      
-      .hero-subtitle {
-        font-size: 1.4rem;
+      .nav.active {
+        transform: translateY(0);
       }
       
       .nav-link {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-      }
-      
-      .logo img {
-        max-height: 60px;
-      }
-    }
-    
-    @media (min-width: 992px) {
-      .features {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      
-      .gallery {
-        grid-template-columns: repeat(4, 1fr);
+        margin: 10px 0;
       }
       
       .hero-title {
-        font-size: 3.2rem;
+        font-size: 32px;
       }
       
       .hero-subtitle {
-        font-size: 1.6rem;
+        font-size: 18px;
+      }
+      
+      .section {
+        padding: 50px 0;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .feature-card {
+        max-width: 100%;
+      }
+      
+      .contact-info-container {
+        flex-direction: column;
+      }
+      
+      .announcement-form {
+        flex-direction: column;
+      }
+      
+      .announcement-input {
+        border-radius: 30px;
+        margin-bottom: 10px;
+      }
+      
+      .announcement-button {
+        border-radius: 30px;
+      }
+      
+      .container {
+        padding: 0 15px;
       }
     }
   </style>
 </head>
 <body>
   <header class="header">
-    <div class="container nav-container">
-      <div class="logo">
-        <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="images/logo.png" alt="Checkered Flag Logo">
+        The Checkered Flag
+      </a>
+      
+      <div class="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <nav class="nav-menu">
-        <a href="#home" class="nav-link active">Home</a>
+      
+      <nav class="nav">
         <a href="#about" class="nav-link">About</a>
-        <a href="#tracks" class="nav-link">Tracks</a>
-        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#tracks" class="nav-link">Our Tracks</a>
+        <a href="#shop" class="nav-link">Pro Shop</a>
         <a href="#events" class="nav-link">Events</a>
         <a href="#gallery" class="nav-link">Gallery</a>
       </nav>
     </div>
   </header>
   
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <div class="track-image-container">
-        <img src="images/track1.png" alt="Our Main Track" class="track-image">
-        <div class="track-overlay">
-          <h1 class="hero-title">The Checkered Flag</h1>
-          <h2 class="hero-subtitle">Slot Cars & RC Complex</h2>
-          <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time</a>
-        </div>
-      </div>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">The Checkered Flag</h1>
+      <h2 class="hero-subtitle">Slot Cars & RC Complex</h2>
+      <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
     </div>
   </section>
   
   <div class="container">
     <section id="about" class="section">
       <h2 class="section-title">About Us</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>Welcome to The Checkered Flag, the premier destination for slot car and RC enthusiasts! Our state-of-the-art facility offers multiple tracks, a fully stocked shop, and a community of passionate racers.</p>
-          <p>Founded in 2018, we've been serving racing enthusiasts of all ages and skill levels. Whether you're a beginner looking to try slot car racing for the first time or a seasoned pro preparing for competition, we have everything you need.</p>
-          <p>Our friendly staff is always ready to help with tips, repairs, and advice to enhance your racing experience.</p>
-        </div>
-        <div class="about-image">
-          <img src="images/track2.png" alt="Our Facility">
-        </div>
-      </div>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
+        Welcome to The Checkered Flag Slot Cars & RC Complex, Sevierville's premier destination for slot car and RC racing enthusiasts. Our state-of-the-art facility features multiple tracks, a fully-stocked pro shop, and a community of passionate racers. Whether you're a seasoned competitor or just looking for family fun, we have something for everyone!
+      </p>
     </section>
     
     <section id="tracks" class="section">
@@ -471,18 +494,42 @@
       <div class="features">
         <div class="feature-card">
           <div class="feature-icon">🏎️</div>
-          <h3 class="feature-title">8-Lane Wooden Slot Car Track</h3>
-          <p>Our flagship track features 8 lanes of high-speed action with electronic lap counting and race management system.</p>
+          <h3 class="feature-title">8-Lane Digital Slot Car Track</h3>
+                    <p>Our flagship digital track offers lane-changing action and can accommodate up to 8 racers simultaneously.</p>
+          <div class="track-buttons">
+            <a href="tracks.html" class="track-button">Layout</a>
+            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+          </div>
         </div>
+        
         <div class="feature-card">
           <div class="feature-icon">🚗</div>
-          <h3 class="feature-title">RC Off-Road Course</h3>
-                    <p>Challenging terrain with jumps, obstacles, and varied surfaces for the ultimate RC truck and buggy experience.</p>
+          <h3 class="feature-title">4-Lane Analog Track</h3>
+          <p>Perfect for beginners and traditional racers, our analog track delivers classic slot car racing excitement.</p>
+          <div class="track-buttons">
+            <a href="tracks.html" class="track-button">Layout</a>
+            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+          </div>
         </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🏁</div>
+          <h3 class="feature-title">RC Off-Road Course</h3>
+          <p>Challenging terrain with jumps, obstacles, and varied surfaces for the ultimate RC truck and buggy experience.</p>
+          <div class="track-buttons">
+            <a href="tracks.html" class="track-button">Layout</a>
+            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+          </div>
+        </div>
+        
         <div class="feature-card">
           <div class="feature-icon">🏁</div>
           <h3 class="feature-title">Drag Racing Strip</h3>
           <p>Test your speed on our precision-timed drag strip, perfect for head-to-head competition.</p>
+          <div class="track-buttons">
+            <a href="tracks.html" class="track-button">Layout</a>
+            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="track-button">Book Now</a>
+          </div>
         </div>
       </div>
     </section>
@@ -506,12 +553,14 @@
       </div>
     </section>
   </div>
-    
+  
   <section id="events" class="section">
-    <h2 class="section-title">Upcoming Events</h2>
-    <div class="event-card">
-      <h3 class="feature-title">Grand Opening</h3>
-      <p>We're excited to announce our grand opening coming soon! Join us for a day of racing, demonstrations, giveaways, and special promotions. Meet fellow enthusiasts and be among the first to experience our state-of-the-art tracks. Stay tuned for the official date announcement!</p>
+    <div class="container">
+      <h2 class="section-title">Upcoming Events</h2>
+      <div class="feature-card">
+        <h3 class="feature-title">Grand Opening</h3>
+        <p>We're excited to announce our grand opening coming soon! Join us for a day of racing, demonstrations, giveaways, and special promotions. Meet fellow enthusiasts and be among the first to experience our state-of-the-art tracks. Stay tuned for the official date announcement!</p>
+      </div>
     </div>
   </section>
   
@@ -554,7 +603,7 @@
         </div>
       </div>
       
-      <div style="margin: 20px 0;">
+      <div style="margin: 20px 0; text-align: center;">
         <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
       </div>
       
@@ -653,7 +702,32 @@
           this.reset();
         });
       }
+      
+      // Mobile menu toggle
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const nav = document.querySelector('.nav');
+      
+      if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', function() {
+          nav.classList.toggle('active');
+          
+          // Animate hamburger to X
+          const spans = this.querySelectorAll('span');
+          spans.forEach(span => span.classList.toggle('active'));
+          
+          if (nav.classList.contains('active')) {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+          } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          }
+        });
+      }
     });
   </script>
 </body>
 </html>
+
