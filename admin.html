@@ -67,18 +67,17 @@
     
     /* Hero Section */
     .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-background.jpg');
+      background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/hero-background.jpg');
       background-size: cover;
       background-position: center;
-      height: 500px;
-      display: flex;
-      align-items: center;
+      padding: 80px 0 40px;
       text-align: center;
-      margin-bottom: 40px;
     }
     
     .hero-content {
       width: 100%;
+      position: relative;
+      z-index: 2;
     }
     
     .hero-title {
@@ -87,12 +86,14 @@
       color: #fff;
       text-transform: uppercase;
       letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
     .hero-subtitle {
       font-size: 1.5rem;
       margin-bottom: 30px;
       color: #ddd;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
     
     .cta-button {
@@ -109,10 +110,28 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-bottom: 40px;
     }
     
     .cta-button:hover {
       background-color: #cc0000;
+    }
+    
+    /* Track image */
+    .track-image-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .track-image {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     
     /* Section Styles */
@@ -149,6 +168,8 @@
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     
     /* Features Section */
@@ -191,11 +212,13 @@
     
     .gallery-item img {
       width: 100%;
-      height: 200px;
+      height: 250px;
       object-fit: cover;
       border-radius: 8px;
       transition: transform 0.3s ease;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     
     .gallery-item img:hover {
@@ -276,16 +299,6 @@
       color: #666;
     }
     
-    /* Track image */
-    .track-image {
-      width: 100%;
-      max-width: 800px;
-      margin: 30px auto;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
-    
     /* Responsive Styles */
     @media (max-width: 768px) {
       .nav-container {
@@ -334,12 +347,14 @@
       <h1 class="hero-title">The Checkered Flag</h1>
       <h2 class="hero-subtitle">Slot Cars & RC Complex</h2>
       <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time</a>
+      
+      <div class="track-image-container">
+        <img src="images/track1.png" alt="Our Main Track" class="track-image">
+      </div>
     </div>
   </section>
   
   <div class="container">
-    <img src="images/track1.png" alt="Our Main Track" class="track-image">
-    
     <section id="about" class="section">
       <h2 class="section-title">About Us</h2>
       <div class="about-content">
@@ -423,7 +438,7 @@
     </section>
     
     <section id="contact" class="section">
-      <h2 class="section-title">Contact Us</h2>
+            <h2 class="section-title">Contact Us</h2>
       <div class="contact-container">
         <div class="contact-info">
           <h3>Visit Our Location</h3>
@@ -436,7 +451,7 @@
           <p>Phone: 865-441-1173<br>Email: To Be Determined</p>
           
           <div style="margin-top: 30px;">
-                        <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
+            <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
           </div>
         </div>
         
@@ -548,4 +563,6 @@
   </script>
 </body>
 </html>
+
+
 
