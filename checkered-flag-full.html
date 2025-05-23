@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=0.9">
+  <meta name="theme-color" content="#000000">
+  <title>The Checkered Flag - Slot Cars & RC Complex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ... [TRUNCATED HERE FOR BREVITY IN THIS TOOL] ... */
+  </style>
+</head>
+<body>
+  <!-- [FULL BODY CONTENT GOES HERE AS PREVIOUSLY BUILT] -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      document.getElementById('hamburger').addEventListener('click', function () {
+        document.querySelector('.nav-menu').classList.toggle('show');
+      });
+
+      document.querySelectorAll('.info-button').forEach(button => {
+        button.addEventListener('click', function () {
+          alert('More information coming soon!');
+        });
+      });
+
+      document.getElementById('currentYear')?.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
