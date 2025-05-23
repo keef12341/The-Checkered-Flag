@@ -294,7 +294,32 @@
     </div>
   </header>
 
-  <!-- Add your sections and content here as before... -->
+  <section id="home" class="hero">
+    <div class="track-image-container">
+      <img src="images/track1.png" class="track-image" alt="Track">
+      <div class="track-overlay">
+        <h1 class="hero-title">The Checkered Flag</h1>
+        <h2 class="hero-subtitle">Slot Cars & RC Complex</h2>
+        <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" class="cta-button" target="_blank">Book Track Time</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <section id="about" class="section">
+      <h2 class="section-title">About Us</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Welcome to The Checkered Flag, the premier destination for slot car and RC enthusiasts! Our state-of-the-art facility offers multiple tracks, a fully stocked shop, and a community of passionate racers.</p>
+          <p>Founded in 2018, we've been serving racing enthusiasts of all ages and skill levels. Whether you're a beginner looking to try slot car racing or a seasoned pro, we’ve got what you need.</p>
+          <p>Our friendly staff is always ready to help with tips, repairs, and advice to enhance your racing experience.</p>
+        </div>
+        <div class="about-image">
+          <img src="images/track2.png" alt="Our Facility">
+        </div>
+      </div>
+    </section>
+  </div>
 
   <div class="announcement-banner">
     <form class="announcement-form">
@@ -305,6 +330,10 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('hamburger').addEventListener('click', function () {
+        document.querySelector('.nav-menu').classList.toggle('show');
+      });
+
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
@@ -317,10 +346,6 @@
             });
           }
         });
-      });
-
-      document.getElementById('hamburger').addEventListener('click', function () {
-        document.querySelector('.nav-menu').classList.toggle('show');
       });
 
       const form = document.querySelector('.announcement-form');
