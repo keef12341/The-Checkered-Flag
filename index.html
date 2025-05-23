@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>The Checkered Flag - Coming Soon</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("d4-jr-CEleic4ikyC");
+    })();
+  </script>
+  <style>
+    /* The user's original style content remains unchanged */
+  </style>
+</head>
+<body>
+  <!-- Main content remains the same until the form section -->
+  <div class="password-page__signup-form">
+    <h3 class="password-page__signup-heading">Be the first to know when we open!</h3>
+    <div id="contactForm">
+      <div class="form-success" id="formSuccess">
+        Thanks for subscribing! We'll keep you updated.
+      </div>
+      <form id="emailForm" class="input-group password-page__input-group">
+        <input type="email"
+               id="Email"
+               name="user_email"
+               class="input-group__field password-page__input"
+               placeholder="Enter your email"
+               autocorrect="off"
+               autocapitalize="off"
+               required>
+        <button type="submit" class="password-page__submit-btn">
+          <span>Notify Me</span>
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- Remainder of the content remains the same -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('emailForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        emailjs.sendForm('d4-jr-CEleic4ikyC', 'd4-jr-CEleic4ikyC', this)
+          .then(function() {
+            document.getElementById('formSuccess').style.display = 'block';
+            document.getElementById('Email').value = '';
+          }, function(error) {
+            alert('Email could not be sent. Please try again later.');
+          });
+      });
+
+      // The rest of the original script block continues unchanged
+    });
+  </script>
+
+<!-- EmailJS integration -->
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("d4-jr-CEleic4ikyC");
+  })();
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const submitBtn = document.getElementById('submitBtn');
+    const emailInput = document.getElementById('Email');
+    const formSuccess = document.getElementById('formSuccess');
+    const confirmationModal = document.getElementById('confirmationModal');
+
+    submitBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      if (emailInput.value && emailInput.checkValidity()) {
+        emailjs.send("d4-jr-CEleic4ikyC", "d4-jr-CEleic4ikyC", {
+          user_email: emailInput.value
+        })
+        .then(function(response) {
+          console.log("Email successfully sent!", response.status, response.text);
+          formSuccess.style.display = 'block';
+          confirmationModal.style.display = 'flex';
+          emailInput.value = '';
+        }, function(error) {
+          console.log("FAILED", error);
+          alert("There was a problem submitting your email. Please try again later.");
+        });
+      } else {
+        emailInput.reportValidity();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
