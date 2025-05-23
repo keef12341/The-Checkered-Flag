@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>The Checkered Flag - Slot Cars & RC Complex</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+    
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 4%;
+    }
+    
+    /* Header Styles - Fixed at top */
+    .header {
+      padding: 10px 0;
+      border-bottom: 2px solid #ff0000;
+      background-color: #000;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo img {
+      max-height: 40px;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.7rem;
+    }
+    
+    .nav-link:hover {
+      background-color: #ff0000;
+    }
+    
+    .nav-link.active {
+      background-color: #ff0000;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background-color: #111;
+      padding: 60px 0 0;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .hero-content {
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Track image with overlay text */
+    .track-image-container {
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .track-image {
+      width: 100%;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    
+    .track-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    
+    .hero-title {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #ddd;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    .cta-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+    }
+    
+    .cta-button:hover {
+      background-color: #cc0000;
+    }
+    
+    /* Section Styles */
+    .section {
+      padding: 30px 0;
+      border-bottom: 1px solid #333;
+    }
+    
+    .section-title {
+      color: #ff0000;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    /* About Section */
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+    }
+    
+    .about-text {
+      width: 100%;
+    }
+    
+    .about-image {
+      width: 100%;
+      max-width: 500px;
+    }
+    
+    .about-image img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .feature-card {
+      background-color: #222;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .feature-icon {
+      font-size: 2.2rem;
+      color: #ff0000;
+      margin-bottom: 12px;
+    }
+    
+    .feature-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    
+    /* Events Section */
+    .event-card {
+      background-color: #222;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 0 auto;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Gallery Section */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    
+    .gallery-item img:hover {
+      transform: scale(1.03);
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 0 80px; /* Reduced padding for mobile */
+      margin-top: 30px;
+      border-top: 1px solid #333;
+    }
+    
+    .contact-info-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+    
+    .contact-info-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+    
+    .social-link {
+      color: #fff;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    
+    .social-link:hover {
+      color: #ff0000;
+    }
+    
+    .social-icon {
+      width: 25px;
+      height: 25px;
+    }
+    
+    .copyright {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    /* Announcement Banner */
+    .announcement-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    
+    .announcement-form {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      width: 100%;
+      max-width: 350px;
+    }
+    
+    .announcement-input {
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: none;
+      flex-grow: 1;
+      font-size: 0.85rem;
+    }
+    
+    .announcement-button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    
+    /* Info Button */
+    .info-button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 15px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 15px auto 0;
+      font-weight: 600;
+    }
+    
+    .info-button:hover {
+      background-color: #444;
+    }
+    
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(0); }
+      75% { transform: translateX(5px); }
+      100% { transform: translateX(0); }
+    }
+    
+    .shake {
+      animation: shake 0.5s;
+    }
+    
+    
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  background: none;
+  border: 2px solid #ff0000;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #000;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+
+    /* Responsive Styles */
+    @media (max-width: 767px) {
+      .container {
+        width: 92%;
+      }
+      
+      body {
+        font-size: 0.95rem;
+      }
+      
+      .section {
+        padding: 25px 0;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .about-content {
+        flex-direction: row;
+      }
+      
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.4rem;
+      }
+      
+      .nav-link {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+      }
+      
+      .logo img {
+        max-height: 60px;
+      }
+    }
+    
+    @media (min-width: 992px) {
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .gallery {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      
+      .hero-title {
+        font-size: 3.2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <div class="logo">
+        <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
+      </div>
+      
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <nav class="nav-menu">
+    
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#tracks" class="nav-link">Tracks</a>
+        <a href="#shop" class="nav-link">Shop</a>
+        <a href="#events" class="nav-link">Events</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+      </nav>
+    </div>
+  </header>
+  
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="track-image-container">
+        <img src="images/track1.png" alt="Our Main Track" class="track-image">
+        <div class="track-overlay">
+          <h1 class="hero-title">The Checkered Flag</h1>
+          <h2 class="hero-subtitle">Slot Cars & RC Complex</h2>
+          <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="container">
+    <section id="about" class="section">
+      <h2 class="section-title">About Us</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Welcome to The Checkered Flag, the premier destination for slot car and RC enthusiasts! Our state-of-the-art facility offers multiple tracks, a fully stocked shop, and a community of passionate racers.</p>
+          <p>Founded in 2018, we've been serving racing enthusiasts of all ages and skill levels. Whether you're a beginner looking to try slot car racing for the first time or a seasoned pro preparing for competition, we have everything you need.</p>
+          <p>Our friendly staff is always ready to help with tips, repairs, and advice to enhance your racing experience.</p>
+                <div class="about-image">
+          <img src="images/track2.png" alt="Our Facility">
+        </div>
+      </div>
+      <button class="info-button">More About Us</button>
+    </section>
+    
+    <section id="tracks" class="section">
+      <h2 class="section-title">Our Tracks</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🏎️</div>
+          <h3 class="feature-title">8-Lane Wooden Slot Car Track</h3>
+          <p>Our flagship track features 8 lanes of high-speed action with electronic lap counting and race management system.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚗</div>
+          <h3 class="feature-title">RC Off-Road Course</h3>                    
+          <p>Challenging terrain with jumps, obstacles, and varied surfaces for the ultimate RC truck and buggy experience.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏁</div>
+          <h3 class="feature-title">Drag Racing Strip</h3>
+          <p>Test your speed on our precision-timed drag strip, perfect for head-to-head competition.</p>
+        </div>
+      </div>
+      <button class="info-button">Track Information</button>
+    </section>
+    
+    <section id="shop" class="section">
+      <h2 class="section-title">Pro Shop</h2>
+      <p style="text-align: center; margin-bottom: 30px;">We carry a full line of slot cars, RC vehicles, parts, accessories, and more!</p>
+      <div class="features">
+        <div class="feature-card">
+          <h3 class="feature-title">Slot Cars & Parts</h3>
+          <p>From beginner sets to competition-grade cars and components.</p>
+        </div>
+        <div class="feature-card">
+          <h3 class="feature-title">RC Vehicles</h3>
+          <p>Cars, trucks, buggies and all the batteries, chargers, and electronics you need.</p>
+        </div>
+        <div class="feature-card">
+          <h3 class="feature-title">Repair Services</h3>
+          <p>Our technicians can repair, tune, and upgrade your vehicles for peak performance.</p>
+        </div>
+      </div>
+      <button class="info-button">Shop Inventory</button>
+    </section>
+  </div>
+    
+  <section id="events" class="section">
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="event-card">
+      <h3 class="feature-title">Grand Opening</h3>
+      <p>We're excited to announce our grand opening coming soon! Join us for a day of racing, demonstrations, giveaways, and special promotions.</p>
+    </div>
+    <button class="info-button" style="margin-top: 20px;">View All Events</button>
+  </section>
+  
+  <div class="container">
+    <section id="gallery" class="section">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="images/track3.png" alt="Main Track">
+        </div>
+        <div class="gallery-item">
+          <img src="images/track4.png" alt="RC Course">
+        </div>
+        <div class="gallery-item">
+          <img src="images/track5.png" alt="Racing Action">
+        </div>
+        <div class="gallery-item">
+          <img src="images/track6.png" alt="Pro Shop">
+        </div>
+      </div>
+      <button class="info-button">View Full Gallery</button>
+    </section>
+  </div>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="contact-info-container">
+        <div class="contact-info-column">
+          <h3>Visit Our Location</h3>
+          <p>232 Collier Drive, Suite I2/3<br>Sevierville, TN 37862<br>United States</p>
+        </div>
+            
+        <div class="contact-info-column">
+          <h3>Hours of Operation</h3>
+          <p>To Be Determined</p>
+        </div>
+            
+        <div class="contact-info-column">
+          <h3>Get In Touch</h3>
+          <p>Phone: 865-441-1173<br>Email: To Be Determined</p>
+        </div>
+      </div>
+        
+      <div style="margin: 20px 0;">
+        <a href="https://app.squareup.com/appointments/book/v8jjy13gp85khh/LZYTW6CWV792H/start" target="_blank" class="cta-button">Book Track Time Now</a>
+      </div>
+        
+      <div class="social-links">
+        <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" class="social-link" target="_blank">
+          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/checkeredflagslotcar/" class="social-link" target="_blank">
+          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+          </svg>
+        </a>
+        <a href="mailto:info@checkeredflagslotcars.com" class="social-link" target="_blank">
+          <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path fill="currentColor" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path>
+          </svg>
+        </a>
+      </div>
+      <p class="copyright">&copy; <span id="currentYear"></span> The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <div class="announcement-banner">
+    <form class="announcement-form">
+      <input type="email" class="announcement-input" placeholder="Enter your email" required>
+      <button type="submit" class="announcement-button" id="shakeButton">Sign Up</button>
+    </form>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+                
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+                
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+        
+      // Add active class to navigation links based on scroll position
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+            
+        let currentSection = '';
+            
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            currentSection = '#' + section.getAttribute('id');
+          }
+        });
+            
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === currentSection) {
+            link.classList.add('active');
+          }
+        });
+      });
+        
+      // Shake button animation
+      const shakeButton = document.getElementById('shakeButton');
+        
+      function shakeButtonAnimation() {
+        shakeButton.classList.add('shake');
+        setTimeout(() => {
+          shakeButton.classList.remove('shake');
+        }, 500);
+      }
+        
+      // Shake every 3 seconds
+      setInterval(shakeButtonAnimation, 3000);
+        
+      // Form submission for announcement banner
+      const announcementForm = document.querySelector('.announcement-form');
+      if (announcementForm) {
+        announcementForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Thank you for signing up for our newsletter!');
+          this.reset();
+        });
+      }
+      
+      
+// Hamburger menu toggle
+function toggleMenu() {
+  const navMenu = document.querySelector('.nav-menu');
+  navMenu.classList.toggle('show');
+}
+
+
+      // Info buttons functionality
+      document.querySelectorAll('.info-button').forEach(button => {
+        button.addEventListener('click', function() {
+          alert('More information coming soon! Check back later for updates.');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
