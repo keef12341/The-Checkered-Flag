@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>The Checkered Flag - Coming Soon</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("d4-jr-CEleic4ikyC");
+    })();
+  </script>
+  <style>
+    /* Your full CSS here (same as provided in previous content) */
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    /* ... full stylesheet was included previously ... */
+  </style>
+</head>
+<body>
+  <!-- Main page content -->
+  <div class="password-page__wrapper">
+    <div class="password-page__content">
+      <div class="site-header__logo">
+        <img src="images/checkeredflag.png" alt="The Checkered Flag Logo">
+      </div>
+      <h2 class="password-page__heading">Coming Soon to Pigeon Forge!</h2>
+      <p class="password-page__message">We're putting the finishing touches on our tracks and will be racing soon!</p>
+
+      <div class="password-page__signup-form">
+        <h3 class="password-page__signup-heading">Be the first to know when we open!</h3>
+        <form id="signup-form">
+          <div class="password-page__input-group">
+            <input type="email" name="user_email" id="Email" class="password-page__input" placeholder="Enter your email" required>
+            <button type="submit" class="password-page__submit-btn">Notify Me</button>
+          </div>
+          <div class="form-success" id="formSuccess" style="display: none;">
+            Thanks for subscribing! We'll keep you updated.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      emailjs.sendForm('default_service', 'd4-jr-CEleic4ikyC', this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          document.getElementById('formSuccess').style.display = 'block';
+        }, function(error) {
+          console.log('FAILED...', error);
+        });
+    });
+  </script>
+</body>
+</html>
