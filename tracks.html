@@ -225,11 +225,11 @@
         <p>Premium 3D Car Experience</p>
     </div>
 
-    <nav class="nav">
-        <button class="nav-btn active" onclick="showSection('shop')">Our Shop</button>
-        <button class="nav-btn" onclick="showSection('tracks')">Our Tracks</button>
-        <button class="nav-btn" onclick="showSection('events')">Our Events</button>
-    </nav>
+ <nav class="nav">
+    <button class="nav-btn active" onclick="showSection('shop', event)">Our Shop</button>
+    <button class="nav-btn" onclick="showSection('tracks', event)">Our Tracks</button>
+    <button class="nav-btn" onclick="showSection('events', event)">Our Events</button>
+</nav>
 
     <section id="shop" class="section active">
         <h2>🚗 Our Shop</h2>
@@ -340,7 +340,7 @@
         let currentRotationY = 0;
         let currentRotationX = 0;
 
-        function showSection(sectionName) {
+        function showSection(sectionName, event) {
             // Hide all sections
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
