@@ -477,22 +477,20 @@
         <section id="shop" class="section active">
             <h2 class="section-title">🚗 Our Shop</h2>
             <div class="car-container">
+        
+                <!-- Interactive 3D Car -->
                 <div class="car-card">
-                                        <div class="car-3d" onmousedown="startDrag(event, this)" onmousemove="drag(event, this)" onmouseup="stopDrag(this)">
-                        <div class="car-model auto-rotate">
-                            <div class="car-body" style="background: linear-gradient(45deg, #333, #555);">
-                                <div class="wheel front"></div>
-                                <div class="wheel back"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="car-info">
-                        <h3>Electric Racer X1</h3>
-                        <p>Zero-emission electric supercar with instant torque and cutting-edge technology. The future of racing is here.</p>
-                        <div class="price">$89,999</div>
-                    </div>
+                    <model-viewer 
+                        src="images/blue-slot-car.glb"
+                        alt="3D Blue Slot Car"
+                        auto-rotate
+                        camera-controls
+                        ar
+                        style="width: 100%; height: 300px; background-color: #222; border-radius: 8px;">
+                    </model-viewer>
                 </div>
-
+        
+                <!-- Regular Static Car -->
                 <div class="car-card">
                     <div class="car-3d" onmousedown="startDrag(event, this)" onmousemove="drag(event, this)" onmouseup="stopDrag(this)">
                         <div class="car-model auto-rotate">
@@ -508,6 +506,7 @@
                         <div class="price">$67,500</div>
                     </div>
                 </div>
+        
             </div>
             <button class="info-button">View Full Inventory</button>
         </section>
