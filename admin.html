@@ -180,7 +180,7 @@
         /* Tracks */
         .tracks-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -381,20 +381,30 @@
     <section id="tracks">
         <h2 class="section-title">Our Tracks</h2>
         <div class="tracks-grid">
-            <div class="track-card">
+            <div class="track-card" onclick="location.href='slottrack.html'" style="cursor: pointer;">
                 <div class="track-icon">🏎️</div>
                 <h3>8-Lane Slot Car Track</h3>
                 <p>Professional wooden track with electronic lap counting and race management system.</p>
             </div>
-            <div class="track-card">
+            <div class="track-card" onclick="location.href='rc.html'" style="cursor: pointer;">
                 <div class="track-icon">🚗</div>
                 <h3>RC Off-Road Course</h3>
                 <p>Challenging terrain with jumps, obstacles, and varied surfaces for trucks and buggies.</p>
             </div>
-            <div class="track-card">
+            <div class="track-card" onclick="location.href='drag.html'" style="cursor: pointer;">
                 <div class="track-icon">🏁</div>
                 <h3>Drag Racing Strip</h3>
                 <p>Precision-timed drag strip perfect for head-to-head speed competitions.</p>
+            </div>
+            <div class="track-card" onclick="location.href='nascar.html'" style="cursor: pointer;">
+                <div class="track-icon">🏆</div>
+                <h3>NASCAR Oval</h3>
+                <p>High-speed oval track designed for intense NASCAR-style racing action.</p>
+            </div>
+            <div class="track-card" onclick="location.href='rcdrag.html'" style="cursor: pointer;">
+                <div class="track-icon">⚡</div>
+                <h3>RC Drag Strip</h3>
+                <p>Dedicated RC drag racing strip with timing system for ultimate speed battles.</p>
             </div>
         </div>
     </section>
