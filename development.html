@@ -1,1 +1,262 @@
-g
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Development | The Checkered Flag</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
+            bottom: -150px;
+            left: -150px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .container {
+            max-width: 800px;
+            text-align: center;
+            background: rgba(26, 26, 26, 0.8);
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            border: 2px solid #FF0000;
+            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            margin-bottom: 2rem;
+        }
+
+        .logo img {
+            max-height: 80px;
+        }
+
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Racing Sans One', sans-serif;
+            font-size: 3rem;
+            color: #FF0000;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #CCC;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .feature h3 {
+            color: #FF0000;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .contact-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .contact-section h2 {
+            font-size: 1.5rem;
+            color: #FF0000;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a:hover {
+            color: #FF0000;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #FF0000;
+            transform: translateY(-5px);
+        }
+
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="images/checkeredflag.png" alt="The Checkered Flag">
+        </div>
+
+        <div class="icon">🏗️</div>
+        
+        <h1>Under Development</h1>
+        
+        <p>We're building something awesome! Our website is currently under construction as we prepare to bring you the ultimate slot car and RC racing experience.</p>
+
+        <div class="features">
+            <div class="feature">
+                <h3>🏎️ Multiple Tracks</h3>
+                <p>Professional racing facilities</p>
+            </div>
+            <div class="feature">
+                <h3>🛒 Pro Shop</h3>
+                <p>Full inventory coming soon</p>
+            </div>
+            <div class="feature">
+                <h3>🏁 Events</h3>
+                <p>Competitions & gatherings</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>Stay Connected</h2>
+            <p style="font-size: 1rem;">Have questions? Get in touch with us!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="tel:562-912-7062">📞 562-912-7062</a>
+                </div>
+                <div class="contact-item">
+                    <a href="mailto:checkflag3011@gmail.com">📧 checkflag3011@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.facebook.com/people/The-Checkered-Flag-Slot-Cars-and-RC-Complex/61573610789514/" target="_blank" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/checkeredflagslotcar/" target="_blank" class="social-link">
+                    <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
