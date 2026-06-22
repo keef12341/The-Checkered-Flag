@@ -33,6 +33,7 @@
             background: var(--dark);
             color: var(--white);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header */
@@ -94,23 +95,107 @@
             transform: translateY(-2px);
         }
 
+        /* Mobile Menu Toggle - checkered flag inspired */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            width: 42px;
+            height: 42px;
+            position: relative;
+            z-index: 1100;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 26px;
+            background: var(--white);
+            border-radius: 1px;
+            left: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu-toggle span:nth-child(1) { top: 13px; }
+        .mobile-menu-toggle span:nth-child(2) { top: 21px; }
+        .mobile-menu-toggle span:nth-child(3) { top: 29px; }
+
+        .mobile-menu-toggle.active span {
+            background: var(--red);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            top: 21px;
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            top: 21px;
+            transform: rotate(-45deg);
+        }
+
+        /* Mobile nav panel */
+        .mobile-nav-panel {
+            display: none;
+        }
+
         /* Hero */
         .hero {
-            padding: 8rem 2rem 4rem 2rem;
+            padding: 9rem 2rem 5rem 2rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);
+            background: var(--dark);
             position: relative;
             overflow: hidden;
+            isolation: isolate;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.1) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
+            inset: 0;
+            background:
+                radial-gradient(circle at 85% -10%, rgba(255, 0, 0, 0.16) 0%, transparent 45%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 14px, transparent 14px, transparent 28px);
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 14px;
+            background: repeating-linear-gradient(90deg, var(--white) 0 28px, var(--dark) 28px 56px);
+            opacity: 0.9;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--red);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--red);
         }
 
         .hero-content {
@@ -124,7 +209,7 @@
             font-family: 'Racing Sans One', sans-serif;
             font-size: 4rem;
             color: var(--white);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 3px;
         }
@@ -139,8 +224,9 @@
         .hero-image {
             max-width: 100%;
             border-radius: 12px;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255,255,255,0.08);
         }
 
         /* Section */
@@ -266,6 +352,16 @@
             color: var(--red);
         }
 
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .hours-row span:first-child {
+            color: var(--white);
+        }
+
         /* Social Links */
         .social-links {
             display: flex;
@@ -302,20 +398,19 @@
             color: #666;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
         /* Responsive */
         @media (max-width: 968px) {
+            .hero {
+                padding: 7.5rem 1.5rem 3.5rem 1.5rem;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
+                letter-spacing: 1.5px;
+            }
+
+            .hero h2 {
+                font-size: 1.15rem;
             }
 
             .about-grid,
@@ -331,12 +426,73 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            nav {
+                padding: 0.85rem 1.25rem;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: min(78vw, 320px);
+                background: var(--dark);
+                border-left: 2px solid var(--red);
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 0;
+                padding: 0 2.5rem;
+                transform: translateX(100%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1050;
+            }
+
+            .nav-links.open {
+                transform: translateX(0);
+                box-shadow: -20px 0 50px rgba(0,0,0,0.6);
+            }
+
+            .nav-links li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+                margin-top: 1.5rem;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1.1rem 0;
+                font-size: 1.05rem;
+                letter-spacing: 1.5px;
+            }
+
+            .nav-links a.cta-btn {
+                text-align: center;
+                padding: 0.9rem 1.5rem;
             }
 
             .mobile-menu-toggle {
                 display: block;
+            }
+
+            .nav-overlay {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0,0,0,0.55);
+                z-index: 1040;
+            }
+
+            .nav-overlay.open {
+                display: block;
+            }
+
+            body.menu-open {
+                overflow: hidden;
             }
         }
     </style>
@@ -348,20 +504,26 @@
             <div class="logo">
                 <img src="images/checkeredflag.png" alt="The Checkered Flag">
             </div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#tracks">Tracks</a></li>
                 <li><a href="#gallery">Gallery</a></li>
+                <li><a href="parts.html">Parts</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="booking.html" class="cta-btn">Book Track Time</a></li>
             </ul>
-            <button class="mobile-menu-toggle">☰</button>
+            <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
+            <span class="hero-eyebrow">Sevierville, TN</span>
             <h1>The Checkered Flag</h1>
             <h2>Slot Cars & RC Complex</h2>
             <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem auto; color: #CCC;">
@@ -411,11 +573,6 @@
                 <h3>NASCAR Oval</h3>
                 <p>High-speed oval track designed for intense NASCAR-style racing action.</p>
             </div>
-            <div class="track-card" onclick="location.href='rcdrag.html'" style="cursor: pointer;">
-                <div class="track-icon">⚡</div>
-                <h3>RC Drag Strip</h3>
-                <p>Dedicated RC drag racing strip with timing system for ultimate speed battles.</p>
-            </div>
         </div>
     </section>
 
@@ -450,12 +607,16 @@
                 <h3>Contact</h3>
                 <p>
                     <a href="tel:562-912-7062">📞 562-912-7062</a><br>
-                    <a href="/cdn-cgi/l/email-protection#e98a818c8a828f85888edad9d8d8a98e84888085c78a8684">📧 <span class="__cf_email__" data-cfemail="5a39323f39313c363b3d696a6b6b1a3d373b333674393537">[email&#160;protected]</span></a>
+                    <a href="mailto:info@thecheckeredflag.store">📧 info@thecheckeredflag.store</a>
                 </p>
             </div>
             <div class="contact-item">
                 <h3>Hours</h3>
-                <p>Grand Opening Soon!<br>Stay tuned for updates</p>
+                <p>
+                    <span class="hours-row"><span>Monday – Thursday</span><span>10am – 7pm</span></span><br>
+                    <span class="hours-row"><span>Friday – Saturday</span><span>10am – 8pm</span></span><br>
+                    <span class="hours-row"><span>Sunday</span><span>Closed</span></span>
+                </p>
             </div>
         </div>
 
@@ -478,9 +639,56 @@
         <p>&copy; 2025 The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                cons
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                closeMenu();
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function openMenu() {
+            navLinks.classList.add('open');
+            navOverlay.classList.add('open');
+            menuToggle.classList.add('active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('menu-open');
+        }
+
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            navOverlay.classList.remove('open');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        }
+
+        menuToggle.addEventListener('click', () => {
+            if (navLinks.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        navOverlay.addEventListener('click', closeMenu);
+
+        // Close menu on resize back to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 968) {
+                closeMenu();
+            }
+        });
+    </script>
+</body>
+</html>
