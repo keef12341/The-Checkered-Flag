@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Booking - Coming Soon | The Checkered Flag</title>
+    <title>Track Booking | The Checkered Flag</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
@@ -24,7 +23,6 @@
             justify-content: center;
             padding: 2rem;
         }
-
         .container {
             max-width: 700px;
             text-align: center;
@@ -34,12 +32,10 @@
             border: 2px solid #FF0000;
             box-shadow: 0 20px 40px rgba(255, 0, 0, 0.2);
         }
-
         .icon {
             font-size: 5rem;
             margin-bottom: 2rem;
         }
-
         h1 {
             font-family: 'Racing Sans One', sans-serif;
             font-size: 2.5rem;
@@ -47,68 +43,81 @@
             margin-bottom: 1.5rem;
             text-transform: uppercase;
         }
-
         p {
             font-size: 1.2rem;
             line-height: 1.8;
             color: #CCC;
             margin-bottom: 2rem;
         }
-
+        .phone-button {
+            display: inline-block;
+            background: #FF0000;
+            color: #FFFFFF;
+            padding: 1.1rem 2.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+        .phone-button:hover {
+            background: #CC0000;
+            transform: translateY(-2px);
+        }
+        .hours-note {
+            font-size: 0.95rem;
+            color: #999;
+            margin-bottom: 2.5rem;
+        }
         .contact-info {
-            margin-top: 3rem;
+            margin-top: 1rem;
             padding-top: 2rem;
             border-top: 1px solid #333;
         }
-
         .contact-info h2 {
             font-size: 1.3rem;
             color: #FF0000;
             margin-bottom: 1rem;
         }
-
         .contact-info p {
             font-size: 1rem;
             margin-bottom: 0.5rem;
         }
-
         .contact-info a {
             color: #FFFFFF;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
         .contact-info a:hover {
             color: #FF0000;
         }
-
         .back-button {
             display: inline-block;
-            background: #FF0000;
+            background: transparent;
             color: #FFFFFF;
-            padding: 1rem 2.5rem;
+            padding: 0.85rem 2rem;
+            border: 2px solid #333;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
-
         .back-button:hover {
-            background: #CC0000;
-            transform: translateY(-2px);
+            border-color: #FF0000;
+            color: #FF0000;
         }
-
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
             }
-
             p {
                 font-size: 1rem;
             }
-
             .container {
                 padding: 3rem 1.5rem;
             }
@@ -117,21 +126,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="icon">🚧</div>
-        <h1>Track Booking Unavailable</h1>
-        <p>We're currently under construction and preparing to bring you the ultimate racing experience!</p>
-        <p>Track booking will be available soon. Stay tuned for our grand opening announcement.</p>
-        
-        <a href="index.html" class="back-button">← Back to Home</a>
+        <div class="icon">📞</div>
+        <h1>Book Your Track Time</h1>
+        <p>We're not quite ready for online booking yet — give us a call and we'll check availability and get you scheduled.</p>
+
+        <a href="tel:562-912-7062" class="phone-button">📞 Call 562-912-7062</a>
+        <p class="hours-note">Mon – Thu: 10am – 7pm &nbsp;|&nbsp; Fri – Sat: 10am – 8pm &nbsp;|&nbsp; Sun: Closed</p>
 
         <div class="contact-info">
-            <h2>Get Updates</h2>
-            <p>Follow us on social media or contact us for the latest information:</p>
+            <h2>Prefer Email?</h2>
             <p>
-                <a href="tel:562-912-7062">📞 562-912-7062</a><br>
-                <a href="mailto:checkflag3011@gmail.com">📧 checkflag3011@gmail.com</a>
+                <a href="mailto:info@thecheckeredflag.store">📧 info@thecheckeredflag.store</a>
             </p>
         </div>
+
+        <a href="index.html" class="back-button">← Back to Home</a>
     </div>
 </body>
 </html>
