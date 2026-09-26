@@ -10,7 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
 ```
     :root {
@@ -24,7 +28,9 @@
         --amber: #E8A33D;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+        scroll-behavior: smooth;
+    }
 
     body {
         font-family: 'Inter', sans-serif;
@@ -34,6 +40,7 @@
         overflow-x: hidden;
     }
 
+    /* Header (identical to index.html) */
     header {
         position: fixed;
         top: 0;
@@ -53,7 +60,9 @@
         align-items: center;
     }
 
-    .logo img { height: 50px; }
+    .logo img {
+        height: 50px;
+    }
 
     .nav-links {
         display: flex;
@@ -72,7 +81,9 @@
         transition: color 0.3s ease;
     }
 
-    .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover {
+        color: var(--red);
+    }
 
     .cta-btn {
         background: var(--red);
@@ -86,7 +97,10 @@
         font-family: inherit;
     }
 
-    .cta-btn:hover { background: #CC0000; transform: translateY(-2px); }
+    .cta-btn:hover {
+        background: #CC0000;
+        transform: translateY(-2px);
+    }
 
     .cart-btn {
         position: relative;
@@ -104,7 +118,9 @@
         transition: all 0.3s ease;
     }
 
-    .cart-btn:hover { background: rgba(255,0,0,0.12); }
+    .cart-btn:hover {
+        background: rgba(255,0,0,0.12);
+    }
 
     .cart-count {
         background: var(--red);
@@ -119,7 +135,9 @@
         padding: 0 5px;
     }
 
-    .cart-count.show { display: inline-flex; }
+    .cart-count.show {
+        display: inline-flex;
+    }
 
     .mobile-menu-toggle {
         display: none;
@@ -148,13 +166,27 @@
     .mobile-menu-toggle span:nth-child(2) { top: 21px; }
     .mobile-menu-toggle span:nth-child(3) { top: 29px; }
 
-    .mobile-menu-toggle.active span { background: var(--red); }
-    .mobile-menu-toggle.active span:nth-child(1) { top: 21px; transform: rotate(45deg); }
-    .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .mobile-menu-toggle.active span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+    .mobile-menu-toggle.active span {
+        background: var(--red);
+    }
 
+    .mobile-menu-toggle.active span:nth-child(1) {
+        top: 21px;
+        transform: rotate(45deg);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        top: 21px;
+        transform: rotate(-45deg);
+    }
+
+    /* Hero (matches index.html hero treatment) */
     .hero {
-        padding: 9rem 2rem 4rem 2rem;
+        padding: 9rem 2rem 5rem 2rem;
         text-align: center;
         background: var(--dark);
         position: relative;
@@ -175,7 +207,9 @@
     .hero::after {
         content: '';
         position: absolute;
-        left: 0; right: 0; bottom: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         height: 14px;
         background: repeating-linear-gradient(90deg, var(--white) 0 28px, var(--dark) 28px 56px);
         opacity: 0.9;
@@ -193,7 +227,8 @@
         margin-bottom: 1.25rem;
     }
 
-    .hero-eyebrow::before, .hero-eyebrow::after {
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
         content: '';
         display: block;
         width: 28px;
@@ -201,11 +236,16 @@
         background: var(--red);
     }
 
-    .hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
 
     .hero h1 {
         font-family: 'Racing Sans One', sans-serif;
-        font-size: 3.5rem;
+        font-size: 4rem;
         color: var(--white);
         margin-bottom: 0.5rem;
         text-transform: uppercase;
@@ -213,37 +253,138 @@
     }
 
     .hero p {
-        font-size: 1.15rem;
-        max-width: 640px;
+        font-size: 1.2rem;
+        max-width: 700px;
         margin: 0 auto;
         color: #CCC;
     }
 
-    section { padding: 3rem 2rem 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-    .filters {
+    .section-title {
+        font-family: 'Racing Sans One', sans-serif;
+        font-size: 2.5rem;
+        color: var(--red);
+        text-align: center;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: #AAA;
+        max-width: 600px;
+        margin: 0 auto 3rem auto;
+    }
+
+    /* Breadcrumb / back navigation within the shop */
+    .shop-crumbs {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.75rem;
-        justify-content: center;
-        margin-bottom: 3rem;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+        color: #999;
     }
 
-    .filter-pill {
-        background: var(--gray);
-        color: var(--white);
-        border: 2px solid transparent;
-        padding: 0.5rem 1.25rem;
-        border-radius: 999px;
-        font-weight: 600;
+    .shop-crumbs button {
+        background: none;
+        border: none;
+        color: #999;
+        font-family: inherit;
         font-size: 0.9rem;
         cursor: pointer;
-        transition: all 0.2s ease;
+        padding: 0.25rem 0;
     }
 
-    .filter-pill:hover { border-color: rgba(255,0,0,0.5); }
-    .filter-pill.active { background: var(--red); }
+    .shop-crumbs button:hover {
+        color: var(--red);
+    }
 
+    .shop-crumbs .current {
+        color: var(--white);
+        font-weight: 600;
+    }
+
+    .shop-crumbs .sep {
+        color: #444;
+    }
+
+    /* Category boxes (styled after .track-card) */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+    }
+
+    .category-card {
+        background: var(--gray);
+        border-radius: 12px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .category-card:hover {
+        border-color: var(--red);
+        transform: translateY(-10px);
+    }
+
+    .category-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .category-card h3 {
+        font-size: 1.35rem;
+        color: var(--white);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Subcategory boxes -- same card language, smaller */
+    .subcategory-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .subcategory-card {
+        background: var(--gray);
+        border-radius: 10px;
+        padding: 1.75rem 1.25rem;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: all 0.25s ease;
+        cursor: pointer;
+    }
+
+    .subcategory-card:hover {
+        border-color: var(--red);
+        transform: translateY(-6px);
+    }
+
+    .subcategory-card h4 {
+        font-size: 1rem;
+        color: var(--white);
+        font-weight: 600;
+    }
+
+    .subcategory-card .child-count {
+        display: block;
+        margin-top: 0.4rem;
+        font-size: 0.78rem;
+        color: #888;
+    }
+
+    /* Product grid */
     .shop-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -261,6 +402,10 @@
     }
 
     .product-card:hover { border-color: var(--red); transform: translateY(-6px); }
+
+    .product-card.featured {
+        border-color: var(--amber);
+    }
 
     .product-image {
         width: 100%;
@@ -323,6 +468,14 @@
         grid-column: 1 / -1;
     }
 
+    .empty-state .empty-sub {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: #666;
+    }
+
+    /* Cart drawer */
     .cart-overlay {
         display: none;
         position: fixed;
@@ -474,8 +627,8 @@
     }
 
     @media (max-width: 968px) {
-        .hero { padding: 7.5rem 1.5rem 3rem 1.5rem; }
-        .hero h1 { font-size: 2.3rem; letter-spacing: 1.5px; }
+        .hero { padding: 7.5rem 1.5rem 3.5rem 1.5rem; }
+        .hero h1 { font-size: 2.5rem; letter-spacing: 1.5px; }
         nav { padding: 0.85rem 1.25rem; }
 
         .nav-links {
@@ -539,15 +692,15 @@
 <section class="hero">
     <div class="hero-content">
         <span class="hero-eyebrow">Pro Shop</span>
-        <h1>Gear Up</h1>
-        <p>Slot cars, RC parts, tires, and track upgrades — everything you need to keep racing, shipped or ready for pickup at the complex.</p>
+        <h1>Parts & Gear</h1>
+        <p>Everything you need to keep racing — browse by category to find rear end parts, gearing, chassis, motors, bodies, and more for Road Course, Drag Racing, 1RC, and LOSI.</p>
     </div>
 </section>
 
 <section id="shop">
-    <div class="filters" id="filters"></div>
-    <div class="shop-grid" id="shopGrid">
-        <div class="loading-state">Loading products…</div>
+    <div class="shop-crumbs" id="shopCrumbs"></div>
+    <div id="shopContent">
+        <div class="loading-state">Loading categories…</div>
     </div>
 </section>
 
@@ -572,10 +725,175 @@
     <p>&copy; 2025 The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
 </footer>
 
-<script type="module">
+<script>
+```
+
+// Static taxonomy for the Parts shop.
+// Square doesn’t have this category structure yet – this array defines it
+// on the website side. Each product’s Square category name (from get-catalog)
+// is matched against `subcategories[].match` to decide where it lands.
+// Once matching categories exist in Square, products will automatically
+// slot into the right box/subcategory with no code changes.
+//
+// `match` is an array of acceptable Square category name strings (case-insensitive).
+// Keep these in sync with whatever category names get created in Square.
+
+const TAXONOMY = [
+{
+id: “road-course”,
+label: “Road Course”,
+icon: “🏎️”,
+subcategories: [
+{ id: “rc-rear-end”, label: “Rear End”, match: [“Road Course - Rear End”], children: [
+{ id: “rc-rear-axles”, label: “Axles”, match: [“Road Course - Rear Axles”] },
+{ id: “rc-rear-bushings”, label: “Bushings & Bearings”, match: [“Road Course - Rear Bushings & Bearings”] },
+{ id: “rc-rear-spacers”, label: “Spacers”, match: [“Road Course - Rear Spacers”] },
+{ id: “rc-rear-tires”, label: “Tires”, match: [“Road Course - Rear Tires”] },
+]},
+{ id: “rc-gearing”, label: “Gearing”, match: [“Road Course - Gearing”], children: [
+{ id: “rc-gear-64”, label: “64 Pitch”, match: [“Road Course - 64 Pitch”], children: [
+{ id: “rc-gear-64-spur”, label: “Spur Gears”, match: [“Road Course - 64 Pitch Spur Gears”] },
+{ id: “rc-gear-64-crown”, label: “Crown Gears”, match: [“Road Course - 64 Pitch Crown Gears”] },
+{ id: “rc-gear-64-pinion”, label: “Pinion Gears”, match: [“Road Course - 64 Pitch Pinion Gears”] },
+]},
+{ id: “rc-gear-48”, label: “48 Pitch”, match: [“Road Course - 48 Pitch”], children: [
+{ id: “rc-gear-48-spur”, label: “Spur Gears”, match: [“Road Course - 48 Pitch Spur Gears”] },
+{ id: “rc-gear-48-crown”, label: “Crown Gears”, match: [“Road Course - 48 Pitch Crown Gears”] },
+{ id: “rc-gear-48-pinion”, label: “Pinion Gears”, match: [“Road Course - 48 Pitch Pinion Gears”] },
+]},
+]},
+{ id: “rc-motors”, label: “Motors”, match: [“Road Course - Motors”], children: [
+{ id: “rc-motors-can”, label: “Can Motors”, match: [“Road Course - Can Motors”] },
+]},
+{ id: “rc-chassis”, label: “Chassis”, match: [“Road Course - Chassis”], children: [
+{ id: “rc-chassis-flexi”, label: “Flexi Chassis”, match: [“Road Course - Flexi Chassis”] },
+]},
+{ id: “rc-front-end”, label: “Front End”, match: [“Road Course - Front End”], children: [
+{ id: “rc-front-guide-flag”, label: “Guide Flag”, match: [“Road Course - Guide Flag”] },
+{ id: “rc-front-guide-spacers”, label: “Guide Spacers”, match: [“Road Course - Guide Spacers”] },
+{ id: “rc-front-tires-axles”, label: “Front Tires & Axles”, match: [“Road Course - Front Tires & Axles”] },
+]},
+{ id: “rc-electrical”, label: “Electrical”, match: [“Road Course - Electrical”], children: [
+{ id: “rc-elec-wire”, label: “Guide Wire”, match: [“Road Course - Guide Wire”] },
+{ id: “rc-elec-resistors”, label: “Resistors”, match: [“Road Course - Resistors”] },
+]},
+{ id: “rc-bodies”, label: “Bodies & Interiors”, match: [“Road Course - Bodies & Interiors”], children: [
+{ id: “rc-bodies-124”, label: “1/24 Scale Bodies”, match: [“Road Course - 1/24 Scale Bodies”] },
+{ id: “rc-bodies-125”, label: “1/25 Scale Bodies”, match: [“Road Course - 1/25 Scale Bodies”] },
+{ id: “rc-bodies-painted-int”, label: “Painted Interiors”, match: [“Road Course - Painted Interiors”] },
+{ id: “rc-bodies-unpainted-int”, label: “Non-Painted Interiors”, match: [“Road Course - Non-Painted Interiors”] },
+{ id: “rc-bodies-clips”, label: “Body Clips”, match: [“Road Course - Body Clips”] },
+{ id: “rc-bodies-tape”, label: “Tape”, match: [“Road Course - Tape”] },
+{ id: “rc-bodies-stickers”, label: “Sticker Kits”, match: [“Road Course - Sticker Kits”] },
+]},
+{ id: “rc-controllers”, label: “Controllers”, match: [“Road Course - Controllers”] },
+],
+},
+{
+id: “drag-racing”,
+label: “Drag Racing”,
+icon: “🏁”,
+subcategories: [
+{ id: “dr-chassis”, label: “Chassis”, match: [“Drag Racing - Chassis”], children: [
+{ id: “dr-chassis-rail”, label: “Rail”, match: [“Drag Racing - Rail Chassis”] },
+{ id: “dr-chassis-door”, label: “Door & Bar Car Chassis”, match: [“Drag Racing - Door & Bar Car Chassis”], featured: [“865 Chassis”] },
+{ id: “dr-chassis-wire-tubing”, label: “Wire & Tubing”, match: [“Drag Racing - Wire & Tubing”] },
+]},
+{ id: “dr-rear-end”, label: “Rear End”, match: [“Drag Racing - Rear End”], children: [
+{ id: “dr-rear-axles”, label: “Axles”, match: [“Drag Racing - Axles”] },
+{ id: “dr-rear-spacers”, label: “Spacers”, match: [“Drag Racing - Spacers”] },
+{ id: “dr-rear-bushings”, label: “Bushings & Bearings”, match: [“Drag Racing - Bushings & Bearings”] },
+{ id: “dr-rear-tires”, label: “Tires”, match: [“Drag Racing - Tires”] },
+]},
+{ id: “dr-gearing”, label: “Gearing”, match: [“Drag Racing - Gearing”], children: [
+{ id: “dr-gear-48”, label: “48 Pitch”, match: [“Drag Racing - 48 Pitch”], children: [
+{ id: “dr-gear-48-crown”, label: “Crown Gear”, match: [“Drag Racing - 48 Pitch Crown Gear”] },
+{ id: “dr-gear-48-spur”, label: “Spur Gear”, match: [“Drag Racing - 48 Pitch Spur Gear”] },
+{ id: “dr-gear-48-pinion”, label: “Pinion Gear”, match: [“Drag Racing - 48 Pitch Pinion Gear”] },
+]},
+{ id: “dr-gear-64”, label: “64 Pitch”, match: [“Drag Racing - 64 Pitch”], children: [
+{ id: “dr-gear-64-crown”, label: “Crown Gear”, match: [“Drag Racing - 64 Pitch Crown Gear”] },
+{ id: “dr-gear-64-spur”, label: “Spur Gear”, match: [“Drag Racing - 64 Pitch Spur Gear”] },
+{ id: “dr-gear-64-pinion”, label: “Pinion Gear”, match: [“Drag Racing - 64 Pitch Pinion Gear”] },
+]},
+]},
+{ id: “dr-bodies”, label: “Bodies”, match: [“Drag Racing - Bodies”], children: [
+{ id: “dr-bodies-rail”, label: “Rail Bodies”, match: [“Drag Racing - Rail Bodies”] },
+{ id: “dr-bodies-kits”, label: “Model Kits”, match: [“Drag Racing - Model Kits”] },
+]},
+{ id: “dr-glue”, label: “Glue”, match: [“Drag Racing - Glue”], children: [
+{ id: “dr-glue-boards”, label: “Glue Boards”, match: [“Drag Racing - Glue Boards”] },
+]},
+{ id: “dr-motors”, label: “Motors”, match: [“Drag Racing - Motors”], children: [
+{ id: “dr-motors-can”, label: “Can Motors”, match: [“Drag Racing - Can Motors”] },
+]},
+{ id: “dr-front-end”, label: “Front End”, match: [“Drag Racing - Front End”], children: [
+{ id: “dr-front-guide-flag”, label: “Guide Flag”, match: [“Drag Racing - Guide Flag”] },
+{ id: “dr-front-spacers”, label: “Spacers”, match: [“Drag Racing - Front Spacers”] },
+]},
+{ id: “dr-electrical”, label: “Electrical”, match: [“Drag Racing - Electrical”], children: [
+{ id: “dr-elec-wire”, label: “Guide Wire”, match: [“Drag Racing - Guide Wire”] },
+{ id: “dr-elec-resistors”, label: “Resistors”, match: [“Drag Racing - Resistors”] },
+]},
+{ id: “dr-controllers”, label: “Controllers”, match: [“Drag Racing - Controllers”], children: [
+{ id: “dr-controllers-9v”, label: “9V Batteries”, match: [“Drag Racing - 9V Batteries”] },
+]},
+],
+},
+{
+id: “1rc”,
+label: “1RC”,
+icon: “🚗”,
+subcategories: [
+{ id: “1rc-chassis”, label: “Chassis”, match: [“1RC - Chassis”] },
+{ id: “1rc-motors”, label: “Motors”, match: [“1RC - Motors”] },
+{ id: “1rc-gearing”, label: “Gearing”, match: [“1RC - Gearing”] },
+{ id: “1rc-front-end”, label: “Front End”, match: [“1RC - Front End”] },
+{ id: “1rc-rear-end”, label: “Rear End”, match: [“1RC - Rear End”] },
+{ id: “1rc-controllers”, label: “Controllers”, match: [“1RC - Controllers”] },
+{ id: “1rc-electrical”, label: “Electrical”, match: [“1RC - Electrical”] },
+{ id: “1rc-bodies”, label: “Bodies & Interiors”, match: [“1RC - Bodies & Interiors”] },
+{ id: “1rc-accessories”, label: “Accessories”, match: [“1RC - Accessories”] },
+],
+},
+{
+id: “losi”,
+label: “LOSI”,
+icon: “🚙”,
+subcategories: [
+{ id: “losi-chassis”, label: “Chassis”, match: [“LOSI - Chassis”] },
+{ id: “losi-motors”, label: “Motors”, match: [“LOSI - Motors”] },
+{ id: “losi-gearing”, label: “Gearing”, match: [“LOSI - Gearing”] },
+{ id: “losi-controllers”, label: “Controllers”, match: [“LOSI - Controllers”] },
+{ id: “losi-front-end”, label: “Front End”, match: [“LOSI - Front End”] },
+{ id: “losi-rear-end”, label: “Rear End”, match: [“LOSI - Rear End”] },
+{ id: “losi-electrical”, label: “Electrical”, match: [“LOSI - Electrical”] },
+{ id: “losi-bodies”, label: “Bodies & Interiors”, match: [“LOSI - Bodies & Interiors”] },
+{ id: “losi-accessories”, label: “Accessories”, match: [“LOSI - Accessories”] },
+],
+},
+{
+id: “tools”,
+label: “Tools”,
+icon: “🛠️”,
+subcategories: [
+{ id: “tools-general”, label: “General Tools”, match: [“Tools”] },
+],
+},
+{
+id: “gift-shop”,
+label: “Gift Shop”,
+icon: “🎁”,
+subcategories: [
+{ id: “gift-tshirts”, label: “T-Shirts”, match: [“Gift Shop - T-Shirts”] },
+{ id: “gift-candles”, label: “Candles”, match: [“Gift Shop - Candles”] },
+{ id: “gift-jewelry”, label: “Jewelry”, match: [“Gift Shop - Jewelry”] },
+],
+},
+];
+
+```
     // ============ CONFIGURE THESE VALUES ============
-    // These point at your Supabase Edge Functions, NOT directly at Square.
-    // Square's access token lives only as a server-side secret on those functions.
     const SUPABASE_PROJECT_URL = 'https://wdynznqnytapgckpmylk.supabase.co';
     const GET_CATALOG_URL = `${SUPABASE_PROJECT_URL}/functions/v1/get-catalog`;
     const CHECKOUT_FUNCTION_URL = `${SUPABASE_PROJECT_URL}/functions/v1/create-checkout-link`;
@@ -584,8 +902,11 @@
 
     const CART_KEY = 'checkeredflag_cart';
 
-    let products = [];
-    let activeCategory = 'All';
+    let allProducts = [];
+    // navPath is a stack of node ids representing where the user has drilled into.
+    // [] = top-level category boxes. ["road-course"] = subcategories of Road Course.
+    // ["road-course","rc-gearing"] = children of Gearing. etc.
+    let navPath = [];
 
     function getCart() {
         try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; }
@@ -600,7 +921,6 @@
     function money(cents) { return `$${(cents / 100).toFixed(2)}`; }
 
     async function loadProducts() {
-        const grid = document.getElementById('shopGrid');
         try {
             const res = await fetch(GET_CATALOG_URL, {
                 headers: {
@@ -610,71 +930,187 @@
             });
             const data = await res.json();
             if (!res.ok || data.error) throw new Error(data.error || 'Failed to load catalog.');
-
-            products = data.products || [];
-            if (products.length === 0) {
-                grid.innerHTML = `<div class="empty-state">No products yet — check back soon!</div>`;
-                return;
-            }
-
-            renderFilters();
-            renderGrid();
+            allProducts = data.products || [];
         } catch (err) {
             console.error(err);
-            grid.innerHTML = `<div class="empty-state">Couldn't load products right now. Please refresh.</div>`;
+            allProducts = [];
         }
+        renderShop();
     }
 
-    function renderFilters() {
-        const categories = ['All', ...new Set(products.map(p => p.category || 'General'))];
-        const el = document.getElementById('filters');
-        el.innerHTML = categories.map(c =>
-            `<button class="filter-pill ${c === activeCategory ? 'active' : ''}" data-cat="${c}">${c}</button>`
-        ).join('');
-        el.querySelectorAll('.filter-pill').forEach(btn => {
-            btn.addEventListener('click', () => {
-                activeCategory = btn.dataset.cat;
-                renderFilters();
-                renderGrid();
-            });
-        });
+    // ---------- Navigation helpers ----------
+
+    function findNode(path) {
+        if (path.length === 0) return null;
+        let list = TAXONOMY;
+        let node = null;
+        for (const id of path) {
+            node = list.find(n => n.id === id);
+            if (!node) return null;
+            list = node.children || node.subcategories || [];
+        }
+        return node;
     }
 
-    function renderGrid() {
-        const grid = document.getElementById('shopGrid');
-        const visible = activeCategory === 'All'
-            ? products
-            : products.filter(p => (p.category || 'General') === activeCategory);
+    function currentChildren() {
+        if (navPath.length === 0) return TAXONOMY;
+        const node = findNode(navPath);
+        if (!node) return [];
+        return node.children || node.subcategories || [];
+    }
 
-        if (visible.length === 0) {
-            grid.innerHTML = `<div class="empty-state">Nothing in this category yet.</div>`;
+    // Collect every `match` string under a node (and its descendants),
+    // so a top-level category shows products from ALL its nested subcategories.
+    function collectMatches(node) {
+        let matches = [...(node.match || [])];
+        const kids = node.children || node.subcategories || [];
+        for (const k of kids) matches = matches.concat(collectMatches(k));
+        return matches;
+    }
+
+    function productsForNode(node) {
+        const matches = collectMatches(node).map(m => m.toLowerCase());
+        return allProducts.filter(p => matches.includes((p.category || '').toLowerCase()));
+    }
+
+    function goTo(path) {
+        navPath = path;
+        renderShop();
+        document.getElementById('shop').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ---------- Rendering ----------
+
+    function renderShop() {
+        renderCrumbs();
+        const container = document.getElementById('shopContent');
+        const children = currentChildren();
+        const node = navPath.length ? findNode(navPath) : null;
+
+        // Decide: show a grid of category/subcategory boxes, or products?
+        // Show products once we're at a node with no children (a leaf subcategory),
+        // OR once none of the children have their own children (bottom of tree).
+        const isLeaf = node && (!node.children && !node.subcategories);
+
+        if (navPath.length === 0) {
+            container.innerHTML = `<div class="category-grid" id="gridEl"></div>`;
+            renderBoxGrid(TAXONOMY, true);
             return;
         }
 
-        grid.innerHTML = visible.map(p => `
-            <div class="product-card">
-                <div class="product-image" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}">${p.image_url ? '' : '🏎️'}</div>
-                <div class="product-body">
-                    <span class="product-category">${p.category || 'General'}</span>
-                    <span class="product-name">${escapeHtml(p.name)}</span>
-                    <span class="product-desc">${escapeHtml(p.description || '')}</span>
-                    <div class="product-footer">
-                        <span class="product-price">${money(p.price_cents)}</span>
-                        ${p.stock_quantity > 0
-                            ? `<button class="add-btn" data-id="${p.id}">Add to Cart</button>`
-                            : `<span class="sold-out-tag">Sold Out</span>`}
+        if (isLeaf || children.length === 0) {
+            renderProductGrid(node);
+            return;
+        }
+
+        container.innerHTML = `<div class="category-grid" id="gridEl"></div>`;
+        renderBoxGrid(children, false);
+    }
+
+    function renderCrumbs() {
+        const el = document.getElementById('shopCrumbs');
+        const parts = [`<button data-path="[]">All Categories</button>`];
+        let acc = [];
+        for (const id of navPath) {
+            acc = [...acc, id];
+            const node = findNode(acc);
+            if (!node) continue;
+            const isLast = acc.length === navPath.length;
+            parts.push(`<span class="sep">/</span>`);
+            if (isLast) {
+                parts.push(`<span class="current">${escapeHtml(node.label)}</span>`);
+            } else {
+                parts.push(`<button data-path="${escapeHtml(JSON.stringify(acc))}">${escapeHtml(node.label)}</button>`);
+            }
+        }
+        el.innerHTML = navPath.length === 0
+            ? `<span class="current">All Categories</span>`
+            : parts.join('');
+        el.querySelectorAll('button[data-path]').forEach(btn => {
+            btn.addEventListener('click', () => goTo(JSON.parse(btn.dataset.path)));
+        });
+    }
+
+    function renderBoxGrid(nodes, isTopLevel) {
+        const grid = document.getElementById('gridEl');
+        grid.className = isTopLevel ? 'category-grid' : 'subcategory-grid';
+        grid.innerHTML = nodes.map(n => {
+            const count = productsForNode(n).length;
+            if (isTopLevel) {
+                return `
+                    <div class="category-card" data-id="${n.id}">
+                        <div class="category-icon">${n.icon || '🔧'}</div>
+                        <h3>${escapeHtml(n.label)}</h3>
+                    </div>
+                `;
+            }
+            return `
+                <div class="subcategory-card" data-id="${n.id}">
+                    <h4>${escapeHtml(n.label)}</h4>
+                    <span class="child-count">${count === 0 ? 'Coming soon' : count + ' item' + (count === 1 ? '' : 's')}</span>
+                </div>
+            `;
+        }).join('');
+        grid.querySelectorAll('[data-id]').forEach(card => {
+            card.addEventListener('click', () => goTo([...navPath, card.dataset.id]));
+        });
+    }
+
+    function renderProductGrid(node) {
+        const container = document.getElementById('shopContent');
+        let products = productsForNode(node);
+
+        // Featured items (e.g. 865 Chassis) sort first within their subcategory.
+        const featured = node.featured || [];
+        if (featured.length) {
+            products = [...products].sort((a, b) => {
+                const aFeat = featured.some(f => a.name.toLowerCase().includes(f.toLowerCase()));
+                const bFeat = featured.some(f => b.name.toLowerCase().includes(f.toLowerCase()));
+                if (aFeat && !bFeat) return -1;
+                if (!aFeat && bFeat) return 1;
+                return 0;
+            });
+        }
+
+        if (products.length === 0) {
+            container.innerHTML = `
+                <div class="empty-state">
+                    Nothing in ${escapeHtml(node.label)} yet.
+                    <span class="empty-sub">Check back soon — we're adding inventory regularly.</span>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = `<div class="shop-grid">${products.map(p => {
+            const isFeatured = featured.some(f => p.name.toLowerCase().includes(f.toLowerCase()));
+            return `
+                <div class="product-card${isFeatured ? ' featured' : ''}">
+                    <div class="product-image" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}">${p.image_url ? '' : '🏎️'}</div>
+                    <div class="product-body">
+                        <span class="product-category">${escapeHtml(p.category || node.label)}</span>
+                        <span class="product-name">${escapeHtml(p.name)}</span>
+                        <span class="product-desc">${escapeHtml(p.description || '')}</span>
+                        <div class="product-footer">
+                            <span class="product-price">${money(p.price_cents)}</span>
+                            ${p.stock_quantity > 0
+                                ? `<button class="add-btn" data-id="${p.id}">Add to Cart</button>`
+                                : `<span class="sold-out-tag">Sold Out</span>`}
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('')}</div>`;
 
-        grid.querySelectorAll('.add-btn').forEach(btn => {
+        container.querySelectorAll('.add-btn').forEach(btn => {
             btn.addEventListener('click', () => addToCart(btn.dataset.id));
         });
     }
 
+    // ---------- Cart ----------
+
     function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
+        const product = allProducts.find(p => p.id === productId);
         if (!product) return;
         const cart = getCart();
         const existingQty = cart[productId]?.quantity || 0;
@@ -696,7 +1132,7 @@
         const cart = getCart();
         const item = cart[productId];
         if (!item) return;
-        const product = products.find(p => p.id === productId);
+        const product = allProducts.find(p => p.id === productId);
         const newQty = item.quantity + delta;
         if (newQty <= 0) { delete cart[productId]; }
         else if (product && newQty > product.stock_quantity) { return; }
@@ -801,7 +1237,7 @@
 
     function escapeHtml(str) {
         const div = document.createElement('div');
-        div.textContent = str;
+        div.textContent = str == null ? '' : str;
         return div.innerHTML;
     }
 
