@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,651 +15,648 @@
             box-sizing: border-box;
         }
 
-```
-    :root {
-        --red: #FF0000;
-        --dark: #0A0A0A;
-        --gray: #1A1A1A;
-        --light-gray: #F5F5F5;
-        --white: #FFFFFF;
-        --text-gray: #666;
-        --green: #2ECC71;
-        --amber: #E8A33D;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        font-family: 'Inter', sans-serif;
-        background: var(--dark);
-        color: var(--white);
-        line-height: 1.6;
-        overflow-x: hidden;
-    }
-
-    /* Header (identical to index.html) */
-    header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: rgba(10, 10, 10, 0.95);
-        backdrop-filter: blur(10px);
-        border-bottom: 2px solid var(--red);
-        z-index: 1000;
-    }
-
-    nav {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1rem 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
-        align-items: center;
-    }
-
-    .nav-links a {
-        color: var(--white);
-        text-decoration: none;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.9rem;
-        transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-        color: var(--red);
-    }
-
-    .cta-btn {
-        background: var(--red);
-        color: var(--white);
-        padding: 0.75rem 1.5rem;
-        border-radius: 4px;
-        font-weight: 700;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-    }
-
-    .cta-btn:hover {
-        background: #CC0000;
-        transform: translateY(-2px);
-    }
-
-    .cart-btn {
-        position: relative;
-        background: transparent;
-        border: 2px solid var(--red);
-        color: var(--white);
-        padding: 0.6rem 1rem;
-        border-radius: 4px;
-        font-weight: 700;
-        cursor: pointer;
-        font-family: inherit;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .cart-btn:hover {
-        background: rgba(255,0,0,0.12);
-    }
-
-    .cart-count {
-        background: var(--red);
-        color: var(--white);
-        border-radius: 999px;
-        font-size: 0.75rem;
-        min-width: 20px;
-        height: 20px;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 0 5px;
-    }
-
-    .cart-count.show {
-        display: inline-flex;
-    }
-
-    .mobile-menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 8px;
-        width: 42px;
-        height: 42px;
-        position: relative;
-        z-index: 1100;
-    }
-
-    .mobile-menu-toggle span {
-        display: block;
-        position: absolute;
-        height: 3px;
-        width: 26px;
-        background: var(--white);
-        border-radius: 1px;
-        left: 8px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .mobile-menu-toggle span:nth-child(1) { top: 13px; }
-    .mobile-menu-toggle span:nth-child(2) { top: 21px; }
-    .mobile-menu-toggle span:nth-child(3) { top: 29px; }
-
-    .mobile-menu-toggle.active span {
-        background: var(--red);
-    }
-
-    .mobile-menu-toggle.active span:nth-child(1) {
-        top: 21px;
-        transform: rotate(45deg);
-    }
-
-    .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-menu-toggle.active span:nth-child(3) {
-        top: 21px;
-        transform: rotate(-45deg);
-    }
-
-    /* Hero (matches index.html hero treatment) */
-    .hero {
-        padding: 9rem 2rem 5rem 2rem;
-        text-align: center;
-        background: var(--dark);
-        position: relative;
-        overflow: hidden;
-        isolation: isolate;
-    }
-
-    .hero::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(circle at 85% -10%, rgba(255, 0, 0, 0.16) 0%, transparent 45%),
-            repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 14px, transparent 14px, transparent 28px);
-        z-index: -1;
-    }
-
-    .hero::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 14px;
-        background: repeating-linear-gradient(90deg, var(--white) 0 28px, var(--dark) 28px 56px);
-        opacity: 0.9;
-    }
-
-    .hero-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        color: var(--red);
-        font-weight: 700;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .hero-eyebrow::before,
-    .hero-eyebrow::after {
-        content: '';
-        display: block;
-        width: 28px;
-        height: 2px;
-        background: var(--red);
-    }
-
-    .hero-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-    }
-
-    .hero h1 {
-        font-family: 'Racing Sans One', sans-serif;
-        font-size: 4rem;
-        color: var(--white);
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: 0 auto;
-        color: #CCC;
-    }
-
-    section {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .section-title {
-        font-family: 'Racing Sans One', sans-serif;
-        font-size: 2.5rem;
-        color: var(--red);
-        text-align: center;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-    }
-
-    .section-subtitle {
-        text-align: center;
-        color: #AAA;
-        max-width: 600px;
-        margin: 0 auto 3rem auto;
-    }
-
-    /* Breadcrumb / back navigation within the shop */
-    .shop-crumbs {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-        font-size: 0.9rem;
-        color: #999;
-    }
-
-    .shop-crumbs button {
-        background: none;
-        border: none;
-        color: #999;
-        font-family: inherit;
-        font-size: 0.9rem;
-        cursor: pointer;
-        padding: 0.25rem 0;
-    }
-
-    .shop-crumbs button:hover {
-        color: var(--red);
-    }
-
-    .shop-crumbs .current {
-        color: var(--white);
-        font-weight: 600;
-    }
-
-    .shop-crumbs .sep {
-        color: #444;
-    }
-
-    /* Category boxes (styled after .track-card) */
-    .category-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 2rem;
-    }
-
-    .category-card {
-        background: var(--gray);
-        border-radius: 12px;
-        padding: 2.5rem 2rem;
-        text-align: center;
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-
-    .category-card:hover {
-        border-color: var(--red);
-        transform: translateY(-10px);
-    }
-
-    .category-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .category-card h3 {
-        font-size: 1.35rem;
-        color: var(--white);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    /* Subcategory boxes -- same card language, smaller */
-    .subcategory-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .subcategory-card {
-        background: var(--gray);
-        border-radius: 10px;
-        padding: 1.75rem 1.25rem;
-        text-align: center;
-        border: 2px solid transparent;
-        transition: all 0.25s ease;
-        cursor: pointer;
-    }
-
-    .subcategory-card:hover {
-        border-color: var(--red);
-        transform: translateY(-6px);
-    }
-
-    .subcategory-card h4 {
-        font-size: 1rem;
-        color: var(--white);
-        font-weight: 600;
-    }
-
-    .subcategory-card .child-count {
-        display: block;
-        margin-top: 0.4rem;
-        font-size: 0.78rem;
-        color: #888;
-    }
-
-    /* Product grid */
-    .shop-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 2rem;
-    }
-
-    .product-card {
-        background: var(--gray);
-        border-radius: 12px;
-        overflow: hidden;
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .product-card:hover { border-color: var(--red); transform: translateY(-6px); }
-
-    .product-card.featured {
-        border-color: var(--amber);
-    }
-
-    .product-image {
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        background: #111 center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2.5rem;
-    }
-
-    .product-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
-
-    .product-category {
-        color: var(--red);
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-
-    .product-name { font-size: 1.15rem; font-weight: 700; }
-
-    .product-desc { color: #AAA; font-size: 0.9rem; flex: 1; }
-
-    .product-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 0.5rem;
-    }
-
-    .product-price { font-size: 1.25rem; font-weight: 700; color: var(--white); }
-
-    .add-btn {
-        background: var(--red);
-        color: var(--white);
-        border: none;
-        padding: 0.55rem 1.1rem;
-        border-radius: 4px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: inherit;
-    }
-
-    .add-btn:hover { background: #CC0000; }
-    .add-btn:disabled { background: #333; color: #777; cursor: not-allowed; }
-
-    .sold-out-tag {
-        color: var(--amber);
-        font-weight: 700;
-        font-size: 0.85rem;
-    }
-
-    .empty-state, .loading-state {
-        text-align: center;
-        color: #999;
-        padding: 4rem 1rem;
-        grid-column: 1 / -1;
-    }
-
-    .empty-state .empty-sub {
-        display: block;
-        margin-top: 0.5rem;
-        font-size: 0.85rem;
-        color: #666;
-    }
-
-    /* Cart drawer */
-    .cart-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.6);
-        z-index: 1400;
-    }
-
-    .cart-overlay.open { display: block; }
-
-    .cart-drawer {
-        position: fixed;
-        top: 0; right: 0;
-        height: 100vh;
-        width: min(420px, 90vw);
-        background: var(--dark);
-        border-left: 2px solid var(--red);
-        z-index: 1500;
-        transform: translateX(100%);
-        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-        display: flex;
-        flex-direction: column;
-    }
-
-    .cart-drawer.open { transform: translateX(0); box-shadow: -20px 0 50px rgba(0,0,0,0.6); }
-
-    .cart-header {
-        padding: 1.5rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .cart-header h3 { font-family: 'Racing Sans One', sans-serif; letter-spacing: 1px; font-size: 1.4rem; }
-
-    .cart-close {
-        background: none;
-        border: none;
-        color: var(--white);
-        font-size: 1.5rem;
-        cursor: pointer;
-        line-height: 1;
-    }
-
-    .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
-
-    .cart-item {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem 0;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .cart-item-img {
-        width: 64px; height: 64px;
-        border-radius: 6px;
-        background: #111 center/cover no-repeat;
-        flex-shrink: 0;
-    }
-
-    .cart-item-info { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
-    .cart-item-name { font-weight: 600; font-size: 0.95rem; }
-    .cart-item-price { color: #999; font-size: 0.85rem; }
-
-    .qty-controls {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        margin-top: 0.25rem;
-    }
-
-    .qty-btn {
-        background: var(--gray);
-        border: none;
-        color: var(--white);
-        width: 24px; height: 24px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: 700;
-    }
-
-    .remove-link {
-        color: var(--red);
-        font-size: 0.8rem;
-        cursor: pointer;
-        background: none;
-        border: none;
-        text-decoration: underline;
-        margin-top: 0.25rem;
-        align-self: flex-start;
-    }
-
-    .cart-empty { text-align: center; color: #999; padding: 3rem 1rem; }
-
-    .cart-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
-
-    .cart-subtotal {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .checkout-btn {
-        width: 100%;
-        background: var(--red);
-        color: var(--white);
-        border: none;
-        padding: 1rem;
-        border-radius: 6px;
-        font-weight: 700;
-        font-size: 1rem;
-        cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
-    .checkout-btn:hover { background: #CC0000; }
-    .checkout-btn:disabled { background: #333; color: #777; cursor: not-allowed; }
-
-    .checkout-error {
-        color: var(--red);
-        font-size: 0.85rem;
-        margin-bottom: 0.75rem;
-        display: none;
-    }
-
-    .banner {
-        max-width: 1200px;
-        margin: 6.5rem auto 0 auto;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        display: none;
-    }
-
-    .banner.show { display: block; }
-    .banner.success { background: rgba(46,204,113,0.15); border: 1px solid var(--green); color: var(--green); }
-    .banner.canceled { background: rgba(232,163,61,0.15); border: 1px solid var(--amber); color: var(--amber); }
-
-    footer {
-        background: var(--dark);
-        border-top: 2px solid var(--red);
-        padding: 2rem;
-        text-align: center;
-        color: #666;
-    }
-
-    @media (max-width: 968px) {
-        .hero { padding: 7.5rem 1.5rem 3.5rem 1.5rem; }
-        .hero h1 { font-size: 2.5rem; letter-spacing: 1.5px; }
-        nav { padding: 0.85rem 1.25rem; }
+        :root {
+            --red: #FF0000;
+            --dark: #0A0A0A;
+            --gray: #1A1A1A;
+            --light-gray: #F5F5F5;
+            --white: #FFFFFF;
+            --text-gray: #666;
+            --green: #2ECC71;
+            --amber: #E8A33D;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header (identical to index.html) */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--red);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
 
         .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--red);
+        }
+
+        .cta-btn {
+            background: var(--red);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .cta-btn:hover {
+            background: #CC0000;
+            transform: translateY(-2px);
+        }
+
+        .cart-btn {
+            position: relative;
+            background: transparent;
+            border: 2px solid var(--red);
+            color: var(--white);
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            background: rgba(255,0,0,0.12);
+        }
+
+        .cart-count {
+            background: var(--red);
+            color: var(--white);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            min-width: 20px;
+            height: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+        }
+
+        .cart-count.show {
+            display: inline-flex;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            width: 42px;
+            height: 42px;
+            position: relative;
+            z-index: 1100;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 26px;
+            background: var(--white);
+            border-radius: 1px;
+            left: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu-toggle span:nth-child(1) { top: 13px; }
+        .mobile-menu-toggle span:nth-child(2) { top: 21px; }
+        .mobile-menu-toggle span:nth-child(3) { top: 29px; }
+
+        .mobile-menu-toggle.active span {
+            background: var(--red);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            top: 21px;
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            top: 21px;
+            transform: rotate(-45deg);
+        }
+
+        /* Hero (matches index.html hero treatment) */
+        .hero {
+            padding: 9rem 2rem 5rem 2rem;
+            text-align: center;
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 85% -10%, rgba(255, 0, 0, 0.16) 0%, transparent 45%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 14px, transparent 14px, transparent 28px);
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 14px;
+            background: repeating-linear-gradient(90deg, var(--white) 0 28px, var(--dark) 28px 56px);
+            opacity: 0.9;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--red);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--red);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Racing Sans One', sans-serif;
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #CCC;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Racing Sans One', sans-serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #AAA;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* Breadcrumb / back navigation within the shop */
+        .shop-crumbs {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .shop-crumbs button {
+            background: none;
+            border: none;
+            color: #999;
+            font-family: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 0.25rem 0;
+        }
+
+        .shop-crumbs button:hover {
+            color: var(--red);
+        }
+
+        .shop-crumbs .current {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .shop-crumbs .sep {
+            color: #444;
+        }
+
+        /* Category boxes (styled after .track-card) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--gray);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            border-color: var(--red);
+            transform: translateY(-10px);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.35rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Subcategory boxes -- same card language, smaller */
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .subcategory-card {
+            background: var(--gray);
+            border-radius: 10px;
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .subcategory-card:hover {
+            border-color: var(--red);
+            transform: translateY(-6px);
+        }
+
+        .subcategory-card h4 {
+            font-size: 1rem;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .subcategory-card .child-count {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.78rem;
+            color: #888;
+        }
+
+        /* Product grid */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--gray);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover { border-color: var(--red); transform: translateY(-6px); }
+
+        .product-card.featured {
+            border-color: var(--amber);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #111 center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .product-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+
+        .product-category {
+            color: var(--red);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-name { font-size: 1.15rem; font-weight: 700; }
+
+        .product-desc { color: #AAA; font-size: 0.9rem; flex: 1; }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+        }
+
+        .product-price { font-size: 1.25rem; font-weight: 700; color: var(--white); }
+
+        .add-btn {
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            padding: 0.55rem 1.1rem;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .add-btn:hover { background: #CC0000; }
+        .add-btn:disabled { background: #333; color: #777; cursor: not-allowed; }
+
+        .sold-out-tag {
+            color: var(--amber);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .empty-state, .loading-state {
+            text-align: center;
+            color: #999;
+            padding: 4rem 1rem;
+            grid-column: 1 / -1;
+        }
+
+        .empty-state .empty-sub {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Cart drawer */
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1400;
+        }
+
+        .cart-overlay.open { display: block; }
+
+        .cart-drawer {
             position: fixed;
             top: 0; right: 0;
             height: 100vh;
-            width: min(78vw, 320px);
+            width: min(420px, 90vw);
             background: var(--dark);
             border-left: 2px solid var(--red);
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 0;
-            padding: 0 2.5rem;
+            z-index: 1500;
             transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1050;
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+            display: flex;
+            flex-direction: column;
         }
 
-        .nav-links.open { transform: translateX(0); box-shadow: -20px 0 50px rgba(0,0,0,0.6); }
-        .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); list-style: none; }
-        .nav-links li:last-child { border-bottom: none; margin-top: 1.5rem; }
-        .nav-links a, .nav-links .cart-btn { display: flex; padding: 1.1rem 0; font-size: 1.05rem; letter-spacing: 1.5px; width: 100%; }
-        .mobile-menu-toggle { display: block; }
+        .cart-drawer.open { transform: translateX(0); box-shadow: -20px 0 50px rgba(0,0,0,0.6); }
 
-        .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1040; }
-        .nav-overlay.open { display: block; }
-        body.menu-open { overflow: hidden; }
-    }
-</style>
-```
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
+        .cart-header h3 { font-family: 'Racing Sans One', sans-serif; letter-spacing: 1px; font-size: 1.4rem; }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .cart-item-img {
+            width: 64px; height: 64px;
+            border-radius: 6px;
+            background: #111 center/cover no-repeat;
+            flex-shrink: 0;
+        }
+
+        .cart-item-info { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
+        .cart-item-name { font-weight: 600; font-size: 0.95rem; }
+        .cart-item-price { color: #999; font-size: 0.85rem; }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.25rem;
+        }
+
+        .qty-btn {
+            background: var(--gray);
+            border: none;
+            color: var(--white);
+            width: 24px; height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .remove-link {
+            color: var(--red);
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-decoration: underline;
+            margin-top: 0.25rem;
+            align-self: flex-start;
+        }
+
+        .cart-empty { text-align: center; color: #999; padding: 3rem 1rem; }
+
+        .cart-footer { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--red);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .checkout-btn:hover { background: #CC0000; }
+        .checkout-btn:disabled { background: #333; color: #777; cursor: not-allowed; }
+
+        .checkout-error {
+            color: var(--red);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            display: none;
+        }
+
+        .banner {
+            max-width: 1200px;
+            margin: 6.5rem auto 0 auto;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .banner.show { display: block; }
+        .banner.success { background: rgba(46,204,113,0.15); border: 1px solid var(--green); color: var(--green); }
+        .banner.canceled { background: rgba(232,163,61,0.15); border: 1px solid var(--amber); color: var(--amber); }
+
+        footer {
+            background: var(--dark);
+            border-top: 2px solid var(--red);
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+        }
+
+        @media (max-width: 968px) {
+            .hero { padding: 7.5rem 1.5rem 3.5rem 1.5rem; }
+            .hero h1 { font-size: 2.5rem; letter-spacing: 1.5px; }
+            nav { padding: 0.85rem 1.25rem; }
+
+            .nav-links {
+                position: fixed;
+                top: 0; right: 0;
+                height: 100vh;
+                width: min(78vw, 320px);
+                background: var(--dark);
+                border-left: 2px solid var(--red);
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 0;
+                padding: 0 2.5rem;
+                transform: translateX(100%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1050;
+            }
+
+            .nav-links.open { transform: translateX(0); box-shadow: -20px 0 50px rgba(0,0,0,0.6); }
+            .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); list-style: none; }
+            .nav-links li:last-child { border-bottom: none; margin-top: 1.5rem; }
+            .nav-links a, .nav-links .cart-btn { display: flex; padding: 1.1rem 0; font-size: 1.05rem; letter-spacing: 1.5px; width: 100%; }
+            .mobile-menu-toggle { display: block; }
+
+            .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1040; }
+            .nav-overlay.open { display: block; }
+            body.menu-open { overflow: hidden; }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -685,52 +681,49 @@
     </header>
     <div class="nav-overlay" id="navOverlay"></div>
 
-```
-<div class="banner success" id="successBanner">🏁 Thanks for your order! A confirmation is on its way to your email.</div>
-<div class="banner canceled" id="canceledBanner">Checkout was canceled — your cart is still saved.</div>
+    <div class="banner success" id="successBanner">🏁 Thanks for your order! A confirmation is on its way to your email.</div>
+    <div class="banner canceled" id="canceledBanner">Checkout was canceled — your cart is still saved.</div>
 
-<section class="hero">
-    <div class="hero-content">
-        <span class="hero-eyebrow">Pro Shop</span>
-        <h1>Parts & Gear</h1>
-        <p>Everything you need to keep racing — browse by category to find rear end parts, gearing, chassis, motors, bodies, and more for Road Course, Drag Racing, 1RC, and LOSI.</p>
-    </div>
-</section>
-
-<section id="shop">
-    <div class="shop-crumbs" id="shopCrumbs"></div>
-    <div id="shopContent">
-        <div class="loading-state">Loading categories…</div>
-    </div>
-</section>
-
-<div class="cart-overlay" id="cartOverlay"></div>
-<aside class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-        <h3>Your Cart</h3>
-        <button class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
-    </div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-footer">
-        <div class="checkout-error" id="checkoutError"></div>
-        <div class="cart-subtotal">
-            <span>Subtotal</span>
-            <span id="cartSubtotal">$0.00</span>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-eyebrow">Pro Shop</span>
+            <h1>Parts & Gear</h1>
+            <p>Everything you need to keep racing — browse by category to find rear end parts, gearing, chassis, motors, bodies, and more for Road Course, Drag Racing, 1RC, and LOSI.</p>
         </div>
-        <button class="checkout-btn" id="checkoutBtn">Checkout</button>
-    </div>
-</aside>
+    </section>
 
-<footer>
-    <p>&copy; 2025 The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
-</footer>
+    <section id="shop">
+        <div class="shop-crumbs" id="shopCrumbs"></div>
+        <div id="shopContent">
+            <div class="loading-state">Loading categories…</div>
+        </div>
+    </section>
 
-<script>
-```
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="checkout-error" id="checkoutError"></div>
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Checkout</button>
+        </div>
+    </aside>
 
+    <footer>
+        <p>&copy; 2025 The Checkered Flag Slot Cars & RC Complex. All rights reserved.</p>
+    </footer>
+
+    <script>
 // Static taxonomy for the Parts shop.
-// Square doesn’t have this category structure yet – this array defines it
-// on the website side. Each product’s Square category name (from get-catalog)
+// Square doesn't have this category structure yet -- this array defines it
+// on the website side. Each product's Square category name (from get-catalog)
 // is matched against `subcategories[].match` to decide where it lands.
 // Once matching categories exist in Square, products will automatically
 // slot into the right box/subcategory with no code changes.
@@ -739,556 +732,553 @@
 // Keep these in sync with whatever category names get created in Square.
 
 const TAXONOMY = [
-{
-id: “road-course”,
-label: “Road Course”,
-icon: “🏎️”,
-subcategories: [
-{ id: “rc-rear-end”, label: “Rear End”, match: [“Road Course - Rear End”], children: [
-{ id: “rc-rear-axles”, label: “Axles”, match: [“Road Course - Rear Axles”] },
-{ id: “rc-rear-bushings”, label: “Bushings & Bearings”, match: [“Road Course - Rear Bushings & Bearings”] },
-{ id: “rc-rear-spacers”, label: “Spacers”, match: [“Road Course - Rear Spacers”] },
-{ id: “rc-rear-tires”, label: “Tires”, match: [“Road Course - Rear Tires”] },
-]},
-{ id: “rc-gearing”, label: “Gearing”, match: [“Road Course - Gearing”], children: [
-{ id: “rc-gear-64”, label: “64 Pitch”, match: [“Road Course - 64 Pitch”], children: [
-{ id: “rc-gear-64-spur”, label: “Spur Gears”, match: [“Road Course - 64 Pitch Spur Gears”] },
-{ id: “rc-gear-64-crown”, label: “Crown Gears”, match: [“Road Course - 64 Pitch Crown Gears”] },
-{ id: “rc-gear-64-pinion”, label: “Pinion Gears”, match: [“Road Course - 64 Pitch Pinion Gears”] },
-]},
-{ id: “rc-gear-48”, label: “48 Pitch”, match: [“Road Course - 48 Pitch”], children: [
-{ id: “rc-gear-48-spur”, label: “Spur Gears”, match: [“Road Course - 48 Pitch Spur Gears”] },
-{ id: “rc-gear-48-crown”, label: “Crown Gears”, match: [“Road Course - 48 Pitch Crown Gears”] },
-{ id: “rc-gear-48-pinion”, label: “Pinion Gears”, match: [“Road Course - 48 Pitch Pinion Gears”] },
-]},
-]},
-{ id: “rc-motors”, label: “Motors”, match: [“Road Course - Motors”], children: [
-{ id: “rc-motors-can”, label: “Can Motors”, match: [“Road Course - Can Motors”] },
-]},
-{ id: “rc-chassis”, label: “Chassis”, match: [“Road Course - Chassis”], children: [
-{ id: “rc-chassis-flexi”, label: “Flexi Chassis”, match: [“Road Course - Flexi Chassis”] },
-]},
-{ id: “rc-front-end”, label: “Front End”, match: [“Road Course - Front End”], children: [
-{ id: “rc-front-guide-flag”, label: “Guide Flag”, match: [“Road Course - Guide Flag”] },
-{ id: “rc-front-guide-spacers”, label: “Guide Spacers”, match: [“Road Course - Guide Spacers”] },
-{ id: “rc-front-tires-axles”, label: “Front Tires & Axles”, match: [“Road Course - Front Tires & Axles”] },
-]},
-{ id: “rc-electrical”, label: “Electrical”, match: [“Road Course - Electrical”], children: [
-{ id: “rc-elec-wire”, label: “Guide Wire”, match: [“Road Course - Guide Wire”] },
-{ id: “rc-elec-resistors”, label: “Resistors”, match: [“Road Course - Resistors”] },
-]},
-{ id: “rc-bodies”, label: “Bodies & Interiors”, match: [“Road Course - Bodies & Interiors”], children: [
-{ id: “rc-bodies-124”, label: “1/24 Scale Bodies”, match: [“Road Course - 1/24 Scale Bodies”] },
-{ id: “rc-bodies-125”, label: “1/25 Scale Bodies”, match: [“Road Course - 1/25 Scale Bodies”] },
-{ id: “rc-bodies-painted-int”, label: “Painted Interiors”, match: [“Road Course - Painted Interiors”] },
-{ id: “rc-bodies-unpainted-int”, label: “Non-Painted Interiors”, match: [“Road Course - Non-Painted Interiors”] },
-{ id: “rc-bodies-clips”, label: “Body Clips”, match: [“Road Course - Body Clips”] },
-{ id: “rc-bodies-tape”, label: “Tape”, match: [“Road Course - Tape”] },
-{ id: “rc-bodies-stickers”, label: “Sticker Kits”, match: [“Road Course - Sticker Kits”] },
-]},
-{ id: “rc-controllers”, label: “Controllers”, match: [“Road Course - Controllers”] },
-],
-},
-{
-id: “drag-racing”,
-label: “Drag Racing”,
-icon: “🏁”,
-subcategories: [
-{ id: “dr-chassis”, label: “Chassis”, match: [“Drag Racing - Chassis”], children: [
-{ id: “dr-chassis-rail”, label: “Rail”, match: [“Drag Racing - Rail Chassis”] },
-{ id: “dr-chassis-door”, label: “Door & Bar Car Chassis”, match: [“Drag Racing - Door & Bar Car Chassis”], featured: [“865 Chassis”] },
-{ id: “dr-chassis-wire-tubing”, label: “Wire & Tubing”, match: [“Drag Racing - Wire & Tubing”] },
-]},
-{ id: “dr-rear-end”, label: “Rear End”, match: [“Drag Racing - Rear End”], children: [
-{ id: “dr-rear-axles”, label: “Axles”, match: [“Drag Racing - Axles”] },
-{ id: “dr-rear-spacers”, label: “Spacers”, match: [“Drag Racing - Spacers”] },
-{ id: “dr-rear-bushings”, label: “Bushings & Bearings”, match: [“Drag Racing - Bushings & Bearings”] },
-{ id: “dr-rear-tires”, label: “Tires”, match: [“Drag Racing - Tires”] },
-]},
-{ id: “dr-gearing”, label: “Gearing”, match: [“Drag Racing - Gearing”], children: [
-{ id: “dr-gear-48”, label: “48 Pitch”, match: [“Drag Racing - 48 Pitch”], children: [
-{ id: “dr-gear-48-crown”, label: “Crown Gear”, match: [“Drag Racing - 48 Pitch Crown Gear”] },
-{ id: “dr-gear-48-spur”, label: “Spur Gear”, match: [“Drag Racing - 48 Pitch Spur Gear”] },
-{ id: “dr-gear-48-pinion”, label: “Pinion Gear”, match: [“Drag Racing - 48 Pitch Pinion Gear”] },
-]},
-{ id: “dr-gear-64”, label: “64 Pitch”, match: [“Drag Racing - 64 Pitch”], children: [
-{ id: “dr-gear-64-crown”, label: “Crown Gear”, match: [“Drag Racing - 64 Pitch Crown Gear”] },
-{ id: “dr-gear-64-spur”, label: “Spur Gear”, match: [“Drag Racing - 64 Pitch Spur Gear”] },
-{ id: “dr-gear-64-pinion”, label: “Pinion Gear”, match: [“Drag Racing - 64 Pitch Pinion Gear”] },
-]},
-]},
-{ id: “dr-bodies”, label: “Bodies”, match: [“Drag Racing - Bodies”], children: [
-{ id: “dr-bodies-rail”, label: “Rail Bodies”, match: [“Drag Racing - Rail Bodies”] },
-{ id: “dr-bodies-kits”, label: “Model Kits”, match: [“Drag Racing - Model Kits”] },
-]},
-{ id: “dr-glue”, label: “Glue”, match: [“Drag Racing - Glue”], children: [
-{ id: “dr-glue-boards”, label: “Glue Boards”, match: [“Drag Racing - Glue Boards”] },
-]},
-{ id: “dr-motors”, label: “Motors”, match: [“Drag Racing - Motors”], children: [
-{ id: “dr-motors-can”, label: “Can Motors”, match: [“Drag Racing - Can Motors”] },
-]},
-{ id: “dr-front-end”, label: “Front End”, match: [“Drag Racing - Front End”], children: [
-{ id: “dr-front-guide-flag”, label: “Guide Flag”, match: [“Drag Racing - Guide Flag”] },
-{ id: “dr-front-spacers”, label: “Spacers”, match: [“Drag Racing - Front Spacers”] },
-]},
-{ id: “dr-electrical”, label: “Electrical”, match: [“Drag Racing - Electrical”], children: [
-{ id: “dr-elec-wire”, label: “Guide Wire”, match: [“Drag Racing - Guide Wire”] },
-{ id: “dr-elec-resistors”, label: “Resistors”, match: [“Drag Racing - Resistors”] },
-]},
-{ id: “dr-controllers”, label: “Controllers”, match: [“Drag Racing - Controllers”], children: [
-{ id: “dr-controllers-9v”, label: “9V Batteries”, match: [“Drag Racing - 9V Batteries”] },
-]},
-],
-},
-{
-id: “1rc”,
-label: “1RC”,
-icon: “🚗”,
-subcategories: [
-{ id: “1rc-chassis”, label: “Chassis”, match: [“1RC - Chassis”] },
-{ id: “1rc-motors”, label: “Motors”, match: [“1RC - Motors”] },
-{ id: “1rc-gearing”, label: “Gearing”, match: [“1RC - Gearing”] },
-{ id: “1rc-front-end”, label: “Front End”, match: [“1RC - Front End”] },
-{ id: “1rc-rear-end”, label: “Rear End”, match: [“1RC - Rear End”] },
-{ id: “1rc-controllers”, label: “Controllers”, match: [“1RC - Controllers”] },
-{ id: “1rc-electrical”, label: “Electrical”, match: [“1RC - Electrical”] },
-{ id: “1rc-bodies”, label: “Bodies & Interiors”, match: [“1RC - Bodies & Interiors”] },
-{ id: “1rc-accessories”, label: “Accessories”, match: [“1RC - Accessories”] },
-],
-},
-{
-id: “losi”,
-label: “LOSI”,
-icon: “🚙”,
-subcategories: [
-{ id: “losi-chassis”, label: “Chassis”, match: [“LOSI - Chassis”] },
-{ id: “losi-motors”, label: “Motors”, match: [“LOSI - Motors”] },
-{ id: “losi-gearing”, label: “Gearing”, match: [“LOSI - Gearing”] },
-{ id: “losi-controllers”, label: “Controllers”, match: [“LOSI - Controllers”] },
-{ id: “losi-front-end”, label: “Front End”, match: [“LOSI - Front End”] },
-{ id: “losi-rear-end”, label: “Rear End”, match: [“LOSI - Rear End”] },
-{ id: “losi-electrical”, label: “Electrical”, match: [“LOSI - Electrical”] },
-{ id: “losi-bodies”, label: “Bodies & Interiors”, match: [“LOSI - Bodies & Interiors”] },
-{ id: “losi-accessories”, label: “Accessories”, match: [“LOSI - Accessories”] },
-],
-},
-{
-id: “tools”,
-label: “Tools”,
-icon: “🛠️”,
-subcategories: [
-{ id: “tools-general”, label: “General Tools”, match: [“Tools”] },
-],
-},
-{
-id: “gift-shop”,
-label: “Gift Shop”,
-icon: “🎁”,
-subcategories: [
-{ id: “gift-tshirts”, label: “T-Shirts”, match: [“Gift Shop - T-Shirts”] },
-{ id: “gift-candles”, label: “Candles”, match: [“Gift Shop - Candles”] },
-{ id: “gift-jewelry”, label: “Jewelry”, match: [“Gift Shop - Jewelry”] },
-],
-},
+  {
+    id: "road-course",
+    label: "Road Course",
+    icon: "🏎️",
+    subcategories: [
+      { id: "rc-rear-end", label: "Rear End", match: ["Road Course - Rear End"], children: [
+        { id: "rc-rear-axles", label: "Axles", match: ["Road Course - Rear Axles"] },
+        { id: "rc-rear-bushings", label: "Bushings & Bearings", match: ["Road Course - Rear Bushings & Bearings"] },
+        { id: "rc-rear-spacers", label: "Spacers", match: ["Road Course - Rear Spacers"] },
+        { id: "rc-rear-tires", label: "Tires", match: ["Road Course - Rear Tires"] },
+      ]},
+      { id: "rc-gearing", label: "Gearing", match: ["Road Course - Gearing"], children: [
+        { id: "rc-gear-64", label: "64 Pitch", match: ["Road Course - 64 Pitch"], children: [
+          { id: "rc-gear-64-spur", label: "Spur Gears", match: ["Road Course - 64 Pitch Spur Gears"] },
+          { id: "rc-gear-64-crown", label: "Crown Gears", match: ["Road Course - 64 Pitch Crown Gears"] },
+          { id: "rc-gear-64-pinion", label: "Pinion Gears", match: ["Road Course - 64 Pitch Pinion Gears"] },
+        ]},
+        { id: "rc-gear-48", label: "48 Pitch", match: ["Road Course - 48 Pitch"], children: [
+          { id: "rc-gear-48-spur", label: "Spur Gears", match: ["Road Course - 48 Pitch Spur Gears"] },
+          { id: "rc-gear-48-crown", label: "Crown Gears", match: ["Road Course - 48 Pitch Crown Gears"] },
+          { id: "rc-gear-48-pinion", label: "Pinion Gears", match: ["Road Course - 48 Pitch Pinion Gears"] },
+        ]},
+      ]},
+      { id: "rc-motors", label: "Motors", match: ["Road Course - Motors"], children: [
+        { id: "rc-motors-can", label: "Can Motors", match: ["Road Course - Can Motors"] },
+      ]},
+      { id: "rc-chassis", label: "Chassis", match: ["Road Course - Chassis"], children: [
+        { id: "rc-chassis-flexi", label: "Flexi Chassis", match: ["Road Course - Flexi Chassis"] },
+      ]},
+      { id: "rc-front-end", label: "Front End", match: ["Road Course - Front End"], children: [
+        { id: "rc-front-guide-flag", label: "Guide Flag", match: ["Road Course - Guide Flag"] },
+        { id: "rc-front-guide-spacers", label: "Guide Spacers", match: ["Road Course - Guide Spacers"] },
+        { id: "rc-front-tires-axles", label: "Front Tires & Axles", match: ["Road Course - Front Tires & Axles"] },
+      ]},
+      { id: "rc-electrical", label: "Electrical", match: ["Road Course - Electrical"], children: [
+        { id: "rc-elec-wire", label: "Guide Wire", match: ["Road Course - Guide Wire"] },
+        { id: "rc-elec-resistors", label: "Resistors", match: ["Road Course - Resistors"] },
+      ]},
+      { id: "rc-bodies", label: "Bodies & Interiors", match: ["Road Course - Bodies & Interiors"], children: [
+        { id: "rc-bodies-124", label: "1/24 Scale Bodies", match: ["Road Course - 1/24 Scale Bodies"] },
+        { id: "rc-bodies-125", label: "1/25 Scale Bodies", match: ["Road Course - 1/25 Scale Bodies"] },
+        { id: "rc-bodies-painted-int", label: "Painted Interiors", match: ["Road Course - Painted Interiors"] },
+        { id: "rc-bodies-unpainted-int", label: "Non-Painted Interiors", match: ["Road Course - Non-Painted Interiors"] },
+        { id: "rc-bodies-clips", label: "Body Clips", match: ["Road Course - Body Clips"] },
+        { id: "rc-bodies-tape", label: "Tape", match: ["Road Course - Tape"] },
+        { id: "rc-bodies-stickers", label: "Sticker Kits", match: ["Road Course - Sticker Kits"] },
+      ]},
+      { id: "rc-controllers", label: "Controllers", match: ["Road Course - Controllers"] },
+    ],
+  },
+  {
+    id: "drag-racing",
+    label: "Drag Racing",
+    icon: "🏁",
+    subcategories: [
+      { id: "dr-chassis", label: "Chassis", match: ["Drag Racing - Chassis"], children: [
+        { id: "dr-chassis-rail", label: "Rail", match: ["Drag Racing - Rail Chassis"] },
+        { id: "dr-chassis-door", label: "Door & Bar Car Chassis", match: ["Drag Racing - Door & Bar Car Chassis"], featured: ["865 Chassis"] },
+        { id: "dr-chassis-wire-tubing", label: "Wire & Tubing", match: ["Drag Racing - Wire & Tubing"] },
+      ]},
+      { id: "dr-rear-end", label: "Rear End", match: ["Drag Racing - Rear End"], children: [
+        { id: "dr-rear-axles", label: "Axles", match: ["Drag Racing - Axles"] },
+        { id: "dr-rear-spacers", label: "Spacers", match: ["Drag Racing - Spacers"] },
+        { id: "dr-rear-bushings", label: "Bushings & Bearings", match: ["Drag Racing - Bushings & Bearings"] },
+        { id: "dr-rear-tires", label: "Tires", match: ["Drag Racing - Tires"] },
+      ]},
+      { id: "dr-gearing", label: "Gearing", match: ["Drag Racing - Gearing"], children: [
+        { id: "dr-gear-48", label: "48 Pitch", match: ["Drag Racing - 48 Pitch"], children: [
+          { id: "dr-gear-48-crown", label: "Crown Gear", match: ["Drag Racing - 48 Pitch Crown Gear"] },
+          { id: "dr-gear-48-spur", label: "Spur Gear", match: ["Drag Racing - 48 Pitch Spur Gear"] },
+          { id: "dr-gear-48-pinion", label: "Pinion Gear", match: ["Drag Racing - 48 Pitch Pinion Gear"] },
+        ]},
+        { id: "dr-gear-64", label: "64 Pitch", match: ["Drag Racing - 64 Pitch"], children: [
+          { id: "dr-gear-64-crown", label: "Crown Gear", match: ["Drag Racing - 64 Pitch Crown Gear"] },
+          { id: "dr-gear-64-spur", label: "Spur Gear", match: ["Drag Racing - 64 Pitch Spur Gear"] },
+          { id: "dr-gear-64-pinion", label: "Pinion Gear", match: ["Drag Racing - 64 Pitch Pinion Gear"] },
+        ]},
+      ]},
+      { id: "dr-bodies", label: "Bodies", match: ["Drag Racing - Bodies"], children: [
+        { id: "dr-bodies-rail", label: "Rail Bodies", match: ["Drag Racing - Rail Bodies"] },
+        { id: "dr-bodies-kits", label: "Model Kits", match: ["Drag Racing - Model Kits"] },
+      ]},
+      { id: "dr-glue", label: "Glue", match: ["Drag Racing - Glue"], children: [
+        { id: "dr-glue-boards", label: "Glue Boards", match: ["Drag Racing - Glue Boards"] },
+      ]},
+      { id: "dr-motors", label: "Motors", match: ["Drag Racing - Motors"], children: [
+        { id: "dr-motors-can", label: "Can Motors", match: ["Drag Racing - Can Motors"] },
+      ]},
+      { id: "dr-front-end", label: "Front End", match: ["Drag Racing - Front End"], children: [
+        { id: "dr-front-guide-flag", label: "Guide Flag", match: ["Drag Racing - Guide Flag"] },
+        { id: "dr-front-spacers", label: "Spacers", match: ["Drag Racing - Front Spacers"] },
+      ]},
+      { id: "dr-electrical", label: "Electrical", match: ["Drag Racing - Electrical"], children: [
+        { id: "dr-elec-wire", label: "Guide Wire", match: ["Drag Racing - Guide Wire"] },
+        { id: "dr-elec-resistors", label: "Resistors", match: ["Drag Racing - Resistors"] },
+      ]},
+      { id: "dr-controllers", label: "Controllers", match: ["Drag Racing - Controllers"], children: [
+        { id: "dr-controllers-9v", label: "9V Batteries", match: ["Drag Racing - 9V Batteries"] },
+      ]},
+    ],
+  },
+  {
+    id: "1rc",
+    label: "1RC",
+    icon: "🚗",
+    subcategories: [
+      { id: "1rc-chassis", label: "Chassis", match: ["1RC - Chassis"] },
+      { id: "1rc-motors", label: "Motors", match: ["1RC - Motors"] },
+      { id: "1rc-gearing", label: "Gearing", match: ["1RC - Gearing"] },
+      { id: "1rc-front-end", label: "Front End", match: ["1RC - Front End"] },
+      { id: "1rc-rear-end", label: "Rear End", match: ["1RC - Rear End"] },
+      { id: "1rc-controllers", label: "Controllers", match: ["1RC - Controllers"] },
+      { id: "1rc-electrical", label: "Electrical", match: ["1RC - Electrical"] },
+      { id: "1rc-bodies", label: "Bodies & Interiors", match: ["1RC - Bodies & Interiors"] },
+      { id: "1rc-accessories", label: "Accessories", match: ["1RC - Accessories"] },
+    ],
+  },
+  {
+    id: "losi",
+    label: "LOSI",
+    icon: "🚙",
+    subcategories: [
+      { id: "losi-chassis", label: "Chassis", match: ["LOSI - Chassis"] },
+      { id: "losi-motors", label: "Motors", match: ["LOSI - Motors"] },
+      { id: "losi-gearing", label: "Gearing", match: ["LOSI - Gearing"] },
+      { id: "losi-controllers", label: "Controllers", match: ["LOSI - Controllers"] },
+      { id: "losi-front-end", label: "Front End", match: ["LOSI - Front End"] },
+      { id: "losi-rear-end", label: "Rear End", match: ["LOSI - Rear End"] },
+      { id: "losi-electrical", label: "Electrical", match: ["LOSI - Electrical"] },
+      { id: "losi-bodies", label: "Bodies & Interiors", match: ["LOSI - Bodies & Interiors"] },
+      { id: "losi-accessories", label: "Accessories", match: ["LOSI - Accessories"] },
+    ],
+  },
+  {
+    id: "tools",
+    label: "Tools",
+    icon: "🛠️",
+    subcategories: [
+      { id: "tools-general", label: "General Tools", match: ["Tools"] },
+    ],
+  },
+  {
+    id: "gift-shop",
+    label: "Gift Shop",
+    icon: "🎁",
+    subcategories: [
+      { id: "gift-tshirts", label: "T-Shirts", match: ["Gift Shop - T-Shirts"] },
+      { id: "gift-candles", label: "Candles", match: ["Gift Shop - Candles"] },
+      { id: "gift-jewelry", label: "Jewelry", match: ["Gift Shop - Jewelry"] },
+    ],
+  },
 ];
 
-```
-    // ============ CONFIGURE THESE VALUES ============
-    const SUPABASE_PROJECT_URL = 'https://wdynznqnytapgckpmylk.supabase.co';
-    const GET_CATALOG_URL = `${SUPABASE_PROJECT_URL}/functions/v1/get-catalog`;
-    const CHECKOUT_FUNCTION_URL = `${SUPABASE_PROJECT_URL}/functions/v1/create-checkout-link`;
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkeW56bnFueXRhcGdja3BteWxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNjA2MjEsImV4cCI6MjEwNDczNjYyMX0.NjAwQ25Bbri3KCfo6bfYcGlwL2e26IYlKEMcvG7iR8k';
-    // ===================================================
+        // ============ CONFIGURE THESE VALUES ============
+        const SUPABASE_PROJECT_URL = 'https://wdynznqnytapgckpmylk.supabase.co';
+        const GET_CATALOG_URL = `${SUPABASE_PROJECT_URL}/functions/v1/get-catalog`;
+        const CHECKOUT_FUNCTION_URL = `${SUPABASE_PROJECT_URL}/functions/v1/create-checkout-link`;
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkeW56bnFueXRhcGdja3BteWxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNjA2MjEsImV4cCI6MjEwNDczNjYyMX0.NjAwQ25Bbri3KCfo6bfYcGlwL2e26IYlKEMcvG7iR8k';
+        // ===================================================
 
-    const CART_KEY = 'checkeredflag_cart';
+        const CART_KEY = 'checkeredflag_cart';
 
-    let allProducts = [];
-    // navPath is a stack of node ids representing where the user has drilled into.
-    // [] = top-level category boxes. ["road-course"] = subcategories of Road Course.
-    // ["road-course","rc-gearing"] = children of Gearing. etc.
-    let navPath = [];
+        let allProducts = [];
+        // navPath is a stack of node ids representing where the user has drilled into.
+        // [] = top-level category boxes. ["road-course"] = subcategories of Road Course.
+        // ["road-course","rc-gearing"] = children of Gearing. etc.
+        let navPath = [];
 
-    function getCart() {
-        try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; }
-        catch { return {}; }
-    }
-    function saveCart(cart) {
-        localStorage.setItem(CART_KEY, JSON.stringify(cart));
-        renderCartCount();
-        renderCartItems();
-    }
-
-    function money(cents) { return `$${(cents / 100).toFixed(2)}`; }
-
-    async function loadProducts() {
-        try {
-            const res = await fetch(GET_CATALOG_URL, {
-                headers: {
-                    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                    apikey: SUPABASE_ANON_KEY,
-                },
-            });
-            const data = await res.json();
-            if (!res.ok || data.error) throw new Error(data.error || 'Failed to load catalog.');
-            allProducts = data.products || [];
-        } catch (err) {
-            console.error(err);
-            allProducts = [];
+        function getCart() {
+            try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; }
+            catch { return {}; }
         }
-        renderShop();
-    }
-
-    // ---------- Navigation helpers ----------
-
-    function findNode(path) {
-        if (path.length === 0) return null;
-        let list = TAXONOMY;
-        let node = null;
-        for (const id of path) {
-            node = list.find(n => n.id === id);
-            if (!node) return null;
-            list = node.children || node.subcategories || [];
-        }
-        return node;
-    }
-
-    function currentChildren() {
-        if (navPath.length === 0) return TAXONOMY;
-        const node = findNode(navPath);
-        if (!node) return [];
-        return node.children || node.subcategories || [];
-    }
-
-    // Collect every `match` string under a node (and its descendants),
-    // so a top-level category shows products from ALL its nested subcategories.
-    function collectMatches(node) {
-        let matches = [...(node.match || [])];
-        const kids = node.children || node.subcategories || [];
-        for (const k of kids) matches = matches.concat(collectMatches(k));
-        return matches;
-    }
-
-    function productsForNode(node) {
-        const matches = collectMatches(node).map(m => m.toLowerCase());
-        return allProducts.filter(p => matches.includes((p.category || '').toLowerCase()));
-    }
-
-    function goTo(path) {
-        navPath = path;
-        renderShop();
-        document.getElementById('shop').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    // ---------- Rendering ----------
-
-    function renderShop() {
-        renderCrumbs();
-        const container = document.getElementById('shopContent');
-        const children = currentChildren();
-        const node = navPath.length ? findNode(navPath) : null;
-
-        // Decide: show a grid of category/subcategory boxes, or products?
-        // Show products once we're at a node with no children (a leaf subcategory),
-        // OR once none of the children have their own children (bottom of tree).
-        const isLeaf = node && (!node.children && !node.subcategories);
-
-        if (navPath.length === 0) {
-            container.innerHTML = `<div class="category-grid" id="gridEl"></div>`;
-            renderBoxGrid(TAXONOMY, true);
-            return;
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            renderCartCount();
+            renderCartItems();
         }
 
-        if (isLeaf || children.length === 0) {
-            renderProductGrid(node);
-            return;
-        }
+        function money(cents) { return `$${(cents / 100).toFixed(2)}`; }
 
-        container.innerHTML = `<div class="category-grid" id="gridEl"></div>`;
-        renderBoxGrid(children, false);
-    }
-
-    function renderCrumbs() {
-        const el = document.getElementById('shopCrumbs');
-        const parts = [`<button data-path="[]">All Categories</button>`];
-        let acc = [];
-        for (const id of navPath) {
-            acc = [...acc, id];
-            const node = findNode(acc);
-            if (!node) continue;
-            const isLast = acc.length === navPath.length;
-            parts.push(`<span class="sep">/</span>`);
-            if (isLast) {
-                parts.push(`<span class="current">${escapeHtml(node.label)}</span>`);
-            } else {
-                parts.push(`<button data-path="${escapeHtml(JSON.stringify(acc))}">${escapeHtml(node.label)}</button>`);
+        async function loadProducts() {
+            try {
+                const res = await fetch(GET_CATALOG_URL, {
+                    headers: {
+                        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                        apikey: SUPABASE_ANON_KEY,
+                    },
+                });
+                const data = await res.json();
+                if (!res.ok || data.error) throw new Error(data.error || 'Failed to load catalog.');
+                allProducts = data.products || [];
+            } catch (err) {
+                console.error(err);
+                allProducts = [];
             }
+            renderShop();
         }
-        el.innerHTML = navPath.length === 0
-            ? `<span class="current">All Categories</span>`
-            : parts.join('');
-        el.querySelectorAll('button[data-path]').forEach(btn => {
-            btn.addEventListener('click', () => goTo(JSON.parse(btn.dataset.path)));
-        });
-    }
 
-    function renderBoxGrid(nodes, isTopLevel) {
-        const grid = document.getElementById('gridEl');
-        grid.className = isTopLevel ? 'category-grid' : 'subcategory-grid';
-        grid.innerHTML = nodes.map(n => {
-            const count = productsForNode(n).length;
-            if (isTopLevel) {
+        // ---------- Navigation helpers ----------
+
+        function findNode(path) {
+            if (path.length === 0) return null;
+            let list = TAXONOMY;
+            let node = null;
+            for (const id of path) {
+                node = list.find(n => n.id === id);
+                if (!node) return null;
+                list = node.children || node.subcategories || [];
+            }
+            return node;
+        }
+
+        function currentChildren() {
+            if (navPath.length === 0) return TAXONOMY;
+            const node = findNode(navPath);
+            if (!node) return [];
+            return node.children || node.subcategories || [];
+        }
+
+        // Collect every `match` string under a node (and its descendants),
+        // so a top-level category shows products from ALL its nested subcategories.
+        function collectMatches(node) {
+            let matches = [...(node.match || [])];
+            const kids = node.children || node.subcategories || [];
+            for (const k of kids) matches = matches.concat(collectMatches(k));
+            return matches;
+        }
+
+        function productsForNode(node) {
+            const matches = collectMatches(node).map(m => m.toLowerCase());
+            return allProducts.filter(p => matches.includes((p.category || '').toLowerCase()));
+        }
+
+        function goTo(path) {
+            navPath = path;
+            renderShop();
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ---------- Rendering ----------
+
+        function renderShop() {
+            renderCrumbs();
+            const container = document.getElementById('shopContent');
+            const children = currentChildren();
+            const node = navPath.length ? findNode(navPath) : null;
+
+            // Decide: show a grid of category/subcategory boxes, or products?
+            // Show products once we're at a node with no children (a leaf subcategory),
+            // OR once none of the children have their own children (bottom of tree).
+            const isLeaf = node && (!node.children && !node.subcategories);
+
+            if (navPath.length === 0) {
+                container.innerHTML = `<div class="category-grid" id="gridEl"></div>`;
+                renderBoxGrid(TAXONOMY, true);
+                return;
+            }
+
+            if (isLeaf || children.length === 0) {
+                renderProductGrid(node);
+                return;
+            }
+
+            container.innerHTML = `<div class="category-grid" id="gridEl"></div>`;
+            renderBoxGrid(children, false);
+        }
+
+        function renderCrumbs() {
+            const el = document.getElementById('shopCrumbs');
+            const parts = [`<button data-path="[]">All Categories</button>`];
+            let acc = [];
+            for (const id of navPath) {
+                acc = [...acc, id];
+                const node = findNode(acc);
+                if (!node) continue;
+                const isLast = acc.length === navPath.length;
+                parts.push(`<span class="sep">/</span>`);
+                if (isLast) {
+                    parts.push(`<span class="current">${escapeHtml(node.label)}</span>`);
+                } else {
+                    parts.push(`<button data-path="${escapeHtml(JSON.stringify(acc))}">${escapeHtml(node.label)}</button>`);
+                }
+            }
+            el.innerHTML = navPath.length === 0
+                ? `<span class="current">All Categories</span>`
+                : parts.join('');
+            el.querySelectorAll('button[data-path]').forEach(btn => {
+                btn.addEventListener('click', () => goTo(JSON.parse(btn.dataset.path)));
+            });
+        }
+
+        function renderBoxGrid(nodes, isTopLevel) {
+            const grid = document.getElementById('gridEl');
+            grid.className = isTopLevel ? 'category-grid' : 'subcategory-grid';
+            grid.innerHTML = nodes.map(n => {
+                const count = productsForNode(n).length;
+                if (isTopLevel) {
+                    return `
+                        <div class="category-card" data-id="${n.id}">
+                            <div class="category-icon">${n.icon || '🔧'}</div>
+                            <h3>${escapeHtml(n.label)}</h3>
+                        </div>
+                    `;
+                }
                 return `
-                    <div class="category-card" data-id="${n.id}">
-                        <div class="category-icon">${n.icon || '🔧'}</div>
-                        <h3>${escapeHtml(n.label)}</h3>
+                    <div class="subcategory-card" data-id="${n.id}">
+                        <h4>${escapeHtml(n.label)}</h4>
+                        <span class="child-count">${count === 0 ? 'Coming soon' : count + ' item' + (count === 1 ? '' : 's')}</span>
                     </div>
                 `;
+            }).join('');
+            grid.querySelectorAll('[data-id]').forEach(card => {
+                card.addEventListener('click', () => goTo([...navPath, card.dataset.id]));
+            });
+        }
+
+        function renderProductGrid(node) {
+            const container = document.getElementById('shopContent');
+            let products = productsForNode(node);
+
+            // Featured items (e.g. 865 Chassis) sort first within their subcategory.
+            const featured = node.featured || [];
+            if (featured.length) {
+                products = [...products].sort((a, b) => {
+                    const aFeat = featured.some(f => a.name.toLowerCase().includes(f.toLowerCase()));
+                    const bFeat = featured.some(f => b.name.toLowerCase().includes(f.toLowerCase()));
+                    if (aFeat && !bFeat) return -1;
+                    if (!aFeat && bFeat) return 1;
+                    return 0;
+                });
             }
-            return `
-                <div class="subcategory-card" data-id="${n.id}">
-                    <h4>${escapeHtml(n.label)}</h4>
-                    <span class="child-count">${count === 0 ? 'Coming soon' : count + ' item' + (count === 1 ? '' : 's')}</span>
-                </div>
-            `;
-        }).join('');
-        grid.querySelectorAll('[data-id]').forEach(card => {
-            card.addEventListener('click', () => goTo([...navPath, card.dataset.id]));
-        });
-    }
 
-    function renderProductGrid(node) {
-        const container = document.getElementById('shopContent');
-        let products = productsForNode(node);
+            if (products.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        Nothing in ${escapeHtml(node.label)} yet.
+                        <span class="empty-sub">Check back soon — we're adding inventory regularly.</span>
+                    </div>
+                `;
+                return;
+            }
 
-        // Featured items (e.g. 865 Chassis) sort first within their subcategory.
-        const featured = node.featured || [];
-        if (featured.length) {
-            products = [...products].sort((a, b) => {
-                const aFeat = featured.some(f => a.name.toLowerCase().includes(f.toLowerCase()));
-                const bFeat = featured.some(f => b.name.toLowerCase().includes(f.toLowerCase()));
-                if (aFeat && !bFeat) return -1;
-                if (!aFeat && bFeat) return 1;
-                return 0;
+            container.innerHTML = `<div class="shop-grid">${products.map(p => {
+                const isFeatured = featured.some(f => p.name.toLowerCase().includes(f.toLowerCase()));
+                return `
+                    <div class="product-card${isFeatured ? ' featured' : ''}">
+                        <div class="product-image" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}">${p.image_url ? '' : '🏎️'}</div>
+                        <div class="product-body">
+                            <span class="product-category">${escapeHtml(p.category || node.label)}</span>
+                            <span class="product-name">${escapeHtml(p.name)}</span>
+                            <span class="product-desc">${escapeHtml(p.description || '')}</span>
+                            <div class="product-footer">
+                                <span class="product-price">${money(p.price_cents)}</span>
+                                ${p.stock_quantity > 0
+                                    ? `<button class="add-btn" data-id="${p.id}">Add to Cart</button>`
+                                    : `<span class="sold-out-tag">Sold Out</span>`}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('')}</div>`;
+
+            container.querySelectorAll('.add-btn').forEach(btn => {
+                btn.addEventListener('click', () => addToCart(btn.dataset.id));
             });
         }
 
-        if (products.length === 0) {
-            container.innerHTML = `
-                <div class="empty-state">
-                    Nothing in ${escapeHtml(node.label)} yet.
-                    <span class="empty-sub">Check back soon — we're adding inventory regularly.</span>
-                </div>
-            `;
-            return;
+        // ---------- Cart ----------
+
+        function addToCart(productId) {
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) return;
+            const cart = getCart();
+            const existingQty = cart[productId]?.quantity || 0;
+            if (existingQty + 1 > product.stock_quantity) {
+                showCheckoutError(`Only ${product.stock_quantity} of "${product.name}" in stock.`);
+                return;
+            }
+            cart[productId] = {
+                quantity: existingQty + 1,
+                name: product.name,
+                price_cents: product.price_cents,
+                image_url: product.image_url,
+            };
+            saveCart(cart);
+            openCart();
         }
 
-        container.innerHTML = `<div class="shop-grid">${products.map(p => {
-            const isFeatured = featured.some(f => p.name.toLowerCase().includes(f.toLowerCase()));
-            return `
-                <div class="product-card${isFeatured ? ' featured' : ''}">
-                    <div class="product-image" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}">${p.image_url ? '' : '🏎️'}</div>
-                    <div class="product-body">
-                        <span class="product-category">${escapeHtml(p.category || node.label)}</span>
-                        <span class="product-name">${escapeHtml(p.name)}</span>
-                        <span class="product-desc">${escapeHtml(p.description || '')}</span>
-                        <div class="product-footer">
-                            <span class="product-price">${money(p.price_cents)}</span>
-                            ${p.stock_quantity > 0
-                                ? `<button class="add-btn" data-id="${p.id}">Add to Cart</button>`
-                                : `<span class="sold-out-tag">Sold Out</span>`}
+        function changeQty(productId, delta) {
+            const cart = getCart();
+            const item = cart[productId];
+            if (!item) return;
+            const product = allProducts.find(p => p.id === productId);
+            const newQty = item.quantity + delta;
+            if (newQty <= 0) { delete cart[productId]; }
+            else if (product && newQty > product.stock_quantity) { return; }
+            else { item.quantity = newQty; }
+            saveCart(cart);
+        }
+
+        function removeFromCart(productId) {
+            const cart = getCart();
+            delete cart[productId];
+            saveCart(cart);
+        }
+
+        function renderCartCount() {
+            const cart = getCart();
+            const count = Object.values(cart).reduce((sum, i) => sum + i.quantity, 0);
+            const el = document.getElementById('cartCount');
+            el.textContent = count;
+            el.classList.toggle('show', count > 0);
+        }
+
+        function renderCartItems() {
+            const cart = getCart();
+            const entries = Object.entries(cart);
+            const container = document.getElementById('cartItems');
+            const subtotalEl = document.getElementById('cartSubtotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            if (entries.length === 0) {
+                container.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
+                subtotalEl.textContent = money(0);
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+            let subtotal = 0;
+            container.innerHTML = entries.map(([id, item]) => {
+                subtotal += item.price_cents * item.quantity;
+                return `
+                    <div class="cart-item">
+                        <div class="cart-item-img" style="${item.image_url ? `background-image:url('${item.image_url}')` : ''}"></div>
+                        <div class="cart-item-info">
+                            <span class="cart-item-name">${escapeHtml(item.name)}</span>
+                            <span class="cart-item-price">${money(item.price_cents)} each</span>
+                            <div class="qty-controls">
+                                <button class="qty-btn" data-action="dec" data-id="${id}">−</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" data-action="inc" data-id="${id}">+</button>
+                            </div>
+                            <button class="remove-link" data-action="remove" data-id="${id}">Remove</button>
                         </div>
                     </div>
-                </div>
-            `;
-        }).join('')}</div>`;
+                `;
+            }).join('');
 
-        container.querySelectorAll('.add-btn').forEach(btn => {
-            btn.addEventListener('click', () => addToCart(btn.dataset.id));
-        });
-    }
+            subtotalEl.textContent = money(subtotal);
 
-    // ---------- Cart ----------
-
-    function addToCart(productId) {
-        const product = allProducts.find(p => p.id === productId);
-        if (!product) return;
-        const cart = getCart();
-        const existingQty = cart[productId]?.quantity || 0;
-        if (existingQty + 1 > product.stock_quantity) {
-            showCheckoutError(`Only ${product.stock_quantity} of "${product.name}" in stock.`);
-            return;
-        }
-        cart[productId] = {
-            quantity: existingQty + 1,
-            name: product.name,
-            price_cents: product.price_cents,
-            image_url: product.image_url,
-        };
-        saveCart(cart);
-        openCart();
-    }
-
-    function changeQty(productId, delta) {
-        const cart = getCart();
-        const item = cart[productId];
-        if (!item) return;
-        const product = allProducts.find(p => p.id === productId);
-        const newQty = item.quantity + delta;
-        if (newQty <= 0) { delete cart[productId]; }
-        else if (product && newQty > product.stock_quantity) { return; }
-        else { item.quantity = newQty; }
-        saveCart(cart);
-    }
-
-    function removeFromCart(productId) {
-        const cart = getCart();
-        delete cart[productId];
-        saveCart(cart);
-    }
-
-    function renderCartCount() {
-        const cart = getCart();
-        const count = Object.values(cart).reduce((sum, i) => sum + i.quantity, 0);
-        const el = document.getElementById('cartCount');
-        el.textContent = count;
-        el.classList.toggle('show', count > 0);
-    }
-
-    function renderCartItems() {
-        const cart = getCart();
-        const entries = Object.entries(cart);
-        const container = document.getElementById('cartItems');
-        const subtotalEl = document.getElementById('cartSubtotal');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-
-        if (entries.length === 0) {
-            container.innerHTML = `<div class="cart-empty">Your cart is empty.</div>`;
-            subtotalEl.textContent = money(0);
-            checkoutBtn.disabled = true;
-            return;
+            container.querySelectorAll('[data-action="inc"]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.id, 1)));
+            container.querySelectorAll('[data-action="dec"]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.id, -1)));
+            container.querySelectorAll('[data-action="remove"]').forEach(b => b.addEventListener('click', () => removeFromCart(b.dataset.id)));
         }
 
-        checkoutBtn.disabled = false;
-        let subtotal = 0;
-        container.innerHTML = entries.map(([id, item]) => {
-            subtotal += item.price_cents * item.quantity;
-            return `
-                <div class="cart-item">
-                    <div class="cart-item-img" style="${item.image_url ? `background-image:url('${item.image_url}')` : ''}"></div>
-                    <div class="cart-item-info">
-                        <span class="cart-item-name">${escapeHtml(item.name)}</span>
-                        <span class="cart-item-price">${money(item.price_cents)} each</span>
-                        <div class="qty-controls">
-                            <button class="qty-btn" data-action="dec" data-id="${id}">−</button>
-                            <span>${item.quantity}</span>
-                            <button class="qty-btn" data-action="inc" data-id="${id}">+</button>
-                        </div>
-                        <button class="remove-link" data-action="remove" data-id="${id}">Remove</button>
-                    </div>
-                </div>
-            `;
-        }).join('');
-
-        subtotalEl.textContent = money(subtotal);
-
-        container.querySelectorAll('[data-action="inc"]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.id, 1)));
-        container.querySelectorAll('[data-action="dec"]').forEach(b => b.addEventListener('click', () => changeQty(b.dataset.id, -1)));
-        container.querySelectorAll('[data-action="remove"]').forEach(b => b.addEventListener('click', () => removeFromCart(b.dataset.id)));
-    }
-
-    function showCheckoutError(msg) {
-        const el = document.getElementById('checkoutError');
-        el.textContent = msg;
-        el.style.display = 'block';
-    }
-    function clearCheckoutError() {
-        document.getElementById('checkoutError').style.display = 'none';
-    }
-
-    async function handleCheckout() {
-        clearCheckoutError();
-        const cart = getCart();
-        const items = Object.entries(cart).map(([product_id, item]) => ({ product_id, quantity: item.quantity }));
-        if (items.length === 0) return;
-
-        const btn = document.getElementById('checkoutBtn');
-        btn.disabled = true;
-        btn.textContent = 'Redirecting…';
-
-        try {
-            const res = await fetch(CHECKOUT_FUNCTION_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-                    apikey: SUPABASE_ANON_KEY,
-                },
-                body: JSON.stringify({ cart: items, origin: window.location.origin }),
-            });
-            const data = await res.json();
-            if (!res.ok || data.error) throw new Error(data.error || 'Checkout failed.');
-            window.location.href = data.url;
-        } catch (err) {
-            showCheckoutError(err.message || 'Something went wrong. Please try again.');
-            btn.disabled = false;
-            btn.textContent = 'Checkout';
+        function showCheckoutError(msg) {
+            const el = document.getElementById('checkoutError');
+            el.textContent = msg;
+            el.style.display = 'block';
         }
-    }
+        function clearCheckoutError() {
+            document.getElementById('checkoutError').style.display = 'none';
+        }
 
-    function escapeHtml(str) {
-        const div = document.createElement('div');
-        div.textContent = str == null ? '' : str;
-        return div.innerHTML;
-    }
+        async function handleCheckout() {
+            clearCheckoutError();
+            const cart = getCart();
+            const items = Object.entries(cart).map(([product_id, item]) => ({ product_id, quantity: item.quantity }));
+            if (items.length === 0) return;
 
-    function openCart() {
-        document.getElementById('cartDrawer').classList.add('open');
-        document.getElementById('cartOverlay').classList.add('open');
-    }
-    function closeCart() {
-        document.getElementById('cartDrawer').classList.remove('open');
-        document.getElementById('cartOverlay').classList.remove('open');
-    }
-    document.getElementById('cartToggle').addEventListener('click', openCart);
-    document.getElementById('cartClose').addEventListener('click', closeCart);
-    document.getElementById('cartOverlay').addEventListener('click', closeCart);
-    document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
+            const btn = document.getElementById('checkoutBtn');
+            btn.disabled = true;
+            btn.textContent = 'Redirecting…';
 
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('success') === 'true') {
-        document.getElementById('successBanner').classList.add('show');
-        localStorage.removeItem(CART_KEY);
-    }
-    if (params.get('canceled') === 'true') {
-        document.getElementById('canceledBanner').classList.add('show');
-    }
+            try {
+                const res = await fetch(CHECKOUT_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+                        apikey: SUPABASE_ANON_KEY,
+                    },
+                    body: JSON.stringify({ cart: items, origin: window.location.origin }),
+                });
+                const data = await res.json();
+                if (!res.ok || data.error) throw new Error(data.error || 'Checkout failed.');
+                window.location.href = data.url;
+            } catch (err) {
+                showCheckoutError(err.message || 'Something went wrong. Please try again.');
+                btn.disabled = false;
+                btn.textContent = 'Checkout';
+            }
+        }
 
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    const navOverlay = document.getElementById('navOverlay');
-    function openMenu() {
-        navLinks.classList.add('open');
-        navOverlay.classList.add('open');
-        menuToggle.classList.add('active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        document.body.classList.add('menu-open');
-    }
-    function closeMenu() {
-        navLinks.classList.remove('open');
-        navOverlay.classList.remove('open');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-    }
-    menuToggle.addEventListener('click', () => navLinks.classList.contains('open') ? closeMenu() : openMenu());
-    navOverlay.addEventListener('click', closeMenu);
-    window.addEventListener('resize', () => { if (window.innerWidth > 968) closeMenu(); });
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str == null ? '' : str;
+            return div.innerHTML;
+        }
 
-    renderCartCount();
-    renderCartItems();
-    loadProducts();
-</script>
-```
+        function openCart() {
+            document.getElementById('cartDrawer').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('open');
+        }
+        function closeCart() {
+            document.getElementById('cartDrawer').classList.remove('open');
+            document.getElementById('cartOverlay').classList.remove('open');
+        }
+        document.getElementById('cartToggle').addEventListener('click', openCart);
+        document.getElementById('cartClose').addEventListener('click', closeCart);
+        document.getElementById('cartOverlay').addEventListener('click', closeCart);
+        document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
 
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('success') === 'true') {
+            document.getElementById('successBanner').classList.add('show');
+            localStorage.removeItem(CART_KEY);
+        }
+        if (params.get('canceled') === 'true') {
+            document.getElementById('canceledBanner').classList.add('show');
+        }
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+        function openMenu() {
+            navLinks.classList.add('open');
+            navOverlay.classList.add('open');
+            menuToggle.classList.add('active');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('menu-open');
+        }
+        function closeMenu() {
+            navLinks.classList.remove('open');
+            navOverlay.classList.remove('open');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        }
+        menuToggle.addEventListener('click', () => navLinks.classList.contains('open') ? closeMenu() : openMenu());
+        navOverlay.addEventListener('click', closeMenu);
+        window.addEventListener('resize', () => { if (window.innerWidth > 968) closeMenu(); });
+
+        renderCartCount();
+        renderCartItems();
+        loadProducts();
+    </script>
 </body>
 </html>
