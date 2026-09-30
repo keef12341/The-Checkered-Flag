@@ -732,157 +732,147 @@
 // Keep these in sync with whatever category names get created in Square.
 
 const TAXONOMY = [
-  {
-    id: "road-course",
-    label: "Road Course",
-    icon: "🏎️",
-    subcategories: [
-      { id: "rc-rear-end", label: "Rear End", match: ["Road Course - Rear End"], children: [
-        { id: "rc-rear-axles", label: "Axles", match: ["Road Course - Rear Axles"] },
-        { id: "rc-rear-bushings", label: "Bushings & Bearings", match: ["Road Course - Rear Bushings & Bearings"] },
-        { id: "rc-rear-spacers", label: "Spacers", match: ["Road Course - Rear Spacers"] },
-        { id: "rc-rear-tires", label: "Tires", match: ["Road Course - Rear Tires"] },
-      ]},
-      { id: "rc-gearing", label: "Gearing", match: ["Road Course - Gearing"], children: [
-        { id: "rc-gear-64", label: "64 Pitch", match: ["Road Course - 64 Pitch"], children: [
-          { id: "rc-gear-64-spur", label: "Spur Gears", match: ["Road Course - 64 Pitch Spur Gears"] },
-          { id: "rc-gear-64-crown", label: "Crown Gears", match: ["Road Course - 64 Pitch Crown Gears"] },
-          { id: "rc-gear-64-pinion", label: "Pinion Gears", match: ["Road Course - 64 Pitch Pinion Gears"] },
-        ]},
-        { id: "rc-gear-48", label: "48 Pitch", match: ["Road Course - 48 Pitch"], children: [
-          { id: "rc-gear-48-spur", label: "Spur Gears", match: ["Road Course - 48 Pitch Spur Gears"] },
-          { id: "rc-gear-48-crown", label: "Crown Gears", match: ["Road Course - 48 Pitch Crown Gears"] },
-          { id: "rc-gear-48-pinion", label: "Pinion Gears", match: ["Road Course - 48 Pitch Pinion Gears"] },
-        ]},
-      ]},
-      { id: "rc-motors", label: "Motors", match: ["Road Course - Motors"], children: [
-        { id: "rc-motors-can", label: "Can Motors", match: ["Road Course - Can Motors"] },
-      ]},
-      { id: "rc-chassis", label: "Chassis", match: ["Road Course - Chassis"], children: [
-        { id: "rc-chassis-flexi", label: "Flexi Chassis", match: ["Road Course - Flexi Chassis"] },
-      ]},
-      { id: "rc-front-end", label: "Front End", match: ["Road Course - Front End"], children: [
-        { id: "rc-front-guide-flag", label: "Guide Flag", match: ["Road Course - Guide Flag"] },
-        { id: "rc-front-guide-spacers", label: "Guide Spacers", match: ["Road Course - Guide Spacers"] },
-        { id: "rc-front-tires-axles", label: "Front Tires & Axles", match: ["Road Course - Front Tires & Axles"] },
-      ]},
-      { id: "rc-electrical", label: "Electrical", match: ["Road Course - Electrical"], children: [
-        { id: "rc-elec-wire", label: "Guide Wire", match: ["Road Course - Guide Wire"] },
-        { id: "rc-elec-resistors", label: "Resistors", match: ["Road Course - Resistors"] },
-      ]},
-      { id: "rc-bodies", label: "Bodies & Interiors", match: ["Road Course - Bodies & Interiors"], children: [
-        { id: "rc-bodies-124", label: "1/24 Scale Bodies", match: ["Road Course - 1/24 Scale Bodies"] },
-        { id: "rc-bodies-125", label: "1/25 Scale Bodies", match: ["Road Course - 1/25 Scale Bodies"] },
-        { id: "rc-bodies-painted-int", label: "Painted Interiors", match: ["Road Course - Painted Interiors"] },
-        { id: "rc-bodies-unpainted-int", label: "Non-Painted Interiors", match: ["Road Course - Non-Painted Interiors"] },
-        { id: "rc-bodies-clips", label: "Body Clips", match: ["Road Course - Body Clips"] },
-        { id: "rc-bodies-tape", label: "Tape", match: ["Road Course - Tape"] },
-        { id: "rc-bodies-stickers", label: "Sticker Kits", match: ["Road Course - Sticker Kits"] },
-      ]},
-      { id: "rc-controllers", label: "Controllers", match: ["Road Course - Controllers"] },
-    ],
-  },
-  {
-    id: "drag-racing",
-    label: "Drag Racing",
-    icon: "🏁",
-    subcategories: [
-      { id: "dr-chassis", label: "Chassis", match: ["Drag Racing - Chassis"], children: [
-        { id: "dr-chassis-rail", label: "Rail", match: ["Drag Racing - Rail Chassis"] },
-        { id: "dr-chassis-door", label: "Door & Bar Car Chassis", match: ["Drag Racing - Door & Bar Car Chassis"], featured: ["865 Chassis"] },
-        { id: "dr-chassis-wire-tubing", label: "Wire & Tubing", match: ["Drag Racing - Wire & Tubing"] },
-      ]},
-      { id: "dr-rear-end", label: "Rear End", match: ["Drag Racing - Rear End"], children: [
-        { id: "dr-rear-axles", label: "Axles", match: ["Drag Racing - Axles"] },
-        { id: "dr-rear-spacers", label: "Spacers", match: ["Drag Racing - Spacers"] },
-        { id: "dr-rear-bushings", label: "Bushings & Bearings", match: ["Drag Racing - Bushings & Bearings"] },
-        { id: "dr-rear-tires", label: "Tires", match: ["Drag Racing - Tires"] },
-      ]},
-      { id: "dr-gearing", label: "Gearing", match: ["Drag Racing - Gearing"], children: [
-        { id: "dr-gear-48", label: "48 Pitch", match: ["Drag Racing - 48 Pitch"], children: [
-          { id: "dr-gear-48-crown", label: "Crown Gear", match: ["Drag Racing - 48 Pitch Crown Gear"] },
-          { id: "dr-gear-48-spur", label: "Spur Gear", match: ["Drag Racing - 48 Pitch Spur Gear"] },
-          { id: "dr-gear-48-pinion", label: "Pinion Gear", match: ["Drag Racing - 48 Pitch Pinion Gear"] },
-        ]},
-        { id: "dr-gear-64", label: "64 Pitch", match: ["Drag Racing - 64 Pitch"], children: [
-          { id: "dr-gear-64-crown", label: "Crown Gear", match: ["Drag Racing - 64 Pitch Crown Gear"] },
-          { id: "dr-gear-64-spur", label: "Spur Gear", match: ["Drag Racing - 64 Pitch Spur Gear"] },
-          { id: "dr-gear-64-pinion", label: "Pinion Gear", match: ["Drag Racing - 64 Pitch Pinion Gear"] },
-        ]},
-      ]},
-      { id: "dr-bodies", label: "Bodies", match: ["Drag Racing - Bodies"], children: [
-        { id: "dr-bodies-rail", label: "Rail Bodies", match: ["Drag Racing - Rail Bodies"] },
-        { id: "dr-bodies-kits", label: "Model Kits", match: ["Drag Racing - Model Kits"] },
-      ]},
-      { id: "dr-glue", label: "Glue", match: ["Drag Racing - Glue"], children: [
-        { id: "dr-glue-boards", label: "Glue Boards", match: ["Drag Racing - Glue Boards"] },
-      ]},
-      { id: "dr-motors", label: "Motors", match: ["Drag Racing - Motors"], children: [
-        { id: "dr-motors-can", label: "Can Motors", match: ["Drag Racing - Can Motors"] },
-      ]},
-      { id: "dr-front-end", label: "Front End", match: ["Drag Racing - Front End"], children: [
-        { id: "dr-front-guide-flag", label: "Guide Flag", match: ["Drag Racing - Guide Flag"] },
-        { id: "dr-front-spacers", label: "Spacers", match: ["Drag Racing - Front Spacers"] },
-      ]},
-      { id: "dr-electrical", label: "Electrical", match: ["Drag Racing - Electrical"], children: [
-        { id: "dr-elec-wire", label: "Guide Wire", match: ["Drag Racing - Guide Wire"] },
-        { id: "dr-elec-resistors", label: "Resistors", match: ["Drag Racing - Resistors"] },
-      ]},
-      { id: "dr-controllers", label: "Controllers", match: ["Drag Racing - Controllers"], children: [
-        { id: "dr-controllers-9v", label: "9V Batteries", match: ["Drag Racing - 9V Batteries"] },
-      ]},
-    ],
-  },
-  {
-    id: "1rc",
-    label: "1RC",
-    icon: "🚗",
-    subcategories: [
-      { id: "1rc-chassis", label: "Chassis", match: ["1RC - Chassis"] },
-      { id: "1rc-motors", label: "Motors", match: ["1RC - Motors"] },
-      { id: "1rc-gearing", label: "Gearing", match: ["1RC - Gearing"] },
-      { id: "1rc-front-end", label: "Front End", match: ["1RC - Front End"] },
-      { id: "1rc-rear-end", label: "Rear End", match: ["1RC - Rear End"] },
-      { id: "1rc-controllers", label: "Controllers", match: ["1RC - Controllers"] },
-      { id: "1rc-electrical", label: "Electrical", match: ["1RC - Electrical"] },
-      { id: "1rc-bodies", label: "Bodies & Interiors", match: ["1RC - Bodies & Interiors"] },
-      { id: "1rc-accessories", label: "Accessories", match: ["1RC - Accessories"] },
-    ],
-  },
-  {
-    id: "losi",
-    label: "LOSI",
-    icon: "🚙",
-    subcategories: [
-      { id: "losi-chassis", label: "Chassis", match: ["LOSI - Chassis"] },
-      { id: "losi-motors", label: "Motors", match: ["LOSI - Motors"] },
-      { id: "losi-gearing", label: "Gearing", match: ["LOSI - Gearing"] },
-      { id: "losi-controllers", label: "Controllers", match: ["LOSI - Controllers"] },
-      { id: "losi-front-end", label: "Front End", match: ["LOSI - Front End"] },
-      { id: "losi-rear-end", label: "Rear End", match: ["LOSI - Rear End"] },
-      { id: "losi-electrical", label: "Electrical", match: ["LOSI - Electrical"] },
-      { id: "losi-bodies", label: "Bodies & Interiors", match: ["LOSI - Bodies & Interiors"] },
-      { id: "losi-accessories", label: "Accessories", match: ["LOSI - Accessories"] },
-    ],
-  },
-  {
-    id: "tools",
-    label: "Tools",
-    icon: "🛠️",
-    subcategories: [
-      { id: "tools-general", label: "General Tools", match: ["Tools"] },
-    ],
-  },
-  {
-    id: "gift-shop",
-    label: "Gift Shop",
-    icon: "🎁",
-    subcategories: [
-      { id: "gift-tshirts", label: "T-Shirts", match: ["Gift Shop - T-Shirts"] },
-      { id: "gift-candles", label: "Candles", match: ["Gift Shop - Candles"] },
-      { id: "gift-jewelry", label: "Jewelry", match: ["Gift Shop - Jewelry"] },
-    ],
-  },
+  { id: "road-course", label: "Road Course", icon: "🏎️", subcategories: [
+    { id: "rc-tires", label: "Tires", match: ["Road Course - Tires"] },
+    { id: "rc-bodies", label: "Bodies & Interiors", children: [
+      { id: "rc-b-clear", label: "Clear Bodies", match: ["Road Course - Clear Bodies"] },
+      { id: "rc-b-painted", label: "Painted Bodies", match: ["Road Course - Painted Bodies"] },
+      { id: "rc-b-int", label: "Interiors", match: ["Road Course - Interiors"] },
+      { id: "rc-b-clips", label: "Body Clips", match: ["Road Course - Body Clips"] },
+      { id: "rc-b-tape", label: "Body Tape", match: ["Road Course - Body Tape"] },
+      { id: "rc-b-decals", label: "Stickers & Decals", match: ["Road Course - Stickers & Decals"] }
+    ] },
+    { id: "rc-chassis", label: "Chassis", match: ["Road Course - Chassis"] },
+    { id: "rc-cars", label: "Complete Cars", match: ["Road Course - Complete Cars"] },
+    { id: "rc-gearing", label: "Gearing", children: [
+      { id: "rc-gear-48", label: "48 Pitch", children: [
+        { id: "rc-g48-pin", label: "Pinion Gears", match: ["Gearing - 48 Pitch Pinion Gears"] },
+        { id: "rc-g48-crown", label: "Crown Gears", match: ["Gearing - 48 Pitch Crown Gears"] }
+      ] },
+      { id: "rc-gear-64", label: "64 Pitch", children: [
+        { id: "rc-g64-pin", label: "Pinion Gears", match: ["Gearing - 64 Pitch Pinion Gears"] },
+        { id: "rc-g64-crown", label: "Crown Gears", match: ["Gearing - 64 Pitch Crown Gears"] },
+        { id: "rc-g64-spur", label: "Spur Gears", match: ["Gearing - 64 Pitch Spur Gears"] }
+      ] }
+    ] },
+    { id: "rc-rear", label: "Rear End", children: [
+      { id: "rc-r-axles", label: "Axles", match: ["Rear End - Axles"] },
+      { id: "rc-r-spacers", label: "Spacers", match: ["Rear End - Spacers"] },
+      { id: "rc-r-bush", label: "Bushings & Bearings", match: ["Rear End - Bushings & Bearings"] }
+    ] },
+    { id: "rc-front", label: "Front End", children: [
+      { id: "rc-f-guides", label: "Guide Flags & Guides", match: ["Front End - Guide Flags & Guides"] },
+      { id: "rc-f-spacers", label: "Guide Spacers", match: ["Front End - Guide Spacers"] },
+      { id: "rc-f-axles", label: "Front Axles & Wheels", match: ["Front End - Front Axles & Wheels"] }
+    ] },
+    { id: "rc-motors", label: "Motors", match: ["Motors - Can Motors"] },
+    { id: "rc-elec", label: "Electrical", children: [
+      { id: "rc-e-res", label: "Resistors", match: ["Electrical - Resistors"] },
+      { id: "rc-e-wire", label: "Lead Wire", match: ["Electrical - Lead Wire"] },
+      { id: "rc-e-braid", label: "Braid", match: ["Electrical - Braid"] }
+    ] },
+    { id: "rc-ctrl", label: "Controllers", children: [
+      { id: "rc-c-ctrl", label: "Slot Car Controllers", match: ["Controllers - Slot Car Controllers"] },
+      { id: "rc-c-9v", label: "9V Batteries", match: ["Controllers - 9V Batteries"] }
+    ] }
+  ] },
+  { id: "drag-racing", label: "Drag Racing", icon: "🏁", subcategories: [
+    { id: "dr-chassis", label: "Chassis", children: [
+      { id: "dr-c-door", label: "Door & Bar Car Chassis", match: ["Drag Racing - Door & Bar Car Chassis"], featured: ["865 Narrow Nose"] },
+      { id: "dr-c-rail", label: "Rail Chassis", match: ["Drag Racing - Rail Chassis"] },
+      { id: "dr-c-wire", label: "Wire & Tubing", match: ["Drag Racing - Wire & Tubing"] }
+    ] },
+    { id: "dr-tires", label: "Tires", match: ["Drag Racing - Tires"] },
+    { id: "dr-bodies", label: "Bodies", children: [
+      { id: "dr-b-rail", label: "Rail Bodies", match: ["Drag Racing - Rail Bodies"] },
+      { id: "dr-b-other", label: "Other Bodies", match: ["Drag Racing - Other Bodies"] },
+      { id: "dr-b-kits", label: "Model Kits", match: ["Drag Racing - Model Kits"] },
+      { id: "dr-b-decals", label: "Decals", match: ["Drag Racing - Decals"] }
+    ] },
+    { id: "dr-cars", label: "Complete Cars", match: ["Drag Racing - Complete Cars"] },
+    { id: "dr-glue", label: "Glue Boards", match: ["Drag Racing - Glue Boards"] },
+    { id: "dr-gearing", label: "Gearing", children: [
+      { id: "dr-gear-48", label: "48 Pitch", children: [
+        { id: "dr-g48-pin", label: "Pinion Gears", match: ["Gearing - 48 Pitch Pinion Gears"] },
+        { id: "dr-g48-crown", label: "Crown Gears", match: ["Gearing - 48 Pitch Crown Gears"] }
+      ] },
+      { id: "dr-gear-64", label: "64 Pitch", children: [
+        { id: "dr-g64-pin", label: "Pinion Gears", match: ["Gearing - 64 Pitch Pinion Gears"] },
+        { id: "dr-g64-crown", label: "Crown Gears", match: ["Gearing - 64 Pitch Crown Gears"] },
+        { id: "dr-g64-spur", label: "Spur Gears", match: ["Gearing - 64 Pitch Spur Gears"] }
+      ] }
+    ] },
+    { id: "dr-rear", label: "Rear End", children: [
+      { id: "dr-r-axles", label: "Axles", match: ["Rear End - Axles"] },
+      { id: "dr-r-spacers", label: "Spacers", match: ["Rear End - Spacers"] },
+      { id: "dr-r-bush", label: "Bushings & Bearings", match: ["Rear End - Bushings & Bearings"] }
+    ] },
+    { id: "dr-front", label: "Front End", children: [
+      { id: "dr-f-guides", label: "Guide Flags & Guides", match: ["Front End - Guide Flags & Guides"] },
+      { id: "dr-f-spacers", label: "Guide Spacers", match: ["Front End - Guide Spacers"] },
+      { id: "dr-f-axles", label: "Front Axles & Wheels", match: ["Front End - Front Axles & Wheels"] }
+    ] },
+    { id: "dr-motors", label: "Motors", match: ["Motors - Can Motors"] },
+    { id: "dr-elec", label: "Electrical", children: [
+      { id: "dr-e-res", label: "Resistors", match: ["Electrical - Resistors"] },
+      { id: "dr-e-wire", label: "Lead Wire", match: ["Electrical - Lead Wire"] },
+      { id: "dr-e-braid", label: "Braid", match: ["Electrical - Braid"] }
+    ] },
+    { id: "dr-ctrl", label: "Controllers", children: [
+      { id: "dr-c-ctrl", label: "Slot Car Controllers", match: ["Controllers - Slot Car Controllers"] },
+      { id: "dr-c-9v", label: "9V Batteries", match: ["Controllers - 9V Batteries"] }
+    ] }
+  ] },
+  { id: "1rc", label: "1RC", icon: "🚗", subcategories: [
+    { id: "1rc-controllers", label: "Controllers", match: ["1RC - Controllers"] },
+    { id: "1rc-electrical", label: "Electrical", match: ["1RC - Electrical"] },
+    { id: "1rc-motors", label: "Motors", match: ["1RC - Motors"] },
+    { id: "1rc-gearing", label: "Gearing", match: ["1RC - Gearing"] },
+    { id: "1rc-front-end", label: "Front End", match: ["1RC - Front End"] },
+    { id: "1rc-rear-end", label: "Rear End", match: ["1RC - Rear End"] },
+    { id: "1rc-chassis", label: "Chassis", match: ["1RC - Chassis"] },
+    { id: "1rc-bodies-interiors", label: "Bodies & Interiors", match: ["1RC - Bodies & Interiors"] },
+    { id: "1rc-tires-wheels", label: "Tires & Wheels", match: ["1RC - Tires & Wheels"] },
+    { id: "1rc-shocks-suspension", label: "Shocks & Suspension", match: ["1RC - Shocks & Suspension"] },
+    { id: "1rc-accessories", label: "Accessories", match: ["1RC - Accessories"] }
+  ] },
+  { id: "losi", label: "LOSI", icon: "🚙", subcategories: [
+    { id: "losi-rtr", label: "Ready to Run", match: ["LOSI - Ready to Run"] },
+    { id: "losi-complete-cars", label: "Complete Cars", match: ["LOSI - Complete Cars"] },
+    { id: "losi-chassis", label: "Chassis", match: ["LOSI - Chassis"] },
+    { id: "losi-motors", label: "Motors", match: ["LOSI - Motors"] },
+    { id: "losi-gearing", label: "Gearing", match: ["LOSI - Gearing"] },
+    { id: "losi-front-end", label: "Front End", match: ["LOSI - Front End"] },
+    { id: "losi-rear-end", label: "Rear End", match: ["LOSI - Rear End"] },
+    { id: "losi-bodies-interiors", label: "Bodies & Interiors", match: ["LOSI - Bodies & Interiors"] },
+    { id: "losi-tires-wheels", label: "Tires & Wheels", match: ["LOSI - Tires & Wheels"] },
+    { id: "losi-shocks-suspension", label: "Shocks & Suspension", match: ["LOSI - Shocks & Suspension"] },
+    { id: "losi-accessories", label: "Accessories", match: ["LOSI - Accessories"] },
+    { id: "losi-ctrl", label: "Controllers", match: ["LOSI - Controllers"] },
+    { id: "losi-elec", label: "Electrical", match: ["LOSI - Electrical"] }
+  ] },
+  { id: "crawler", label: "Crawler", icon: "🐛", subcategories: [
+    { id: "cr-rtr", label: "Ready to Run", match: ["Crawler - Ready to Run"] },
+    { id: "cr-chassis", label: "Chassis", match: ["Crawler - Chassis"] },
+    { id: "cr-tires", label: "Tires", match: ["Crawler - Tires"] }
+  ] },
+  { id: "tools", label: "Tools", icon: "🛠️", subcategories: [
+    { id: "t-wrench", label: "Wrenches & Drivers", match: ["Tools - Wrenches & Drivers"] },
+    { id: "t-press", label: "Pinion Presses & Pullers", match: ["Tools - Pinion Presses & Pullers"] },
+    { id: "t-other", label: "Other Tools", match: ["Tools - Other Tools"] }
+  ] },
+  { id: "supplies", label: "Supplies & Accessories", icon: "🧰", subcategories: [
+    { id: "s-paint", label: "Paint", match: ["Paint & Supplies - Paint"] },
+    { id: "s-thin", label: "Thinner & Masks", match: ["Paint & Supplies - Thinner & Masks"] },
+    { id: "s-solder", label: "Solder & Flux", match: ["Supplies - Solder & Flux"] },
+    { id: "s-braid", label: "Braid Juice & Conditioners", match: ["Supplies - Braid Juice & Conditioners"] },
+    { id: "s-tire", label: "Tire Traction & Glue", match: ["Supplies - Tire Traction & Glue"] },
+    { id: "s-hw", label: "Hardware & Weights", match: ["Supplies - Hardware & Weights"] },
+    { id: "s-stands", label: "Car Stands", match: ["Accessories - Car Stands"] }
+  ] },
+  { id: "gift-shop", label: "Gift Shop", icon: "🎁", subcategories: [
+    { id: "g-app", label: "Apparel", match: ["Gift Shop - Apparel"] }
+  ] }
 ];
 
         // ============ CONFIGURE THESE VALUES ============
