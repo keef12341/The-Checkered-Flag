@@ -551,37 +551,34 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.75);
+            background: var(--dark);
             z-index: 1600;
-            padding: 2rem 1rem;
-            overflow-y: auto;
         }
 
-        .product-modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+        .product-modal-overlay.open { display: block; }
 
         .product-modal {
             position: relative;
             background: var(--gray);
-            border-radius: 12px;
-            border: 2px solid var(--red);
-            max-width: 700px;
-            width: 100%;
-            margin: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow-y: auto;
         }
 
         .modal-close {
-            position: absolute;
-            top: 0.75rem; right: 0.75rem;
-            background: rgba(0,0,0,0.4);
+            position: fixed;
+            top: calc(0.75rem + env(safe-area-inset-top, 0px));
+            right: 0.75rem;
+            background: rgba(0,0,0,0.5);
             border: none;
             color: var(--white);
             font-size: 1.8rem;
-            width: 40px; height: 40px;
+            width: 44px; height: 44px;
             border-radius: 50%;
             cursor: pointer;
             line-height: 1;
-            z-index: 1;
+            z-index: 2;
         }
 
         .modal-close:hover { background: var(--red); }
@@ -589,13 +586,14 @@
         .modal-content {
             display: flex;
             flex-direction: column;
+            min-height: 100%;
         }
 
         .modal-image {
             width: 100%;
-            aspect-ratio: 4 / 3;
+            flex: 1 1 auto;
+            min-height: 45vh;
             background: #111 center/cover no-repeat;
-            border-radius: 12px 12px 0 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -604,6 +602,7 @@
 
         .modal-info {
             padding: 1.75rem;
+            padding-bottom: calc(1.75rem + env(safe-area-inset-bottom, 0px));
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
@@ -636,12 +635,6 @@
         }
 
         body.modal-open { overflow: hidden; }
-
-        @media (max-width: 640px) {
-            .product-modal-overlay { padding: 0; }
-            .product-modal { max-width: 100%; min-height: 100vh; border-radius: 0; border-width: 0 0 2px 0; }
-            .modal-image { border-radius: 0; }
-        }
 
         /* Cart drawer */
         .cart-overlay {
@@ -1181,7 +1174,14 @@ const TAXONOMY = [
 
         function renderCrumbs() {
             const el = document.getElementById('shopCrumbs');
-            const parts = [`<button data-path="[]">All Categories</button>`];
+            // Breadcrumb targets are kept in this array and referenced by index
+            // (data-crumb-idx) rather than serialized into an HTML attribute --
+            // JSON.stringify's embedded quotes broke data-path="..." the moment
+            // a path had more than one segment, since escapeHtml only escapes
+            // & < > (what's special in text), not " (what's special in an
+            // attribute value). An index has nothing to escape.
+            const crumbTargets = [[]];
+            const parts = [`<button data-crumb-idx="0">All Categories</button>`];
             let acc = [];
             for (const id of navPath) {
                 acc = [...acc, id];
@@ -1192,14 +1192,16 @@ const TAXONOMY = [
                 if (isLast) {
                     parts.push(`<span class="current">${escapeHtml(node.label)}</span>`);
                 } else {
-                    parts.push(`<button data-path="${escapeHtml(JSON.stringify(acc))}">${escapeHtml(node.label)}</button>`);
+                    crumbTargets.push([...acc]);
+                    const idx = crumbTargets.length - 1;
+                    parts.push(`<button data-crumb-idx="${idx}">${escapeHtml(node.label)}</button>`);
                 }
             }
             el.innerHTML = navPath.length === 0
                 ? `<span class="current">All Categories</span>`
                 : parts.join('');
-            el.querySelectorAll('button[data-path]').forEach(btn => {
-                btn.addEventListener('click', () => goTo(JSON.parse(btn.dataset.path)));
+            el.querySelectorAll('button[data-crumb-idx]').forEach(btn => {
+                btn.addEventListener('click', () => goTo(crumbTargets[Number(btn.dataset.crumbIdx)]));
             });
         }
 
