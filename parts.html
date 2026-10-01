@@ -473,6 +473,176 @@
             color: #666;
         }
 
+        /* Coming-soon admin gate */
+        .gate-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .gate-overlay.unlocked { display: none; }
+
+        .gate-box {
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .gate-title {
+            font-family: 'Racing Sans One', sans-serif;
+            font-size: 2.75rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0.5rem 0;
+        }
+
+        .gate-sub {
+            color: #AAA;
+            margin-bottom: 2rem;
+        }
+
+        .gate-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .gate-input {
+            background: var(--gray);
+            border: 2px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            text-align: center;
+        }
+
+        .gate-input:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        .gate-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .gate-error {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .gate-error.show { display: block; }
+
+        body.gate-locked { overflow: hidden; }
+
+        /* Product detail modal */
+        .product-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 1600;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+        }
+
+        .product-modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+        .product-modal {
+            position: relative;
+            background: var(--gray);
+            border-radius: 12px;
+            border: 2px solid var(--red);
+            max-width: 700px;
+            width: 100%;
+            margin: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.75rem; right: 0.75rem;
+            background: rgba(0,0,0,0.4);
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .modal-close:hover { background: var(--red); }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #111 center/cover no-repeat;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .modal-info {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .modal-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .modal-desc {
+            color: #CCC;
+            line-height: 1.6;
+        }
+
+        .modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        body.modal-open { overflow: hidden; }
+
+        @media (max-width: 640px) {
+            .product-modal-overlay { padding: 0; }
+            .product-modal { max-width: 100%; min-height: 100vh; border-radius: 0; border-width: 0 0 2px 0; }
+            .modal-image { border-radius: 0; }
+        }
+
         /* Cart drawer */
         .cart-overlay {
             display: none;
@@ -659,6 +829,19 @@
     </style>
 </head>
 <body>
+    <div class="gate-overlay" id="comingSoonGate">
+        <div class="gate-box">
+            <span class="hero-eyebrow">Pro Shop</span>
+            <h1 class="gate-title">Coming Soon</h1>
+            <p class="gate-sub">We're putting the finishing touches on the parts shop. Check back soon!</p>
+            <form id="gateForm" class="gate-form" autocomplete="off">
+                <input type="password" id="gatePassword" class="gate-input" placeholder="Admin password" autocomplete="new-password">
+                <button type="submit" class="cta-btn gate-btn">Enter</button>
+            </form>
+            <p class="gate-error" id="gateError">Incorrect password.</p>
+        </div>
+    </div>
+
     <header>
         <nav>
             <div class="logo"><a href="index.html"><img src="images/checkeredflag.png" alt="The Checkered Flag"></a></div>
@@ -688,7 +871,7 @@
         <div class="hero-content">
             <span class="hero-eyebrow">Pro Shop</span>
             <h1>Parts & Gear</h1>
-            <p>Everything you need to keep racing — browse by category to find rear end parts, gearing, chassis, motors, bodies, and more for Road Course, Drag Racing, 1RC, and LOSI.</p>
+            <p>Everything you need to keep racing — browse by category to find rear end parts, gearing, chassis, motors, bodies, and more for Road Course, Drag Racing, 1RC, LOSI, and Crawler, plus apparel in the Gift Shop.</p>
         </div>
     </section>
 
@@ -698,6 +881,13 @@
             <div class="loading-state">Loading categories…</div>
         </div>
     </section>
+
+    <div class="product-modal-overlay" id="productModal">
+        <div class="product-modal">
+            <button class="modal-close" id="productModalClose" aria-label="Close">&times;</button>
+            <div class="modal-content" id="productModalBody"></div>
+        </div>
+    </div>
 
     <div class="cart-overlay" id="cartOverlay"></div>
     <aside class="cart-drawer" id="cartDrawer">
@@ -1067,7 +1257,7 @@ const TAXONOMY = [
             container.innerHTML = `<div class="shop-grid">${products.map(p => {
                 const isFeatured = featured.some(f => p.name.toLowerCase().includes(f.toLowerCase()));
                 return `
-                    <div class="product-card${isFeatured ? ' featured' : ''}">
+                    <div class="product-card${isFeatured ? ' featured' : ''}" data-open-id="${p.id}">
                         <div class="product-image" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}">${p.image_url ? '' : '🏎️'}</div>
                         <div class="product-body">
                             <span class="product-category">${escapeHtml(p.category || node.label)}</span>
@@ -1085,8 +1275,43 @@ const TAXONOMY = [
             }).join('')}</div>`;
 
             container.querySelectorAll('.add-btn').forEach(btn => {
-                btn.addEventListener('click', () => addToCart(btn.dataset.id));
+                btn.addEventListener('click', (e) => { e.stopPropagation(); addToCart(btn.dataset.id); });
             });
+            container.querySelectorAll('[data-open-id]').forEach(card => {
+                card.addEventListener('click', () => openProductDetail(card.dataset.openId));
+            });
+        }
+
+        // ---------- Product detail overlay ----------
+
+        function openProductDetail(productId) {
+            const p = allProducts.find(x => x.id === productId);
+            if (!p) return;
+            const modal = document.getElementById('productModal');
+            const body = document.getElementById('productModalBody');
+            body.innerHTML = `
+                <div class="modal-image" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}">${p.image_url ? '' : '🏎️'}</div>
+                <div class="modal-info">
+                    <span class="product-category">${escapeHtml(p.category || '')}</span>
+                    <h2 class="modal-name">${escapeHtml(p.name)}</h2>
+                    <p class="modal-desc">${escapeHtml(p.description || 'No description available.')}</p>
+                    <div class="modal-footer">
+                        <span class="modal-price">${money(p.price_cents)}</span>
+                        ${p.stock_quantity > 0
+                            ? `<button class="add-btn" id="modalAddBtn" data-id="${p.id}">Add to Cart</button>`
+                            : `<span class="sold-out-tag">Sold Out</span>`}
+                    </div>
+                </div>
+            `;
+            const addBtn = document.getElementById('modalAddBtn');
+            if (addBtn) addBtn.addEventListener('click', () => { addToCart(addBtn.dataset.id); closeProductDetail(); });
+            modal.classList.add('open');
+            document.body.classList.add('modal-open');
+        }
+
+        function closeProductDetail() {
+            document.getElementById('productModal').classList.remove('open');
+            document.body.classList.remove('modal-open');
         }
 
         // ---------- Cart ----------
@@ -1234,6 +1459,10 @@ const TAXONOMY = [
         document.getElementById('cartToggle').addEventListener('click', openCart);
         document.getElementById('cartClose').addEventListener('click', closeCart);
         document.getElementById('cartOverlay').addEventListener('click', closeCart);
+        document.getElementById('productModalClose').addEventListener('click', closeProductDetail);
+        document.getElementById('productModal').addEventListener('click', (e) => {
+            if (e.target.id === 'productModal') closeProductDetail();
+        });
         document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
 
         const params = new URLSearchParams(window.location.search);
@@ -1265,6 +1494,47 @@ const TAXONOMY = [
         menuToggle.addEventListener('click', () => navLinks.classList.contains('open') ? closeMenu() : openMenu());
         navOverlay.addEventListener('click', closeMenu);
         window.addEventListener('resize', () => { if (window.innerWidth > 968) closeMenu(); });
+
+        // ---------- Coming-soon admin gate ----------
+        // NOTE: this is a soft gate for casual visitors while the shop is
+        // being finished, not real security -- anyone who inspects the page
+        // source can find ADMIN_PASSWORD or bypass this check entirely.
+        // Never rely on it to protect anything sensitive.
+        const ADMIN_PASSWORD = 'checkeredflag865';
+        const GATE_KEY = 'checkeredflag_admin_unlocked';
+
+        function unlockGate() {
+            document.getElementById('comingSoonGate').classList.add('unlocked');
+            document.body.classList.remove('gate-locked');
+        }
+
+        function initGate() {
+            const gate = document.getElementById('comingSoonGate');
+            let alreadyUnlocked = false;
+            try { alreadyUnlocked = localStorage.getItem(GATE_KEY) === 'true'; } catch {}
+
+            if (alreadyUnlocked) {
+                unlockGate();
+            } else {
+                document.body.classList.add('gate-locked');
+            }
+
+            document.getElementById('gateForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const input = document.getElementById('gatePassword');
+                const errorEl = document.getElementById('gateError');
+                if (input.value === ADMIN_PASSWORD) {
+                    try { localStorage.setItem(GATE_KEY, 'true'); } catch {}
+                    errorEl.classList.remove('show');
+                    unlockGate();
+                } else {
+                    errorEl.classList.add('show');
+                    input.value = '';
+                    input.focus();
+                }
+            });
+        }
+        initGate();
 
         renderCartCount();
         renderCartItems();
