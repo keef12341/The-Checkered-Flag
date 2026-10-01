@@ -269,7 +269,7 @@
         .track-card.warn .stat-value { color: var(--amber); }
 
         /* Tabs styled like the site's pill/underline language */
-        .tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; }
+        .tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
         .tab-btn {
             background: none;
             border: none;
@@ -305,7 +305,7 @@
         .order-items-inner { padding: 1rem 1.5rem; }
         .order-items-inner div { font-size: 0.85rem; color: #CCC; padding: 0.2rem 0; }
 
-        .panel-toolbar { display: flex; justify-content: flex-end; margin-bottom: 1.5rem; }
+        .panel-toolbar { display: flex; justify-content: flex-end; margin-bottom: 1.5rem; gap: 0.75rem; }
 
         .product-thumb { width: 44px; height: 44px; border-radius: 6px; background: #111 center/cover no-repeat; }
 
@@ -314,7 +314,7 @@
         .edit-link, .delete-link { background: none; border: none; color: var(--blue); cursor: pointer; font-size: 0.85rem; font-family: inherit; margin-right: 0.75rem; font-weight: 600; }
         .delete-link { color: var(--red); }
 
-        /* Product modal, dressed like the track-card surface */
+        /* Product / order / category modal, dressed like the track-card surface */
         .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1200; align-items: center; justify-content: center; padding: 1.5rem; }
         .modal-overlay.open { display: flex; }
         .modal {
@@ -329,7 +329,7 @@
         }
         .modal h3 { font-family: 'Racing Sans One', sans-serif; font-size: 1.6rem; margin-bottom: 1.5rem; letter-spacing: 1px; color: var(--red); text-transform: uppercase; }
         .modal label { display: block; font-size: 0.85rem; margin-bottom: 0.4rem; color: #CCC; }
-        .modal input {
+        .modal input, .modal select {
             width: 100%;
             background: var(--dark);
             border: 1px solid rgba(255,255,255,0.15);
@@ -340,7 +340,7 @@
             font-family: inherit;
             font-size: 0.95rem;
         }
-        .modal input:focus { outline: none; border-color: var(--red); }
+        .modal input:focus, .modal select:focus { outline: none; border-color: var(--red); }
         .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .checkbox-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
         .checkbox-row input { width: auto; margin: 0; }
@@ -348,6 +348,29 @@
         .modal-actions .cta-btn { flex: 1; }
         .cta-btn.secondary { background: transparent; border: 2px solid rgba(255,255,255,0.2); }
         .cta-btn.secondary:hover { background: rgba(255,255,255,0.06); transform: none; }
+        .cta-btn.danger { background: var(--red); }
+
+        .detail-row { display: flex; justify-content: space-between; padding: 0.55rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 0.9rem; }
+        .detail-row span:first-child { color: #999; }
+        .item-row { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.88rem; }
+        .refund-box { margin-top: 1.25rem; padding-top: 1.1rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .refund-row { display: flex; gap: 0.5rem; margin-top: 0.75rem; align-items: flex-start; }
+        .refund-row input { margin-bottom: 0; }
+        .inline-msg { font-size: 0.82rem; margin-top: 0.6rem; display: none; }
+        .inline-msg.show { display: block; }
+        .inline-msg.ok { color: var(--green); }
+        .inline-msg.err { color: var(--red); }
+
+        .category-chip-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+        .category-chip { background: var(--gray); border-radius: 999px; padding: 0.4rem 0.6rem 0.4rem 1rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .category-chip button { background: none; border: none; color: #999; cursor: pointer; font-size: 0.75rem; padding: 0.2rem 0.4rem; font-family: inherit; }
+        .category-chip button:hover { color: var(--red); }
+        .category-chip button.edit-chip-btn:hover { color: var(--blue); }
+        .add-category-row { display: flex; gap: 0.5rem; margin-bottom: 2rem; max-width: 420px; }
+        .add-category-row input { margin-bottom: 0; }
+        .add-category-row .cta-btn { white-space: nowrap; }
+
+        .warn-tag { color: var(--amber); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
 
         /* Footer — identical to index.html */
         footer {
@@ -449,13 +472,13 @@
                     <div class="stat-label">Revenue (paid orders)</div>
                     <div class="stat-value" id="statRevenue">$0.00</div>
                 </div>
-                <div class="track-card profit">
-                    <div class="stat-label">Profit</div>
-                    <div class="stat-value" id="statProfit">$0.00</div>
-                </div>
                 <div class="track-card">
                     <div class="stat-label">Paid Orders</div>
                     <div class="stat-value" id="statOrders">0</div>
+                </div>
+                <div class="track-card">
+                    <div class="stat-label">Average Order</div>
+                    <div class="stat-value" id="statAvgOrder">$0.00</div>
                 </div>
                 <div class="track-card warn">
                     <div class="stat-label">Low Stock (&lt; 5)</div>
@@ -465,17 +488,22 @@
         </section>
 
         <section id="orders">
-            <h2 class="section-title">Orders</h2>
+            <h2 class="section-title">Admin</h2>
             <div class="tabs">
                 <button class="tab-btn active" data-tab="ordersPanel">Orders</button>
                 <button class="tab-btn" data-tab="productsPanel">Products</button>
+                <button class="tab-btn" data-tab="analyticsPanel">Analytics</button>
             </div>
 
             <div class="tab-panel active" id="ordersPanel">
+                <div class="panel-toolbar" style="justify-content:flex-start;">
+                    <button class="tab-btn active" id="ordersFilterPaid" data-status="paid" style="border:1px solid var(--red); border-radius:999px; padding:0.4rem 1rem;">Paid</button>
+                    <button class="tab-btn" id="ordersFilterAll" data-status="all" style="border:1px solid #444; border-radius:999px; padding:0.4rem 1rem;">All (incl. pending)</button>
+                </div>
                 <div class="table-card">
                     <table>
                         <thead>
-                            <tr><th>Date</th><th>Customer</th><th>Total</th><th>Status</th></tr>
+                            <tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th></tr>
                         </thead>
                         <tbody id="ordersBody">
                             <tr><td colspan="4" class="empty-note">Loading orders…</td></tr>
@@ -485,19 +513,30 @@
             </div>
 
             <div class="tab-panel" id="productsPanel">
+                <p class="section-title" style="font-size:1.1rem; text-align:left; margin-bottom:1rem;">Categories</p>
+                <div class="category-chip-row" id="categoryChips"></div>
+                <div class="add-category-row">
+                    <input type="text" id="newCategoryName" placeholder="New category name">
+                    <button class="cta-btn" id="addCategoryBtn">Add Category</button>
+                </div>
+
                 <div class="panel-toolbar">
                     <button class="cta-btn" id="addProductBtn">+ Add Product</button>
                 </div>
                 <div class="table-card">
                     <table>
                         <thead>
-                            <tr><th></th><th>Name</th><th>Category</th><th>Price</th><th>Cost</th><th>Stock</th><th>Active</th><th></th></tr>
+                            <tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th></th></tr>
                         </thead>
                         <tbody id="productsBody">
-                            <tr><td colspan="8" class="empty-note">Loading products…</td></tr>
+                            <tr><td colspan="5" class="empty-note">Loading products from Square…</td></tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            <div class="tab-panel" id="analyticsPanel">
+                <div id="analyticsContainer"><div class="empty-note">Loading analytics…</div></div>
             </div>
         </section>
     </div>
@@ -516,32 +555,37 @@
                     <input type="number" step="0.01" id="pPrice">
                 </div>
                 <div>
-                    <label>Cost ($)</label>
-                    <input type="number" step="0.01" id="pCost">
-                </div>
-            </div>
-            <div class="row-2">
-                <div>
-                    <label>Category</label>
-                    <input type="text" id="pCategory" placeholder="e.g. Slot Cars">
-                </div>
-                <div>
                     <label>Stock Qty</label>
                     <input type="number" id="pStock">
                 </div>
             </div>
-            <label>Image</label>
-            <input type="file" id="pImageFile" accept="image/*">
-            <div class="checkbox-row" style="margin-top:1rem;">
-                <input type="checkbox" id="pActive" checked>
-                <label for="pActive" style="margin:0;">Active (visible in shop)</label>
-            </div>
+            <label>Category</label>
+            <select id="pCategory"></select>
             <div class="error-msg" id="modalError"></div>
             <div class="modal-actions">
                 <button class="cta-btn secondary" id="modalCancel">Cancel</button>
-                <button class="cta-btn" id="modalSave">Save</button>
+                <button class="cta-btn" id="modalSave">Save to Square</button>
             </div>
         </div>
+    </div>
+
+    <!-- ===== EDIT CATEGORY MODAL ===== -->
+    <div class="modal-overlay" id="categoryModalOverlay">
+        <div class="modal">
+            <h3>Rename Category</h3>
+            <label>Name</label>
+            <input type="text" id="editCategoryName">
+            <div class="error-msg" id="categoryModalError"></div>
+            <div class="modal-actions">
+                <button class="cta-btn secondary" id="categoryModalCancel">Cancel</button>
+                <button class="cta-btn" id="categoryModalSave">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ORDER DETAIL MODAL ===== -->
+    <div class="modal-overlay" id="orderModalOverlay">
+        <div class="modal" id="orderModalBody"></div>
     </div>
 
     <footer>
@@ -554,17 +598,46 @@
         // ============ CONFIGURE THESE ============
         const SUPABASE_URL = 'https://wdynznqnytapgckpmylk.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndkeW56bnFueXRhcGdja3BteWxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNjA2MjEsImV4cCI6MjEwNDczNjYyMX0.NjAwQ25Bbri3KCfo6bfYcGlwL2e26IYlKEMcvG7iR8k';
+        const ADMIN_CATALOG_URL = `${SUPABASE_URL}/functions/v1/admin-catalog`;
         // ==========================================
 
         const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let editingProductId = null;
+        let editingVariationId = null;
+        let editingCategoryId = null;
         let allOrders = [];
         let allProducts = [];
+        let allCategories = [];
+        let currentOrderStatus = 'paid';
 
-        const money = (cents) => `$${(cents / 100).toFixed(2)}`;
+        const money = (cents) => `$${((cents || 0) / 100).toFixed(2)}`;
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
 
-        // ---------- Auth ----------
+        // Every admin-catalog call carries the real logged-in session token.
+        // The function verifies it server-side against Supabase itself --
+        // there's no separate admin password to manage here.
+        async function callCatalogApi(action, params = {}) {
+            const { data: { session } } = await supabase.auth.getSession();
+            const res = await fetch(ADMIN_CATALOG_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${session?.access_token || ''}`,
+                    apikey: SUPABASE_ANON_KEY,
+                },
+                body: JSON.stringify({ action, ...params }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || 'Request failed.');
+            return data;
+        }
+
+        // ---------- Auth (unchanged -- real Supabase accounts, not a shared password) ----------
         async function checkSession() {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) showDashboard(); else showLogin();
@@ -581,7 +654,7 @@
             document.getElementById('dashboardView').style.display = 'block';
             ['navOrders', 'navProducts', 'navLogout'].forEach(id => document.getElementById(id).style.display = 'block');
             loadOrders();
-            loadProducts();
+            loadCategories().then(loadProducts);
         }
 
         document.getElementById('loginBtn').addEventListener('click', async () => {
@@ -605,164 +678,287 @@
         });
 
         // ---------- Tabs ----------
-        document.querySelectorAll('.tab-btn').forEach(btn => {
+        document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-btn[data-tab]').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
                 btn.classList.add('active');
                 document.getElementById(btn.dataset.tab).classList.add('active');
+                if (btn.dataset.tab === 'analyticsPanel') loadAnalytics();
             });
         });
 
         // ---------- Orders ----------
+        document.getElementById('ordersFilterPaid').addEventListener('click', () => setOrderFilter('paid'));
+        document.getElementById('ordersFilterAll').addEventListener('click', () => setOrderFilter('all'));
+
+        function setOrderFilter(status) {
+            currentOrderStatus = status;
+            document.getElementById('ordersFilterPaid').classList.toggle('active', status === 'paid');
+            document.getElementById('ordersFilterAll').classList.toggle('active', status === 'all');
+            document.getElementById('ordersFilterPaid').style.borderColor = status === 'paid' ? 'var(--red)' : '#444';
+            document.getElementById('ordersFilterAll').style.borderColor = status === 'all' ? 'var(--red)' : '#444';
+            loadOrders();
+        }
+
         async function loadOrders() {
-            const { data: orders, error } = await supabase
-                .from('orders')
-                .select('*')
-                .order('created_at', { ascending: false });
-
             const body = document.getElementById('ordersBody');
-            if (error) {
-                body.innerHTML = `<tr><td colspan="4" class="empty-note">Couldn't load orders.</td></tr>`;
-                console.error(error);
-                return;
+            body.innerHTML = `<tr><td colspan="4" class="empty-note">Loading orders…</td></tr>`;
+            try {
+                const data = await callCatalogApi('list_orders', { status: currentOrderStatus });
+                allOrders = data.orders || [];
+                if (allOrders.length === 0) {
+                    body.innerHTML = `<tr><td colspan="4" class="empty-note">No orders here yet.</td></tr>`;
+                } else {
+                    body.innerHTML = allOrders.map(o => `
+                        <tr class="clickable" data-order="${o.id}">
+                            <td>#${escapeHtml(String(o.id))}</td>
+                            <td>${escapeHtml(o.customer_email || '—')}</td>
+                            <td>${money(o.total_cents)}</td>
+                            <td><span class="pill ${escapeHtml(o.status)}">${escapeHtml(o.status)}</span></td>
+                        </tr>
+                    `).join('');
+                    body.querySelectorAll('tr.clickable').forEach(row => {
+                        row.addEventListener('click', () => openOrderDetail(row.dataset.order));
+                    });
+                }
+            } catch (err) {
+                body.innerHTML = `<tr><td colspan="4" class="empty-note">${escapeHtml(err.message)}</td></tr>`;
             }
+            updateTopStats();
+        }
 
-            allOrders = orders || [];
-            if (allOrders.length === 0) {
-                body.innerHTML = `<tr><td colspan="4" class="empty-note">No orders yet.</td></tr>`;
-            } else {
-                body.innerHTML = allOrders.map(o => `
-                    <tr class="clickable" data-order="${o.id}">
-                        <td>${new Date(o.created_at).toLocaleString()}</td>
-                        <td>${o.customer_name || o.customer_email || '—'}</td>
-                        <td>${money(o.total_cents)}</td>
-                        <td><span class="pill ${o.status}">${o.status}</span></td>
-                    </tr>
-                `).join('');
+        async function openOrderDetail(orderId) {
+            const overlay = document.getElementById('orderModalOverlay');
+            const body = document.getElementById('orderModalBody');
+            body.innerHTML = `<div class="empty-note">Loading…</div>`;
+            overlay.classList.add('open');
+            try {
+                const data = await callCatalogApi('order_detail', { order_id: orderId });
+                renderOrderDetail(data.order, data.items);
+            } catch (err) {
+                body.innerHTML = `<div class="empty-note">${escapeHtml(err.message)}</div>`;
+            }
+        }
 
-                body.querySelectorAll('tr.clickable').forEach(row => {
-                    row.addEventListener('click', () => toggleOrderItems(row, row.dataset.order));
+        function renderOrderDetail(order, items) {
+            const body = document.getElementById('orderModalBody');
+            const canRefund = order.status === 'paid';
+            body.innerHTML = `
+                <h3>Order #${escapeHtml(String(order.id))}</h3>
+                <div class="detail-row"><span>Status</span><span class="pill ${escapeHtml(order.status)}">${escapeHtml(order.status)}</span></div>
+                <div class="detail-row"><span>Email</span><span>${escapeHtml(order.customer_email || '—')}</span></div>
+                <div class="detail-row"><span>Subtotal</span><span>${money(order.subtotal_cents)}</span></div>
+                <div class="detail-row"><span>Total</span><span>${money(order.total_cents)}</span></div>
+                <div class="detail-row"><span>Square order ID</span><span style="font-size:0.78rem;color:#777;">${escapeHtml(order.square_order_id || '—')}</span></div>
+                <div style="margin-top:1.25rem;">
+                    <p style="font-weight:700; font-size:0.95rem; margin-bottom:0.5rem;">Items</p>
+                    ${(items || []).map(it => `
+                        <div class="item-row">
+                            <span>${escapeHtml(it.product_name)} × ${it.quantity}</span>
+                            <span>${money((it.unit_price_cents || 0) * (it.quantity || 0))}</span>
+                        </div>
+                    `).join('') || '<p style="color:#666;font-size:0.85rem;">No line items on file.</p>'}
+                </div>
+                ${canRefund ? `
+                    <div class="refund-box">
+                        <p style="font-weight:700; font-size:0.95rem; margin-bottom:0.5rem;">Issue a Refund</p>
+                        <div class="refund-row">
+                            <input type="number" id="refundAmount" placeholder="Full refund if blank" min="0" step="0.01">
+                            <button class="cta-btn danger" id="refundBtn" style="width:auto; white-space:nowrap;">Refund</button>
+                        </div>
+                        <p class="inline-msg" id="refundMsg"></p>
+                    </div>
+                ` : ''}
+                <div class="modal-actions">
+                    <button class="cta-btn secondary" id="orderModalClose">Close</button>
+                </div>
+            `;
+            document.getElementById('orderModalClose').addEventListener('click', () => {
+                document.getElementById('orderModalOverlay').classList.remove('open');
+            });
+            const refundBtn = document.getElementById('refundBtn');
+            if (refundBtn) {
+                refundBtn.addEventListener('click', async () => {
+                    const dollars = document.getElementById('refundAmount').value.trim();
+                    const amount_cents = dollars ? Math.round(parseFloat(dollars) * 100) : undefined;
+                    const msgEl = document.getElementById('refundMsg');
+                    refundBtn.disabled = true;
+                    msgEl.className = 'inline-msg';
+                    try {
+                        const data = await callCatalogApi('refund', { order_id: order.id, amount_cents });
+                        msgEl.textContent = data.full_refund ? 'Fully refunded.' : 'Partial refund issued.';
+                        msgEl.classList.add('show', 'ok');
+                        loadOrders();
+                        if (data.full_refund) { order.status = 'refunded'; renderOrderDetail(order, items); }
+                        else refundBtn.disabled = false;
+                    } catch (err) {
+                        msgEl.textContent = err.message;
+                        msgEl.classList.add('show', 'err');
+                        refundBtn.disabled = false;
+                    }
                 });
             }
-
-            updateStats();
         }
 
-        async function toggleOrderItems(row, orderId) {
-            const existing = document.getElementById('items-' + orderId);
-            if (existing) { existing.remove(); return; }
+        document.getElementById('orderModalOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'orderModalOverlay') document.getElementById('orderModalOverlay').classList.remove('open');
+        });
 
-            const { data: items } = await supabase
-                .from('order_items')
-                .select('*')
-                .eq('order_id', orderId);
-
-            const tr = document.createElement('tr');
-            tr.className = 'order-items-row';
-            tr.id = 'items-' + orderId;
-            tr.innerHTML = `<td colspan="4"><div class="order-items-inner">
-                ${(items || []).map(i => `<div>${i.quantity} × ${i.product_name} — ${money(i.unit_price_cents)} each</div>`).join('') || 'No items.'}
-            </div></td>`;
-            row.after(tr);
+        async function updateTopStats() {
+            // Revenue/orders/average come from analytics (paid orders only,
+            // computed server-side so it matches the Analytics tab exactly).
+            try {
+                const data = await callCatalogApi('analytics');
+                document.getElementById('statRevenue').textContent = money(data.total_revenue_cents);
+                document.getElementById('statOrders').textContent = data.order_count;
+                document.getElementById('statAvgOrder').textContent = money(data.average_order_cents);
+            } catch (err) {
+                console.error(err);
+            }
         }
 
-        function updateStats() {
-            const paid = allOrders.filter(o => o.status === 'paid' || o.status === 'fulfilled');
-            const revenue = paid.reduce((sum, o) => sum + o.total_cents, 0);
-            document.getElementById('statRevenue').textContent = money(revenue);
-            document.getElementById('statOrders').textContent = paid.length;
-            computeProfit(paid.map(o => o.id));
+        // ---------- Categories ----------
+        async function loadCategories() {
+            try {
+                const data = await callCatalogApi('list_categories');
+                allCategories = data.categories || [];
+                renderCategoryChips();
+                renderCategoryOptions();
+            } catch (err) {
+                document.getElementById('categoryChips').innerHTML = `<span class="warn-tag">${escapeHtml(err.message)}</span>`;
+            }
         }
 
-        async function computeProfit(paidOrderIds) {
-            if (paidOrderIds.length === 0) {
-                document.getElementById('statProfit').textContent = money(0);
+        function renderCategoryChips() {
+            const container = document.getElementById('categoryChips');
+            if (!allCategories.length) {
+                container.innerHTML = `<span style="color:#666; font-size:0.85rem;">No categories yet -- add one below.</span>`;
                 return;
             }
-            const { data: items } = await supabase
-                .from('order_items')
-                .select('order_id, unit_price_cents, unit_cost_cents, quantity')
-                .in('order_id', paidOrderIds);
-
-            const profit = (items || []).reduce((sum, i) => sum + (i.unit_price_cents - i.unit_cost_cents) * i.quantity, 0);
-            document.getElementById('statProfit').textContent = money(profit);
+            container.innerHTML = allCategories.map(c => `
+                <div class="category-chip">
+                    <span>${escapeHtml(c.name)}</span>
+                    <button class="edit-chip-btn" data-id="${c.id}" data-action="edit" title="Rename">✎</button>
+                    <button data-id="${c.id}" data-action="delete" title="Delete">&times;</button>
+                </div>
+            `).join('');
+            container.querySelectorAll('button[data-action="edit"]').forEach(b => b.addEventListener('click', () => openCategoryModal(b.dataset.id)));
+            container.querySelectorAll('button[data-action="delete"]').forEach(b => b.addEventListener('click', () => deleteCategory(b.dataset.id)));
         }
 
-        // ---------- Products ----------
+        function renderCategoryOptions() {
+            const sel = document.getElementById('pCategory');
+            sel.innerHTML = `<option value="">— No category —</option>` +
+                allCategories.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('');
+        }
+
+        document.getElementById('addCategoryBtn').addEventListener('click', async () => {
+            const input = document.getElementById('newCategoryName');
+            const name = input.value.trim();
+            if (!name) return;
+            try {
+                await callCatalogApi('upsert_category', { name });
+                input.value = '';
+                await loadCategories();
+            } catch (err) {
+                alert(err.message);
+            }
+        });
+
+        function openCategoryModal(id) {
+            editingCategoryId = id;
+            const cat = allCategories.find(c => c.id === id);
+            document.getElementById('editCategoryName').value = cat ? cat.name : '';
+            document.getElementById('categoryModalError').style.display = 'none';
+            document.getElementById('categoryModalOverlay').classList.add('open');
+        }
+        document.getElementById('categoryModalCancel').addEventListener('click', () => {
+            document.getElementById('categoryModalOverlay').classList.remove('open');
+        });
+        document.getElementById('categoryModalSave').addEventListener('click', async () => {
+            const name = document.getElementById('editCategoryName').value.trim();
+            const errEl = document.getElementById('categoryModalError');
+            if (!name) { errEl.textContent = 'Name is required.'; errEl.style.display = 'block'; return; }
+            try {
+                await callCatalogApi('upsert_category', { id: editingCategoryId, name });
+                document.getElementById('categoryModalOverlay').classList.remove('open');
+                await loadCategories();
+                loadProducts();
+            } catch (err) {
+                errEl.textContent = err.message;
+                errEl.style.display = 'block';
+            }
+        });
+
+        async function deleteCategory(id) {
+            if (!confirm('Delete this category? Products in it will become uncategorized.')) return;
+            try {
+                await callCatalogApi('delete_category', { id });
+                await loadCategories();
+                loadProducts();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        // ---------- Products (live from Square -- no separate products table) ----------
         async function loadProducts() {
-            const { data, error } = await supabase
-                .from('products')
-                .select('*')
-                .order('created_at', { ascending: false });
-
             const body = document.getElementById('productsBody');
-            if (error) {
-                body.innerHTML = `<tr><td colspan="8" class="empty-note">Couldn't load products.</td></tr>`;
-                console.error(error);
-                return;
+            body.innerHTML = `<tr><td colspan="5" class="empty-note">Loading products from Square…</td></tr>`;
+            try {
+                const data = await callCatalogApi('list_products');
+                allProducts = data.products || [];
+                if (allProducts.length === 0) {
+                    body.innerHTML = `<tr><td colspan="5" class="empty-note">No products in Square yet — add your first one.</td></tr>`;
+                } else {
+                    body.innerHTML = allProducts.map(p => `
+                        <tr>
+                            <td>${escapeHtml(p.name)}</td>
+                            <td>${p.category_name.startsWith('(') ? `<span class="warn-tag">${escapeHtml(p.category_name)}</span>` : escapeHtml(p.category_name)}</td>
+                            <td>${money(p.price_cents)}${p.price_cents === 0 ? ' <span class="warn-tag">no price</span>' : ''}</td>
+                            <td>${p.stock_quantity === null ? 'not tracked' : p.stock_quantity}</td>
+                            <td>
+                                <button class="edit-link" data-id="${p.id}">Edit</button>
+                                <button class="delete-link" data-id="${p.id}">Delete</button>
+                            </td>
+                        </tr>
+                    `).join('');
+                    body.querySelectorAll('.edit-link').forEach(b => b.addEventListener('click', () => openProductModal(b.dataset.id)));
+                    body.querySelectorAll('.delete-link').forEach(b => b.addEventListener('click', () => deleteProduct(b.dataset.id)));
+                }
+            } catch (err) {
+                body.innerHTML = `<tr><td colspan="5" class="empty-note">${escapeHtml(err.message)}</td></tr>`;
             }
-
-            allProducts = data || [];
-            if (allProducts.length === 0) {
-                body.innerHTML = `<tr><td colspan="8" class="empty-note">No products yet — add your first one.</td></tr>`;
-            } else {
-                body.innerHTML = allProducts.map(p => `
-                    <tr>
-                        <td><div class="product-thumb" style="${p.image_url ? `background-image:url('${p.image_url}')` : ''}"></div></td>
-                        <td>${escapeHtml(p.name)}</td>
-                        <td>${escapeHtml(p.category || '')}</td>
-                        <td>${money(p.price_cents)}</td>
-                        <td>${money(p.cost_cents)}</td>
-                        <td>${p.stock_quantity}</td>
-                        <td>${p.active ? '✅' : '—'}</td>
-                        <td>
-                            <button class="edit-link" data-id="${p.id}">Edit</button>
-                            <button class="delete-link" data-id="${p.id}">Delete</button>
-                        </td>
-                    </tr>
-                `).join('');
-
-                body.querySelectorAll('.edit-link').forEach(b => b.addEventListener('click', () => openProductModal(b.dataset.id)));
-                body.querySelectorAll('.delete-link').forEach(b => b.addEventListener('click', () => deleteProduct(b.dataset.id)));
-            }
-
             updateLowStock();
         }
 
         function updateLowStock() {
-            const low = allProducts.filter(p => p.stock_quantity < 5).length;
+            const low = allProducts.filter(p => p.stock_quantity !== null && p.stock_quantity < 5).length;
             document.getElementById('statLowStock').textContent = low;
-        }
-
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str || '';
-            return div.innerHTML;
         }
 
         function openProductModal(productId = null) {
             editingProductId = productId;
+            editingVariationId = null;
             document.getElementById('modalError').style.display = 'none';
-            document.getElementById('pImageFile').value = '';
 
             if (productId) {
                 const p = allProducts.find(x => x.id === productId);
+                editingVariationId = p?.variation_id || null;
                 document.getElementById('modalTitle').textContent = 'Edit Product';
                 document.getElementById('pName').value = p.name;
                 document.getElementById('pDescription').value = p.description || '';
                 document.getElementById('pPrice').value = (p.price_cents / 100).toFixed(2);
-                document.getElementById('pCost').value = (p.cost_cents / 100).toFixed(2);
-                document.getElementById('pCategory').value = p.category || '';
-                document.getElementById('pStock').value = p.stock_quantity;
-                document.getElementById('pActive').checked = p.active;
+                document.getElementById('pStock').value = p.stock_quantity ?? '';
+                document.getElementById('pCategory').value = p.category_id || '';
             } else {
                 document.getElementById('modalTitle').textContent = 'Add Product';
-                ['pName', 'pDescription', 'pCategory'].forEach(id => document.getElementById(id).value = '');
+                document.getElementById('pName').value = '';
+                document.getElementById('pDescription').value = '';
                 document.getElementById('pPrice').value = '';
-                document.getElementById('pCost').value = '';
                 document.getElementById('pStock').value = 0;
-                document.getElementById('pActive').checked = true;
+                document.getElementById('pCategory').value = '';
             }
 
             document.getElementById('productModalOverlay').classList.add('open');
@@ -781,57 +977,84 @@
 
             const name = document.getElementById('pName').value.trim();
             const priceVal = parseFloat(document.getElementById('pPrice').value);
-            if (!name || isNaN(priceVal)) {
-                errEl.textContent = 'Name and price are required.';
+            if (!name || isNaN(priceVal) || priceVal <= 0) {
+                errEl.textContent = 'Name and a price greater than $0 are required.';
                 errEl.style.display = 'block';
                 return;
             }
 
             const payload = {
+                id: editingProductId || undefined,
+                variation_id: editingVariationId || undefined,
                 name,
                 description: document.getElementById('pDescription').value.trim(),
-                category: document.getElementById('pCategory').value.trim() || 'General',
                 price_cents: Math.round(priceVal * 100),
-                cost_cents: Math.round((parseFloat(document.getElementById('pCost').value) || 0) * 100),
-                stock_quantity: parseInt(document.getElementById('pStock').value) || 0,
-                active: document.getElementById('pActive').checked,
+                category_id: document.getElementById('pCategory').value || null,
+                stock_quantity: document.getElementById('pStock').value !== '' ? parseInt(document.getElementById('pStock').value, 10) : undefined,
             };
 
-            const file = document.getElementById('pImageFile').files[0];
-            if (file) {
-                const path = `${Date.now()}-${file.name}`;
-                const { error: uploadError } = await supabase.storage.from('product-images').upload(path, file);
-                if (uploadError) {
-                    errEl.textContent = 'Image upload failed: ' + uploadError.message;
-                    errEl.style.display = 'block';
-                    return;
-                }
-                const { data: pub } = supabase.storage.from('product-images').getPublicUrl(path);
-                payload.image_url = pub.publicUrl;
-            }
-
-            let error;
-            if (editingProductId) {
-                ({ error } = await supabase.from('products').update(payload).eq('id', editingProductId));
-            } else {
-                ({ error } = await supabase.from('products').insert(payload));
-            }
-
-            if (error) {
-                errEl.textContent = error.message;
+            const saveBtn = document.getElementById('modalSave');
+            saveBtn.disabled = true;
+            try {
+                await callCatalogApi('upsert_product', payload);
+                closeProductModal();
+                loadProducts();
+            } catch (err) {
+                errEl.textContent = err.message;
                 errEl.style.display = 'block';
-                return;
+            } finally {
+                saveBtn.disabled = false;
             }
-
-            closeProductModal();
-            loadProducts();
         });
 
         async function deleteProduct(id) {
-            if (!confirm('Delete this product? This cannot be undone.')) return;
-            const { error } = await supabase.from('products').delete().eq('id', id);
-            if (error) { alert(error.message); return; }
-            loadProducts();
+            if (!confirm('Delete this product from Square? This cannot be undone.')) return;
+            try {
+                await callCatalogApi('delete_product', { id });
+                loadProducts();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        // ---------- Analytics ----------
+        async function loadAnalytics() {
+            const container = document.getElementById('analyticsContainer');
+            container.innerHTML = `<div class="empty-note">Loading analytics…</div>`;
+            try {
+                const data = await callCatalogApi('analytics');
+                container.innerHTML = `
+                    <div class="tracks-grid" style="margin-bottom:2.5rem;">
+                        <div class="track-card">
+                            <div class="stat-label">Total Revenue</div>
+                            <div class="stat-value">${money(data.total_revenue_cents)}</div>
+                        </div>
+                        <div class="track-card">
+                            <div class="stat-label">Paid Orders</div>
+                            <div class="stat-value">${data.order_count}</div>
+                        </div>
+                        <div class="track-card">
+                            <div class="stat-label">Average Order</div>
+                            <div class="stat-value">${money(data.average_order_cents)}</div>
+                        </div>
+                    </div>
+                    <p style="font-weight:700; margin-bottom:1rem;">Best Sellers</p>
+                    ${(data.best_sellers || []).length ? `
+                        <div class="table-card">
+                            <table>
+                                <thead><tr><th>Item</th><th>Qty Sold</th><th>Revenue</th></tr></thead>
+                                <tbody>
+                                    ${data.best_sellers.map(p => `
+                                        <tr><td>${escapeHtml(p.name)}</td><td>${p.qty}</td><td>${money(p.revenue_cents)}</td></tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    ` : '<div class="empty-note">No sales yet.</div>'}
+                `;
+            } catch (err) {
+                container.innerHTML = `<div class="empty-note">${escapeHtml(err.message)}</div>`;
+            }
         }
 
         // Mobile menu (identical behavior to index.html)
